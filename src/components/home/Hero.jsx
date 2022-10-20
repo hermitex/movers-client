@@ -1,8 +1,25 @@
 import React from "react";
-import { Box, Button, Container, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Input,
+  InputAdornment,
+  MenuItem,
+  Paper,
+  Typography,
+} from "@mui/material";
+
+import TextField from "@mui/material/TextField";
 
 import heroBg from "../../assets/homepage/home-hero.png";
 import { NavLink } from "react-router-dom";
+import {
+  AccountCircle,
+  CalendarMonth,
+  House,
+  PinDrop,
+} from "@mui/icons-material";
 
 const styles = {
   paperContainer: {
@@ -23,7 +40,47 @@ const pages = [
   { dscription: "Get in touch", link: "contact" },
 ];
 
+const formInput = [
+  {
+    label: "from",
+    name: "from",
+    placeholder: "From: Address, city or zip",
+    icon: <PinDrop />,
+    type: "text",
+  },
+  {
+    label: "to",
+    name: "from",
+    placeholder: "To: Address, city or zip",
+    icon: <PinDrop />,
+    type: "text",
+  },
+  {
+    label: "house-type",
+    name: "house-type",
+    placeholder: "House type",
+    icon: <House />,
+    type: "select",
+    options: [
+      "1 Bedroom, small(600 - 800 sqf)",
+      "1 Bedroom, small(600 - 800 sqf)",
+      "1 Bedroom, small(600 - 800 sqf)",
+      "1 Bedroom, small(600 - 800 sqf)",
+      "1 Bedroom, small(600 - 800 sqf)",
+      "1 Bedroom, small(600 - 800 sqf)",
+    ],
+  },
+  {
+    label: "move-date",
+    name: "move-date",
+    placeholder: "Moving date",
+    icon: <CalendarMonth />,
+    type: "date",
+  },
+];
+
 function Hero() {
+  const handleChange = () => {};
   return (
     <Box>
       <Paper style={styles.paperContainer}>
@@ -88,6 +145,7 @@ function Hero() {
           height: "100%",
           bgcolor: "#2F2F2F",
           display: "flex",
+          gap: 2,
         }}
       >
         <Box
@@ -119,12 +177,81 @@ function Hero() {
         <Box
           sx={{
             height: "30vh",
+            color: "#fff",
+            fontSize: "3.5rem",
+            fontWeight: "bolder",
+            justifyContent: "space-between",
           }}
         >
-          <Typography variant="h6">
-            We’re Changing the Way People Move!
-          </Typography>
-          <Box></Box>
+          <Box>
+            <Typography variant="h6">
+              We’re Changing the Way People Move!
+            </Typography>
+          </Box>
+          <Box
+            component="form"
+            noValidate
+            autoComplete="off"
+            sx={{
+              display: "flex",
+              gap: 2,
+            }}
+          >
+            {formInput.map((input) =>
+              input.type === "select" ? (
+                <TextField
+                  key={input.label}
+                  id={input.label}
+                  select
+                  label={input.placeholder}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        {input.icon}
+                      </InputAdornment>
+                    ),
+                  }}
+                  defaultValue={input.placeholder}
+                  onChange={handleChange}
+                  sx={{
+                    bgcolor: "#fff",
+                    borderRadius: "0.1rem",
+                    width: "40%",
+                  }}
+                >
+                  {input.options.map((option) => (
+                    <MenuItem
+                      key={option}
+                      value={option}
+                      sx={{ width: "100%" }}
+                    >
+                      {option}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              ) : (
+                <TextField
+                  key={input.label}
+                  id={input.label}
+                  label={input.placeholder}
+                  type={input.type}
+                  variant="filled"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        {input.icon}
+                      </InputAdornment>
+                    ),
+                  }}
+                  onChange={handleChange}
+                  sx={{
+                    bgcolor: "#fff",
+                    borderRadius: "0.1rem",
+                  }}
+                />
+              )
+            )}
+          </Box>
         </Box>
       </Box>
     </Box>

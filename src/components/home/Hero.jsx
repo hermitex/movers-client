@@ -139,6 +139,7 @@ function Hero() {
           height: "100%",
           bgcolor: "#2F2F2F",
           display: "flex",
+
           gap: 2,
         }}
       >
@@ -154,7 +155,7 @@ function Hero() {
           sx={{
             bgcolor: "#fff",
             padding: "0.3rem",
-            height: "30vh",
+            height: "34vh",
           }}
         >
           {pages.map((page, i) => (
@@ -186,6 +187,7 @@ function Hero() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
+            padding: "1rem 0",
             gap: 3,
           }}
         >

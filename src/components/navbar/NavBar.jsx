@@ -11,6 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Login from "../login/Login";
 import logo from "../../logo.png";
 import { Link, NavLink } from "react-router-dom";
+import Singnup from "../signup/Singnup";
 
 const pages = ["Home", "About", "Services", "contact"];
 
@@ -155,9 +156,18 @@ const NavBar = () => {
               ))}
             </Box>
 
-            <Box sx={{ flexGrow: 0 }}>
+            <Link
+              to="login"
+              sx={{ flexGrow: 0 }}
+            >
               <Login />
-            </Box>
+            </Link>
+            <Link
+              to="signup"
+              sx={{ flexGrow: 0 }}
+            >
+              <Singnup />
+            </Link>
           </Box>
         </Toolbar>
       </Container>

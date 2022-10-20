@@ -22,25 +22,25 @@ function Singnup() {
             />
             <input
               type="text"
-              className="field"
+              className="signup-field"
               placeholder="email"
             />
             <input
               type="text"
-              className="field"
+              className="signup-field"
               placeholder="phone-number"
             />
             <input
               type="text"
-              className="field"
+              className="signup-field"
               placeholder="password"
             />
             <input
               type="text"
-              className="field"
+              className="signup-field"
               placeholder="password confirmation"
             />
-            <button className="btn">REGISTER</button>
+            <button className="signup-btn">REGISTER</button>
           </form>
         </div>
       </div>

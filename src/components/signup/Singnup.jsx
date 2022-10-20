@@ -4,20 +4,20 @@ import { Link } from "react-router-dom";
 
 function Singnup() {
   return (
-    <div className="container">
-      <div className="contact-box">
-        <div className="left"></div>
-        <div className="right">
+    <div className="signup-container">
+      <div className="signup-contact-box">
+        <div className="signup-left"></div>
+        <div className="signup-right">
           <form>
             <h1>Sign up here</h1>
             <input
               type="text"
-              className="field"
+              className="signup-field"
               placeholder="firstName"
             />
             <input
               type="text"
-              className="field"
+              className="signup-field"
               placeholder="lastName"
             />
             <input

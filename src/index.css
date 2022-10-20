@@ -88,11 +88,15 @@ a{
 .signup-btn{
 	width: 100%;
 	padding: 0.5rem 1rem;
-	background-color: #2ecc71;
+	background-color: #ff7575;
 	color: #fff;
 	font-size: 1.1rem;
 	border: none;
 	outline: none;
 	cursor: pointer;
 	transition: .3s;
+}
+
+.signup-btn:hover{
+  background-color: #fd4a4a;
 }

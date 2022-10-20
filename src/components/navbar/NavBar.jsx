@@ -138,6 +138,7 @@ const NavBar = () => {
             >
               {pages.map((page) => (
                 <NavLink
+                  key={page}
                   to={page.toLocaleLowerCase()}
                   style={({ isActive }) =>
                     isActive ? activeStyle : { color: "#000" }
@@ -146,7 +147,6 @@ const NavBar = () => {
                   <Typography
                     textAlign="center"
                     textTransform="uppercase"
-                    key={page}
                     sx={{ my: 2, display: "block" }}
                   >
                     {page}

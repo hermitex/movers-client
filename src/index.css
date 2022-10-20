@@ -107,3 +107,12 @@ a{
   background-color: #fff;
 }
 
+@media screen and (max-width: 880px){
+	.signup-contact-box{
+		grid-template-columns: 1fr;
+	}
+	.signup-left{
+		height: 200px;
+	}
+}
+

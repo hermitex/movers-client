@@ -227,6 +227,7 @@ function Hero() {
                 input.type === "select" ? (
                   <TextField
                     id={input.label}
+                    key={input.name}
                     select
                     label={input.placeholder}
                     value={input.icon}

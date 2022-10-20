@@ -3,8 +3,9 @@ import Hero from "./Hero";
 import Grid from "@mui/material/Grid";
 import ServiceCard from "./ServiceCard";
 import { Box, Container } from "@mui/system";
-import { Button, IconButton, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import truckIcon from "../../assets/icons/truck-timer.png";
+import WhyMoover from "./WhyMoover";
 
 function Home() {
   return (
@@ -65,7 +66,7 @@ function Home() {
               alignContent: "center",
             }}
           >
-            <Box sx={{ width: "5rem" }}>
+            <Box sx={{ width: "3rem" }}>
               <img
                 width="100%"
                 src={truckIcon}
@@ -100,6 +101,7 @@ function Home() {
           </Box>
         </Box>
       </Container>
+      <WhyMoover />
     </>
   );
 }

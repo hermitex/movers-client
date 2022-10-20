@@ -12,6 +12,7 @@ import Login from "../login/Login";
 import logo from "../../logo.png";
 import { Link, NavLink } from "react-router-dom";
 import Singnup from "../signup/Singnup";
+import { Button } from "@mui/material";
 
 const pages = ["Home", "About", "Services", "contact"];
 
@@ -160,13 +161,33 @@ const NavBar = () => {
               to="login"
               sx={{ flexGrow: 0 }}
             >
-              <Login />
+              <Button variant="outlined">
+                <Box
+                  sx={{
+                    display: "inline-block",
+                    padding: "0.5",
+                    color: "#FF515E",
+                  }}
+                >
+                  Login
+                </Box>
+              </Button>
             </Link>
             <Link
               to="signup"
               sx={{ flexGrow: 0 }}
             >
-              <Singnup />
+              <Button variant="outlined">
+                <Box
+                  sx={{
+                    display: "inline-block",
+                    padding: "0.5",
+                    color: "#FF515E",
+                  }}
+                >
+                  Signup
+                </Box>
+              </Button>
             </Link>
           </Box>
         </Toolbar>

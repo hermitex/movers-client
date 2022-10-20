@@ -71,7 +71,7 @@ a{
 
 .signup-field{
   width: 100%;
-	border: 2px solid rgba(0, 0, 0, 0);
+	border: 2px solid rgba(255, 125, 125, 0);
 	outline: none;
 	background-color: rgba(195, 192, 192, 0.6);
 	padding: 0.5rem 1rem;
@@ -79,6 +79,7 @@ a{
 	margin-bottom: 22px;
   margin-right: 22px;
 	transition: .3s;
+  color: rgb(232, 218, 218);
 }
 
 .signup-field:hover{
@@ -86,7 +87,7 @@ a{
 }
 
 .signup-btn{
-	width: 110%;
+	width: 100%;
 	padding: 0.5rem 1rem;
 	background-color: #ff7575;
 	color: #fff;
@@ -100,3 +101,9 @@ a{
 .signup-btn:hover{
   background-color: #fd4a4a;
 }
+
+.signup-field:focus{
+  border: 2px solid #ff7575;
+  background-color: #fff;
+}
+

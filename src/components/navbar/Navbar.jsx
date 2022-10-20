@@ -21,7 +21,7 @@ function NavBar(){
                             <Link to="/contactUs" className="nav-link">CONTACT US</Link>
                         </li>
                         <li>
-                            <Link to="/contactUs" className="nav-link">LOGIN/SIGN UP</Link>
+                            <Link to="/login" className="nav-link">LOGIN/SIGN UP</Link>
                         </li>
                     </ul>
                 </div>

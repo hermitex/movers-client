@@ -28,6 +28,10 @@ body {
 .navbar-links li a{
   text-decoration: none;
   color: black;
-  padding: 1rem;
+  padding: 1.2rem;
   display: block;
+}
+
+.navbar-links li:hover{
+  border-bottom: 2px solid rgb(229, 205, 205);
 }

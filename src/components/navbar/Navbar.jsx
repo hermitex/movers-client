@@ -18,7 +18,7 @@ function NavBar(){
                             <Link to="/services" className="nav-link">SERVICES</Link>
                         </li>
                         <li>
-                            <Link to="/contactUs" className="nav-link">CONTACT US</Link>
+                            <Link to="/contactus" className="nav-link">CONTACT US</Link>
                         </li>
                         <li>
                             <Link to="/login" className="nav-link">LOGIN/SIGN UP</Link>

@@ -3,6 +3,7 @@ import Login from "./components/login/Login";
 import Home from "./components/home/Home";
 import NavBar from "./components/navbar/NavBar";
 import Singnup from "./components/signup/Singnup";
+import Error404 from "./components/error/Error404";
 function App() {
   return (
     <div className="App">
@@ -26,6 +27,10 @@ function App() {
             <Route
               path="signup"
               element={<Singnup />}
+            />
+            <Route
+              path="*"
+              element={<Error404 />}
             />
           </Route>
         </Routes>

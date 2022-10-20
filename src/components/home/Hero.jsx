@@ -4,9 +4,7 @@ import {
   Button,
   Container,
   Divider,
-  Input,
   InputAdornment,
-  MenuItem,
   Paper,
   Typography,
 } from "@mui/material";
@@ -15,12 +13,7 @@ import TextField from "@mui/material/TextField";
 
 import heroBg from "../../assets/homepage/home-hero.png";
 import { NavLink } from "react-router-dom";
-import {
-  AccountCircle,
-  CalendarMonth,
-  House,
-  PinDrop,
-} from "@mui/icons-material";
+import { CalendarMonth, House, PinDrop } from "@mui/icons-material";
 
 const styles = {
   paperContainer: {
@@ -154,7 +147,7 @@ function Hero() {
             bgcolor: "inherit",
             padding: "0.3rem",
             height: "30vh",
-            width: "5rem",
+            width: "3rem",
           }}
         ></Box>
         <Box
@@ -172,7 +165,7 @@ function Hero() {
               <Typography
                 textAlign="left"
                 sx={{
-                  my: 2,
+                  my: 1,
                   display: "block",
                   color: "#9C9292",
                   fontSize: "0.7rem",
@@ -225,7 +218,7 @@ function Hero() {
               autoComplete="off"
               sx={{
                 display: "flex",
-                gap: 2,
+                gap: 0.5,
               }}
             >
               {formInput.map((input) =>
@@ -243,7 +236,7 @@ function Hero() {
                     sx={{
                       bgcolor: "#fff",
                       borderRadius: "0.1rem",
-                      width: "40%",
+                      // width: "40%",
                     }}
                   >
                     {input.options.map((option) => (
@@ -277,6 +270,18 @@ function Hero() {
                   />
                 )
               )}
+              <Button
+                variant="contained"
+                color="error"
+                style={{
+                  fontSize: "0.7rem",
+                  padding: 0,
+                  margin: 0,
+                  width: "10%",
+                }}
+              >
+                start
+              </Button>
             </Box>
           </Box>
         </Box>

@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Container,
+  Divider,
   Input,
   InputAdornment,
   MenuItem,
@@ -34,10 +35,10 @@ rgba(0, 0, 0, 0.73)),url(${heroBg})`,
 };
 
 const pages = [
-  { description: "What is Moove.com?", link: "about" },
-  { description: "What is included?", link: "services" },
-  { description: "How it works?", link: "how-it-works" },
-  { dscription: "Get in touch", link: "contact" },
+  { description: "What is Moove.com?", link: "about", divider: <Divider /> },
+  { description: "What is included?", link: "services", divider: <Divider /> },
+  { description: "How it works?", link: "how-it-works", divider: <Divider /> },
+  { dscription: "Get in touch", link: "contact", divider: "" },
 ];
 
 const formInput = [
@@ -150,12 +151,20 @@ function Hero() {
       >
         <Box
           sx={{
+            bgcolor: "inherit",
+            padding: "0.3rem",
+            height: "30vh",
+            width: "5rem",
+          }}
+        ></Box>
+        <Box
+          sx={{
             bgcolor: "#fff",
             padding: "0.3rem",
             height: "30vh",
           }}
         >
-          {pages.map((page) => (
+          {pages.map((page, i) => (
             <NavLink
               key={page}
               to={`/${page.link.toLocaleLowerCase()}`}
@@ -171,6 +180,7 @@ function Hero() {
               >
                 {page.description}
               </Typography>
+              {page.divider}
             </NavLink>
           ))}
         </Box>
@@ -180,77 +190,94 @@ function Hero() {
             color: "#fff",
             fontSize: "3.5rem",
             fontWeight: "bolder",
+            display: "flex",
+            flexDirection: "column",
             justifyContent: "space-between",
+            gap: 3,
           }}
         >
           <Box>
-            <Typography variant="h6">
-              We’re Changing the Way People Move!
+            <Typography
+              variant="h6"
+              sx={{
+                fontSize: "1.8rem",
+              }}
+            >
+              We’re Changing the Way <br />
+              People Move!
             </Typography>
           </Box>
-          <Box
-            component="form"
-            noValidate
-            autoComplete="off"
-            sx={{
-              display: "flex",
-              gap: 2,
-            }}
-          >
-            {formInput.map((input) =>
-              input.type === "select" ? (
-                <TextField
-                  key={input.label}
-                  id={input.label}
-                  select
-                  label={input.placeholder}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        {input.icon}
-                      </InputAdornment>
-                    ),
-                  }}
-                  defaultValue={input.placeholder}
-                  onChange={handleChange}
-                  sx={{
-                    bgcolor: "#fff",
-                    borderRadius: "0.1rem",
-                    width: "40%",
-                  }}
-                >
-                  {input.options.map((option) => (
-                    <MenuItem
-                      key={option}
-                      value={option}
-                      sx={{ width: "100%" }}
-                    >
-                      {option}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              ) : (
-                <TextField
-                  key={input.label}
-                  id={input.label}
-                  label={input.placeholder}
-                  type={input.type}
-                  variant="filled"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        {input.icon}
-                      </InputAdornment>
-                    ),
-                  }}
-                  onChange={handleChange}
-                  sx={{
-                    bgcolor: "#fff",
-                    borderRadius: "0.1rem",
-                  }}
-                />
-              )
-            )}
+
+          <Box>
+            <Box
+              sx={{
+                fontSize: "0.7rem",
+              }}
+            >
+              <Typography variant="p">
+                Compare Prices and Movers Now!
+              </Typography>
+            </Box>
+
+            <Box
+              component="form"
+              noValidate
+              autoComplete="off"
+              sx={{
+                display: "flex",
+                gap: 2,
+              }}
+            >
+              {formInput.map((input) =>
+                input.type === "select" ? (
+                  <TextField
+                    id={input.label}
+                    select
+                    label={input.placeholder}
+                    value={input.icon}
+                    onChange={handleChange}
+                    SelectProps={{
+                      native: true,
+                    }}
+                    variant="filled"
+                    sx={{
+                      bgcolor: "#fff",
+                      borderRadius: "0.1rem",
+                      width: "40%",
+                    }}
+                  >
+                    {input.options.map((option) => (
+                      <option
+                        key={option}
+                        value={option}
+                      >
+                        {option}
+                      </option>
+                    ))}
+                  </TextField>
+                ) : (
+                  <TextField
+                    key={input.label}
+                    id={input.label}
+                    label={input.placeholder}
+                    type={input.type}
+                    variant="filled"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          {input.icon}
+                        </InputAdornment>
+                      ),
+                    }}
+                    onChange={handleChange}
+                    sx={{
+                      bgcolor: "#fff",
+                      borderRadius: "0.1rem",
+                    }}
+                  />
+                )
+              )}
+            </Box>
           </Box>
         </Box>
       </Box>

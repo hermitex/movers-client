@@ -38,41 +38,47 @@ function Singnup({onLogin}) {
             <h1>Sign up here</h1>
             <input
               type="text"
+              value={firstName}
               className="signup-field"
               placeholder="firstName"
               onChange={(e) => setFirstName(e.target.value)}
             />
             <input
               type="text"
+              value={lastName}
               className="signup-field"
               placeholder="lastName"
               onChange={(e) => setlastName(e.target.value)}
             />
             <input
               type="text"
+              value={email}
               className="signup-field"
               placeholder="email"
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="text"
+              value={phoneNumber}
               className="signup-field"
               placeholder="phoneNumber"
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
             <input
               type="text"
+              value={password}
               className="signup-field"
               placeholder="password"
               onChange={(e) => setPassword(e.target.value)}
             />
             <input
               type="text"
+              value={passwordConfirmation}
               className="signup-field"
-              placeholder="password confirmation"
+              placeholder="passwordConfirmation"
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
-            <button className="signup-btn">REGISTER</button>
+            <input className="signup-btn" type="submit" value="REGISTER"/>
           </form>
         </div>
       </div>

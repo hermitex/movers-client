@@ -1,44 +1,76 @@
 import { Box, Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Singnup() {
+function Singnup({onLogin}) {
+
+  const[firstName, setFirstName] = useState("")
+  const[lastName, setlastName] = useState("")
+  const[email, setEmail] = useState("")
+  const[phoneNumber, setPhoneNumber] = useState("")
+  const[password, setPassword] = useState("")
+  const[passwordConfirmation, setPasswordConfirmation] = useState("")
+  const [errors, setErrors] = useState([])
+
+  function handleSubmit(e){
+    e.preventDefault()
+    fetch('/users',{
+      method: 'POST',
+      headers: {
+        'Content-type' : 'application/json'
+      },
+      body: JSON.stringify({firstName, lastName, email, phoneNumber, password, passwordConfirmation})
+    })
+    .then((res)=>{
+      if(res.ok){
+        res.json().then(onLogin)
+      } else{
+        res.json().then((errors)=>setErrors(errors))
+      }
+    })
+  }
   return (
     <div className="signup-container">
       <div className="signup-contact-box">
         <div className="signup-left"></div>
         <div className="signup-right">
-          <form>
+          <form onSubmit={handleSubmit}>
             <h1>Sign up here</h1>
             <input
               type="text"
               className="signup-field"
               placeholder="firstName"
+              onChange={(e) => setFirstName(e.target.value)}
             />
             <input
               type="text"
               className="signup-field"
               placeholder="lastName"
+              onChange={(e) => setlastName(e.target.value)}
             />
             <input
               type="text"
               className="signup-field"
               placeholder="email"
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="text"
               className="signup-field"
-              placeholder="phone-number"
+              placeholder="phoneNumber"
+              onChange={(e) => setPhoneNumber(e.target.value)}
             />
             <input
               type="text"
               className="signup-field"
               placeholder="password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <input
               type="text"
               className="signup-field"
               placeholder="password confirmation"
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
             <button className="signup-btn">REGISTER</button>
           </form>

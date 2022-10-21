@@ -78,6 +78,7 @@ function Home() {
               sx={{
                 display: "flex",
                 flexDirection: "column",
+                paddingLeft: 1,
               }}
             >
               <Typography

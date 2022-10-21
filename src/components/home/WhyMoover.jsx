@@ -3,7 +3,6 @@ import React from "react";
 import userGroup from "../../assets/icons/user-group.png";
 import doubleDroppin from "../../assets/icons/double-droppin.png";
 import truckIcon from "../../assets/icons/truck-timer.png";
-import { Container } from "@mui/system";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const data = [

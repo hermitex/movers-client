@@ -98,6 +98,7 @@ function WhyMoover() {
                   alignContent: "center",
                   bgcolor: "#F7F7F7",
                   width: "17vw",
+                  height: "15vh",
                   textAlign: "left",
                   padding: "0.5rem",
                 }}
@@ -114,7 +115,6 @@ function WhyMoover() {
                   sx={{
                     display: "flex",
                     flexDirection: "column",
-                    height: "15vh",
                   }}
                 >
                   <Typography

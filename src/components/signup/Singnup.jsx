@@ -1,6 +1,6 @@
 import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Singnup({onLogin}) {
 
@@ -11,6 +11,8 @@ function Singnup({onLogin}) {
   const[password, setPassword] = useState("")
   const[passwordConfirmation, setPasswordConfirmation] = useState("")
   const [errors, setErrors] = useState([])
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   function handleSubmit(e){
     e.preventDefault()
@@ -36,6 +38,10 @@ function Singnup({onLogin}) {
       password,
       passwordConfirmation
     })
+    setUser(user);
+    setTimeout(() => {
+      navigate("/home", { state: user });
+    }, 2000);
   }
   return (
     <div className="signup-container">

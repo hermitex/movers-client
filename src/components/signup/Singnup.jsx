@@ -14,19 +14,27 @@ function Singnup({onLogin}) {
 
   function handleSubmit(e){
     e.preventDefault()
-    fetch('/users',{
-      method: 'POST',
-      headers: {
-        'Content-type' : 'application/json'
-      },
-      body: JSON.stringify({firstName, lastName, email, phoneNumber, password, passwordConfirmation})
-    })
-    .then((res)=>{
-      if(res.ok){
-        res.json().then(onLogin)
-      } else{
-        res.json().then((errors)=>setErrors(errors))
-      }
+    // fetch('/users',{
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-type' : 'application/json'
+    //   },
+    //   body: JSON.stringify({firstName, lastName, email, phoneNumber, password, passwordConfirmation})
+    // })
+    // .then((res)=>{
+    //   if(res.ok){
+    //     res.json().then(onLogin)
+    //   } else{
+    //     res.json().then((errors)=>setErrors(errors))
+    //   }
+    // })
+    console.log({
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation
     })
   }
   return (

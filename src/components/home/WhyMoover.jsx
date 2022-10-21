@@ -67,7 +67,6 @@ function WhyMoover() {
   return (
     <Box
       sx={{
-        width: "100vw",
         bgcolor: "#fff",
       }}
     >
@@ -80,6 +79,7 @@ function WhyMoover() {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-around",
+            borderRadius: 0,
             my: 2,
           }}
         >
@@ -115,6 +115,7 @@ function WhyMoover() {
                   sx={{
                     display: "flex",
                     flexDirection: "column",
+                    height: "15vh",
                   }}
                 >
                   <Typography
@@ -150,7 +151,7 @@ function WhyMoover() {
               >
                 Why the Mooove way?
               </Typography>
-              <Box sx={{ textAlign: "center" }}>
+              <Box sx={{ textAlign: "center", padding: 2 }}>
                 <Typography
                   variant="p"
                   textAlign="center"
@@ -174,7 +175,7 @@ function WhyMoover() {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    justifyContent: "start",
+                    justifyContent: "space-between",
                     width: "100%",
                   }}
                 >
@@ -189,16 +190,16 @@ function WhyMoover() {
                         width: "100%",
                       }}
                     >
-                      <Checkbox
-                        {...label}
-                        checked
-                        readOnly
-                        color="default"
-                      />
                       <Typography
                         fontSize="0.7rem"
                         textAlign="left"
                       >
+                        <Checkbox
+                          {...label}
+                          checked
+                          readOnly
+                          color="default"
+                        />
                         {reason.reason}
                       </Typography>
                     </Box>
@@ -224,16 +225,16 @@ function WhyMoover() {
                         width: "100%",
                       }}
                     >
-                      <Checkbox
-                        {...label}
-                        checked
-                        readOnly
-                        color="default"
-                      />
                       <Typography
                         fontSize="0.7rem"
                         textAlign="left"
                       >
+                        <Checkbox
+                          {...label}
+                          checked
+                          readOnly
+                          color="default"
+                        />
                         {reason.reason}
                       </Typography>
                     </Box>

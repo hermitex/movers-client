@@ -6,6 +6,7 @@ import { Box, Container } from "@mui/system";
 import { Button, Typography } from "@mui/material";
 import truckIcon from "../../assets/icons/truck-timer.png";
 import WhyMoover from "./WhyMoover";
+import HowitWorks from "./HowitWorks";
 
 function Home() {
   return (
@@ -103,6 +104,7 @@ function Home() {
         </Box>
       </Container>
       <WhyMoover />
+      <HowitWorks />
     </>
   );
 }

@@ -28,10 +28,25 @@ rgba(0, 0, 0, 0.73)),url(${heroBg})`,
 };
 
 const pages = [
-  { description: "What is Moove.com?", link: "about", divider: <Divider /> },
-  { description: "What is included?", link: "services", divider: <Divider /> },
-  { description: "How it works?", link: "how-it-works", divider: <Divider /> },
-  { dscription: "Get in touch", link: "contact", divider: "" },
+  {
+    id: 1,
+    description: "What is Moove.com?",
+    link: "about",
+    divider: <Divider />,
+  },
+  {
+    id: 2,
+    description: "What is included?",
+    link: "services",
+    divider: <Divider />,
+  },
+  {
+    id: 3,
+    description: "How it works?",
+    link: "how-it-works",
+    divider: <Divider />,
+  },
+  { id: 4, description: "Get in touch", link: "contact", divider: "" },
 ];
 
 const formInput = [
@@ -161,7 +176,11 @@ function Hero() {
           {pages.map((page, i) => (
             <NavLink
               key={page}
-              to={`/${page.link.toLocaleLowerCase()}`}
+              to={
+                page.id === 3
+                  ? `#how-it-works`
+                  : `/${page.link.toLocaleLowerCase()}`
+              }
             >
               <Typography
                 textAlign="left"

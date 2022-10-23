@@ -80,6 +80,7 @@ function WhyMoover() {
             justifyContent: "space-around",
             borderRadius: 0,
             my: 2,
+            py: "2rem",
           }}
         >
           <Box

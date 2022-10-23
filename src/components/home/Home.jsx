@@ -7,6 +7,7 @@ import { Button, Typography } from "@mui/material";
 import truckIcon from "../../assets/icons/truck-timer.png";
 import WhyMoover from "./WhyMoover";
 import HowitWorks from "./HowitWorks";
+import Pricing from "./Pricing";
 
 function Home() {
   return (
@@ -105,6 +106,7 @@ function Home() {
       </Container>
       <WhyMoover />
       <HowitWorks />
+      <Pricing />
     </>
   );
 }

@@ -8,6 +8,7 @@ import truckIcon from "../../assets/icons/truck-timer.png";
 import WhyMoover from "./WhyMoover";
 import HowitWorks from "./HowitWorks";
 import Pricing from "./Pricing";
+import Partners from "./Partners";
 
 function Home() {
   return (
@@ -107,6 +108,7 @@ function Home() {
       <WhyMoover />
       <HowitWorks />
       <Pricing />
+      <Partners />
     </>
   );
 }

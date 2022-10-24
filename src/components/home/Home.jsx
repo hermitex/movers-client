@@ -9,6 +9,7 @@ import WhyMoover from "./WhyMoover";
 import HowitWorks from "./HowitWorks";
 import Pricing from "./Pricing";
 import Partners from "./Partners";
+import ReadMore from "./ReadMore";
 
 function Home() {
   return (
@@ -109,6 +110,7 @@ function Home() {
       <HowitWorks />
       <Pricing />
       <Partners />
+      <ReadMore />
     </>
   );
 }

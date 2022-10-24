@@ -2,7 +2,7 @@ import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Singnup({onLogin}) {
+function Singnup({ onLogin }) {
 
   const[firstName, setFirstName] = useState("")
   const[lastName, setlastName] = useState("")

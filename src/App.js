@@ -4,7 +4,20 @@ import Home from "./components/home/Home";
 import NavBar from "./components/navbar/NavBar";
 import Singnup from "./components/signup/Singnup";
 import Error404 from "./components/error/Error404";
+import { useEffect, useState } from "react";
 function App() {
+
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    fetch("/me")
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((user) => setUser(user))
+        }
+      })
+  }, [])
+
   return (
     <div className="App">
       <Router>
@@ -22,11 +35,11 @@ function App() {
             />
             <Route
               path="login"
-              element={<Login />}
+              element={<Login onLogin={setUser}/>}
             />
             <Route
               path="signup"
-              element={<Singnup />}
+              element={<Singnup onLogin={setUser}/>}
             />
             <Route
               path="*"

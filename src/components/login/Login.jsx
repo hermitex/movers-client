@@ -2,7 +2,9 @@ import Button from "@mui/material/Button";
 import React, { useState } from "react";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import { Grid, Paper, TextField, Typography, Link } from "@mui/material";
+import Singnup from "../signup/Singnup";
+import { Grid, Paper, TextField, Typography, Link, Tabs, Tab } from "@mui/material";
+import { Box } from "@mui/system";
 
 
 function Login({ onLogin }) {
@@ -11,6 +13,12 @@ function Login({ onLogin }) {
   const [checked, setChecked] = useState(false)
   const [errors, setErrors] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -40,8 +48,20 @@ function Login({ onLogin }) {
     <Grid >
       <Paper elevation={10} style={paperStyle} sx={{ display: { xs: "none", sm: "block"}}}>    
         <Paper style={paperStyleInner} sx={{ display: { xs: "flex", sm: "block"}}}>
-          <Grid>
-            <Button 
+          {/* <Grid> */}
+          <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+          <Tabs 
+            value={value} 
+            onChange={handleChange} 
+            variant="fullWidth"
+            indicatorColor="secondary"
+            textColor="inherit"
+          >
+            <Tab label="LOG IN" />
+            <Tab label="SIGN UP" />
+          </Tabs>
+          </Box>
+            {/* <Button 
               variant="outlined" 
               color="secondary" 
               style={buttonStyle}
@@ -54,9 +74,12 @@ function Login({ onLogin }) {
               style={buttonStyle}
             >
               Sign Up
-            </Button>
-          </Grid>   
-          <br /><br /><br />       
+            </Button> */}
+          {/* </Grid>    */}
+          <br /><br /><br />   
+          {value === 0 && <Login />}  
+          {value === 1 && <Singnup />} 
+            
           <TextField 
             size="small" 
             id="outlined-basic" 
@@ -95,7 +118,7 @@ function Login({ onLogin }) {
           <br /><br /><br />
           <Button 
             variant="contained" 
-            color="success" 
+            color="error" 
             onsubmit={handleSubmit} 
             fullWidth
           >

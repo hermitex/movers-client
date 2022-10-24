@@ -6,6 +6,9 @@ import { Box, Container } from "@mui/system";
 import { Button, Typography } from "@mui/material";
 import truckIcon from "../../assets/icons/truck-timer.png";
 import WhyMoover from "./WhyMoover";
+import HowitWorks from "./HowitWorks";
+import Pricing from "./Pricing";
+import Partners from "./Partners";
 
 function Home() {
   return (
@@ -54,7 +57,7 @@ function Home() {
             justifyContent: "space-between",
             alignItems: "center",
             alignContent: "center",
-            padding: "0.5rem 4.5rem",
+            padding: "0.5rem 5rem",
           }}
         >
           <Box
@@ -78,6 +81,7 @@ function Home() {
               sx={{
                 display: "flex",
                 flexDirection: "column",
+                paddingLeft: 1,
               }}
             >
               <Typography
@@ -102,6 +106,9 @@ function Home() {
         </Box>
       </Container>
       <WhyMoover />
+      <HowitWorks />
+      <Pricing />
+      <Partners />
     </>
   );
 }

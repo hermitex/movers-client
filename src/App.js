@@ -4,6 +4,7 @@ import Home from "./components/home/Home";
 import NavBar from "./components/navbar/NavBar";
 import Singnup from "./components/signup/Singnup";
 import Error404 from "./components/error/Error404";
+import Footer from "./components/utils/Footer";
 function App() {
   return (
     <div className="App">
@@ -34,6 +35,7 @@ function App() {
             />
           </Route>
         </Routes>
+        <Footer />
       </Router>
     </div>
   );

@@ -168,7 +168,6 @@ function Hero() {
           height: "100%",
           bgcolor: "#2F2F2F",
           display: "flex",
-
           gap: 2,
         }}
       >

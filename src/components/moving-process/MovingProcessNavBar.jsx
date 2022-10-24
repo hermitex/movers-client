@@ -14,6 +14,7 @@ function MovingProcessNavBar({ size, color }) {
           bgcolor: "#fff",
           color: "#000",
         }}
+        
       >
         <Container maxWidth="xl">
           <Box

@@ -40,14 +40,11 @@
 /* for the dashboard */
 .profile-container{
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 0.5fr 2fr;
   grid-auto-rows: minmax(150px, auto);
-  background-color: aqua;
 }
 
-.dashboard-item-1{
-  grid-column-start: 1;
-  grid-column-end: 3;
+.profile-item-1{
   background-color: rgb(177, 177, 177);
-  border: 2px solid black;
+  grid-row: span 4;
 }

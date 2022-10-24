@@ -1,6 +1,11 @@
 import React from "react";
+import { SideBarData } from "./SideBarData";
+import { Link } from 'react-router-dom';
+import './SideBar.css'
 
 function MoverSideBar(){
+
+
     return(
         <div>
             <div>
@@ -10,14 +15,19 @@ function MoverSideBar(){
                 <h2>Tiberius Mairura</h2>
                 <h6>My Profile</h6>
                 </div>
-                <div>
-                    <ul>
-                        <li>Dashboard</li>
-                        <li>Completed Orders</li>
-                        <li>Financial Analytics</li>
-                        <li>Reviews</li>
-                        <li>Location Anlalytics</li>
-                    </ul>
+                <br/>
+                <div className="dashboard-sidebar">
+                    <nav className="nav-menu-active">
+                        <ul className="nav-menu-items">
+                            {SideBarData.map((item, index)=>{
+                                return(
+                                    <li key={index} className={item.cName}>
+                                        <Link to={item.path}>{item.title}</Link>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>

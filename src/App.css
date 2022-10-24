@@ -38,13 +38,4 @@
 }
 
 /* for the dashboard */
-.profile-container{
-  display: grid;
-  grid-template-columns: 0.5fr 2fr;
-  grid-auto-rows: minmax(150px, auto);
-}
 
-.profile-item-1{
-  background-color: rgb(177, 177, 177);
-  grid-row: span 4;
-}

@@ -1,0 +1,26 @@
+.profile-container{
+    display: grid;
+    grid-template-columns: 0.5fr 2fr;
+    grid-auto-rows: minmax(150px, auto);
+  }
+  
+  .profile-item-1{
+    background-color: rgb(30, 30, 30);
+    grid-row: span 4;
+  }
+
+.dashboard-sidebar{
+    position: fixed;
+    font-size: 20px;
+}
+
+.dashboard-sidebar a{
+    display: block;
+    color: white;
+    height: 60px;
+    line-height: 60px;
+}
+
+.dashboard-sidebar li{
+list-style: none;
+}

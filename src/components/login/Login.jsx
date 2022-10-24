@@ -41,7 +41,6 @@ function Login({ onLogin }) {
 
   const paperStyle={backgroundImage: "url('https://images.pexels.com/photos/4246211/pexels-photo-4246211.jpeg?auto=compress&cs=tinysrgb&w=1600')", backgroundPosition: "center", backgroundSize: "cover", padding :20, height: 600, width: 600, margin: '100px auto'}
   const paperStyleInner={padding :20, height: 600, width: 300, position: 'relative', top: '-20px', left: '280px'}
-  const buttonStyle={width: "150px", height: "40px", margin: 0}
   const textFieldStyle={margin: "10px auto"}
 
   return (
@@ -77,8 +76,6 @@ function Login({ onLogin }) {
             </Button> */}
           {/* </Grid>    */}
           <br /><br /><br />   
-          {value === 0 && <Login />}  
-          {value === 1 && <Singnup />} 
             
           <TextField 
             size="small" 

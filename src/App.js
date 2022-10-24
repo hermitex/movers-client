@@ -8,6 +8,10 @@ import Error404 from "./components/error/Error404";
 import { useEffect, useState } from "react";
 
 import Footer from "./components/utils/Footer";
+import GetStarted from "./components/moving-process/GetStarted";
+import MyItems from "./components/moving-process/MyItems";
+import Compare from "./components/moving-process/Compare";
+import Book from "./components/moving-process/Book";
 
 function App() {
 
@@ -21,6 +25,7 @@ function App() {
         }
       })
   }, [])
+
 
   return (
     <div className="App">
@@ -44,6 +49,22 @@ function App() {
             <Route
               path="signup"
               element={<Singnup onLogin={setUser}/>}
+            />
+            <Route
+              path="/get-started"
+              element={<GetStarted />}
+            />
+            <Route
+              path="/my-items"
+              element={<MyItems /> }
+            />
+            <Route
+              path="/compare"
+              element={<Compare />}
+            />
+            <Route
+              path="/book"
+              element={<Book />}
             />
             <Route
               path="*"

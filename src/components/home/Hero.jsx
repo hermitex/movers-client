@@ -12,7 +12,7 @@ import {
 import TextField from "@mui/material/TextField";
 
 import heroBg from "../../assets/homepage/home-hero.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { CalendarMonth, House, PinDrop } from "@mui/icons-material";
 
 const styles = {
@@ -137,13 +137,27 @@ function Hero() {
                 gap: 2,
               }}
             >
-              <Button
-                variant="contained"
-                color="error"
+              <Link
+                to="/"
+                sx={{ flexGrow: 0 }}
               >
-                read more
-              </Button>
-              <Button variant="contained">get started</Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                >
+                  read more
+                </Button>
+              </Link>
+              <Link
+                to="/get-started"
+                sx={{ flexGrow: 0 }}
+              >
+                <Button
+                  variant="contained"
+                >
+                  Get Started
+                </Button>
+              </Link>
             </Box>
           </Box>
         </Container>
@@ -154,7 +168,6 @@ function Hero() {
           height: "100%",
           bgcolor: "#2F2F2F",
           display: "flex",
-
           gap: 2,
         }}
       >

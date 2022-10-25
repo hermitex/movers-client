@@ -305,18 +305,22 @@ function Hero() {
                   />
                 )
               )}
-              <Button
-                variant="contained"
-                color="error"
-                style={{
-                  fontSize: "0.7rem",
-                  padding: 0,
-                  margin: 0,
-                  width: "10%",
-                }}
+              <Link
+                to="/my-items"
               >
-                start
-              </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  tyle={{
+                    fontSize: "0.7rem",
+                    padding: 0,
+                    margin: 0,
+                    width: "10%",
+                  }}
+                >
+                  start
+                </Button>
+              </Link>
             </Box>
           </Box>
         </Box>

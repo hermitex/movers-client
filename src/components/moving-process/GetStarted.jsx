@@ -2,6 +2,7 @@ import { CalendarMonth, House, PinDrop } from '@mui/icons-material';
 import { Button, InputAdornment, Paper, TextField, Typography } from '@mui/material'
 import { Box, Container } from '@mui/system'
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import MovingProcessNavBar from './MovingProcessNavBar';
 
@@ -196,7 +197,10 @@ function GetStarted() {
                     </Box>
                     <br />
                     <Box>
-                      <Button
+                      <Link
+                        to="/my-items"                        
+                      >                      
+                        <Button
                           variant="contained"
                           color="error"
                           style={{
@@ -209,6 +213,7 @@ function GetStarted() {
                         >
                           Get prices and compare movers
                         </Button>
+                      </Link>
                     </Box>
                   </Box>
                 </Container>                

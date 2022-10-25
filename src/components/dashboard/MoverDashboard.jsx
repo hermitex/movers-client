@@ -2,7 +2,6 @@ import React from "react";
 import MoverSideBar from "./MoverSideBar";
 import Orders from './Orders'
 import { Route, Routes } from "react-router-dom";
-import DashboardHome from "./DashboardHome";
 
 
 function MoverDashboard(){
@@ -14,12 +13,10 @@ function MoverDashboard(){
                 </div> 
             <div className="profile-item-2">
                 <Routes>
-                <Route
-                    path="/dashboard/home"
-                    element={<DashboardHome/>}/>
                     <Route
                     path="/dashboard/orders"
-                    element={<Orders/>}/>
+                    element={<Orders/>}
+                    />
                 </Routes>
             </div>
  

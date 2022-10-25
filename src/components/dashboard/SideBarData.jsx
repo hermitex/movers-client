@@ -1,15 +1,10 @@
 import React from "react";
 
 export const SideBarData = [
-    {
-        title: 'Home',
-        path: '/dashboard/home',
-        cName: 'nav-text'
-      },
       
       {
         title: 'Dashboard',
-        path: '/dashboard/profile',
+        path: '/dashboard/home',
         cName: 'nav-text'
       },
       {

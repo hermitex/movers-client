@@ -1,8 +1,10 @@
-import { Paper, Typography } from '@mui/material'
+import { Button, Paper, Stack, Typography } from '@mui/material'
 import { Box, Container } from '@mui/system'
 import React from 'react'
 
 import MovingProcessNavBar from './MovingProcessNavBar';
+import MyItemsSidebar from './MyItemsSidebar';
+import MyItemsFeed from './MyItemsFeed';
 
 function MyItems() {
   const styles = {
@@ -17,8 +19,9 @@ function MyItems() {
     paperStyle: {
       backgroundColor: "#F2F2F2", 
       padding :20, 
-      height: 800, 
-      width: 800, 
+      minHeight: 800,
+      maxHeight: "auto", 
+      maxWidth: 1200,       
       margin: '100px auto'
     }
   };
@@ -53,7 +56,50 @@ function MyItems() {
             <Box>
               <Paper elevation={7} style={styles.paperStyle} >
                 <MovingProcessNavBar size="large" color="error" />
-                
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "20px",
+                    justifyContent: "space-between",
+                    height: "6vh",                    
+                  }}
+                >
+                  <Typography
+                    variant="p"                        
+                    sx={{                                           
+                      fontWeight: "bolder",
+                      fontSize: "20px",
+                      letterSpacing: 0.5,
+                      color: "#000",
+                    }}
+                  >
+                    Are these all that you are moving?
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    style={{
+                      fontSize: "18px"
+                    }}
+                    
+                  >
+                    Continue
+                  </Button>                  
+                </Box>
+                <Container>
+                  <Stack 
+                    direction="row" 
+                    spacing={1.5} 
+                    
+                    padding="10px 10px"
+                    gap={2}                    
+                    justifyContent="space-between"
+                  >
+                    <MyItemsSidebar />
+                    <MyItemsFeed />
+                  </Stack>
+                </Container>
               </Paper>
             </Box>            
           </Box>

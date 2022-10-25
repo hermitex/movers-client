@@ -1,15 +1,13 @@
-import { Avatar, Box, Card, CardActions, CardContent, CardHeader, CardMedia, Collapse, Typography } from '@mui/material';
+import { Avatar, Box, Card, CardActions, CardContent, CardHeader, CardMedia, Collapse, ListItemIcon, Typography } from '@mui/material';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import React from 'react';
+import ChairIcon from '@mui/icons-material/Chair';
 import { styled } from '@mui/material/styles';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-// interface ExpandMoreProps extends IconButtonProps {
-//   expand: boolean;
-// }
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -37,18 +35,28 @@ function MyItemsFeedCard() {
         }}
     >
       <CardHeader
+        sx={{
+            bgcolor: "#9c9292",
+            height: "25px"
+        }}
         avatar={
-          <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
+          <IconButton sx={{ color: "#fff" }}>
+            <ChairIcon  />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        action={
+            <ExpandMore
+                expand={expanded}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+                sx={{ color: "#fff" }}
+            >
+                <ExpandMoreIcon />
+            </ExpandMore>
+        }
+        titleTypographyProps={{ variant: "h5", fontWeight: "bold", color: "#fff" }}
+        title="My Living Room Items"        
       />
       <CardMedia
         component="img"

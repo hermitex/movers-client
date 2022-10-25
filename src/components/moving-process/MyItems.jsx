@@ -21,7 +21,7 @@ function MyItems() {
       padding :20, 
       minHeight: 800,
       maxHeight: "auto", 
-      width: 800, 
+      maxWidth: 1200,       
       margin: '100px auto'
     }
   };

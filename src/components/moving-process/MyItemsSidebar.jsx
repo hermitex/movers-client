@@ -14,7 +14,7 @@ function MyItemsSidebar() {
   return (
     <Box 
       bgcolor="#fff" 
-      flex={2} 
+      flex={1.5} 
       gap={2} 
       textAlign="left"
       height="60vh"
@@ -23,14 +23,25 @@ function MyItemsSidebar() {
           <ListItem 
             disablePadding 
             sx={{
-              bgcolor: "#9c9292"
+              bgcolor: "#9c9292",
+              height: "51px"
             }}
           >
             <ListItemButton component="a" href="get-started" >
-              <ListItemIcon>
+              <ListItemIcon
+                sx={{
+                  color: "#fff",                 
+                }}
+              >
                 <WidgetsIcon />
               </ListItemIcon>
-              <ListItemText primary="My Inventory" />
+              <ListItemText 
+                primary="My Inventory" 
+                sx={{
+                  color: "#fff",
+                  fontWeight: "bolder",                  
+                }}
+              />
             </ListItemButton>
           </ListItem>
           <ListItem 

@@ -8,7 +8,17 @@ import MyItemsFeedCard from './MyItemsFeedCard';
 function MyItemsFeed() {
 
   return (
-    <Box bgcolor="#fff" flex={4} textAlign="center" height="auto" >
+    <Box 
+      flex={4} 
+      textAlign="center" 
+      height="auto" 
+      sx={{  
+        display: "flex",
+        flexFlow: "column",     
+        gap: 2
+      }} 
+    >
+      <MyItemsFeedCard />
       <MyItemsFeedCard />
     </Box>
   )

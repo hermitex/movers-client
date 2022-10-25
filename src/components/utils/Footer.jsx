@@ -95,11 +95,11 @@ function Footer() {
           bgcolor: "#1A1A1A",
           color: "#FFF",
           display: "flex",
-          justifyItems: "center",
           alignItems: "center",
+          justifyContent: "space-between",
           width: "50vw",
           gap: 2,
-          paddingBottom: 3,
+          padding: 1,
         }}
       >
         {data.map((d) => (
@@ -107,13 +107,32 @@ function Footer() {
             key={d.title}
             sx={{
               display: "flex",
-              gap: 2,
+              alignContent: "center",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "50vw",
+              // gap: 2,
             }}
           >
-            {d.icon}
-            <Box>
-              <Typography textTransform="uppercase"> {d.title}</Typography>
-              <address>{d.content}</address>
+            <Box
+              sx={{
+                display: "flex",
+                alignContent: "center",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <Box
+                sx={{
+                  mr: "0.5rem",
+                }}
+              >
+                {d.icon}
+              </Box>
+              <Box>
+                <Typography textTransform="uppercase"> {d.title}</Typography>
+                <address>{d.content}</address>
+              </Box>
             </Box>
           </Box>
         ))}
@@ -125,8 +144,10 @@ function Footer() {
           display: "flex",
           justifyItems: "space-between",
           justifyContent: "center",
-          width: "100%",
+          alignItems: "center",
+          width: "100vw",
           gap: 15,
+          py: 2,
         }}
       >
         {quickLinks.map((link) => (
@@ -138,16 +159,18 @@ function Footer() {
               gap: 2,
             }}
           >
-            <Typography
-              textTransform="uppercase"
-              fontWeight="bolder"
-            >
-              {link.title}
-            </Typography>
-
             <Box>
+              <Typography
+                textTransform="uppercase"
+                fontWeight="bolder"
+              >
+                {link.title}
+              </Typography>
               {link.links.map((l) => (
-                <Link to="">
+                <Link
+                  to=""
+                  key={l}
+                >
                   <Typography
                     textTransform="capitalize"
                     color="#fff"

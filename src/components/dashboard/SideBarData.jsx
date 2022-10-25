@@ -17,5 +17,15 @@ export const SideBarData = [
         path: '/dashboard/orders',
         cName: 'nav-text'
       },
+      {
+        title: 'Reviews',
+        path: '/dashboard/reviews',
+        cName: 'nav-text'
+      },
+      {
+        title: 'Location Analytics',
+        path: '/dashboard/location-analytics',
+        cName: 'nav-text'
+      },
       
 ];

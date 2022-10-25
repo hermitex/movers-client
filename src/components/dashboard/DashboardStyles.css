@@ -1,0 +1,78 @@
+/* for the navbar items */
+
+.profile-container{
+    display: grid;
+    grid-template-columns: 0.5fr 2fr;
+    grid-auto-rows: minmax(150px, auto);
+  }
+  
+  .profile-item-1{
+    background-color: rgb(30, 30, 30);
+    grid-row: span 4;
+  }
+
+
+.dashboard-sidebar{
+    font-size: 20px;
+}
+
+.dashboard-sidebar a{
+    display: block;
+    color: white;
+    height: 50px;
+    line-height: 60px;
+    text-align: left;
+}
+
+.dashboard-sidebar li{
+list-style: none;
+}
+
+.sidebar-holder h1,h2{
+  color: white;
+}
+
+.sidebar-image{
+  width: 120px;
+  height: 120px;
+  margin-left: 80px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 60px;
+  background: url("https://images.pexels.com/photos/4246196/pexels-photo-4246196.jpeg?auto=compress&cs=tinysrgb&w=1600") no-repeat center;
+	background-size: cover;
+}
+
+.sidebar-name a{
+  color: #ff7575;
+  border-bottom: 1px #ff7575 solid;
+}
+
+/* for dashboard home component */
+.dashboard-home-container{
+  display: grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-gap: 2px;
+}
+
+.mover-1 h4{
+  padding: 10px;
+  color: #ff7575;
+}
+.mover-1 h6{
+  font-size: 30px;
+  padding: 10px;
+}
+
+.mover-1 p{
+  padding: 10px;
+}
+
+.mover-1:hover{
+  border-bottom: 1px solid #ff7575;
+  box-shadow: none;
+}
+
+.dashboard-home-container div{
+  box-shadow: 0px 0px 10px rgba(3, 0, 0, 0.1);
+}

@@ -19,7 +19,8 @@ function MyItems() {
     paperStyle: {
       backgroundColor: "#F2F2F2", 
       padding :20, 
-      height: 800, 
+      minHeight: 800,
+      maxHeight: "auto", 
       width: 800, 
       margin: '100px auto'
     }

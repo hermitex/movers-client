@@ -7,21 +7,23 @@ import Error404 from "./components/error/Error404";
 import { useEffect, useState } from "react";
 import Footer from "./components/utils/Footer";
 import MoverDashboard from "./components/dashboard/MoverDashboard";
-import './App.css';
-
+import "./App.css";
+import Orders from "./components/dashboard/Orders";
+import DashboardHome from "./components/dashboard/DashboardHome";
+import FinancialAnalytics from "./components/dashboard/FinancialAnalytics";
+import Review from "./components/dashboard/Review";
+import LocationAnalytics from "./components/dashboard/LocationAnalytics";
 
 function App() {
-
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("/me")
-      .then((r) => {
-        if (r.ok) {
-          r.json().then((user) => setUser(user))
-        }
-      })
-  }, [])
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
 
   return (
     <div className="App">
@@ -29,31 +31,24 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/">
+            <Route index path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/dashboard/*" element={<MoverDashboard />} />
+            <Route path="/dashboard/orders" element={<Orders />} />
+            <Route path="/dashboard/home" element={<DashboardHome />} />
+            <Route path="/dashboard/orders" element={<Orders />} />
             <Route
-              index
-              path="/"
-              element={<Home />}
+              path="/dashboard/financial-analytics"
+              element={<FinancialAnalytics />}
             />
+            <Route path="/dashboard/reviews" element={<Review />} />
             <Route
-              path="/home"
-              element={<Home />}
+              path="/dashboard/location-analytics"
+              element={<LocationAnalytics />}
             />
-            <Route
-              path="/dashboard/*"
-              element={<MoverDashboard />}
-            />
-            <Route
-              path="login"
-              element={<Login onLogin={setUser}/>}
-            />
-            <Route
-              path="signup"
-              element={<Singnup onLogin={setUser}/>}
-            />
-            <Route
-              path="*"
-              element={<Error404 />}
-            />
+            <Route path="login" element={<Login onLogin={setUser} />} />
+            <Route path="signup" element={<Singnup onLogin={setUser} />} />
+            <Route path="*" element={<Error404 />} />
           </Route>
         </Routes>
         {/* <Footer /> */}

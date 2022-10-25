@@ -97,7 +97,7 @@ function Footer() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          width: "50vw",
+          // width: "50vw",
           gap: 2,
           padding: 1,
         }}
@@ -110,7 +110,7 @@ function Footer() {
               alignContent: "center",
               alignItems: "center",
               justifyContent: "space-between",
-              width: "50vw",
+              // width: "50vw",
               // gap: 2,
             }}
           >

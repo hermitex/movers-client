@@ -100,6 +100,23 @@ function Hero() {
   const [suggestions, setSuggestions] = useState([]);
 
   const [value, setValue] = useState("");
+
+  const [data, setData] = useState({
+    houseType: "",
+    movingFrom: {
+      name: "",
+      latitude: "",
+      longitude: "",
+    },
+    movingTo: {
+      name: "",
+      latitude: "",
+      longitude: "",
+    },
+  });
+
+  console.log(suggestions);
+
   const handleChange = async (event) => {
     setValue(event.target.value);
 
@@ -112,6 +129,8 @@ function Hero() {
     } catch (error) {
       console.log(error);
     }
+
+    setData({ ...data });
   };
   console.log(suggestions);
   const locations = {

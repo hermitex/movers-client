@@ -18,8 +18,14 @@ function MyItemsFeed() {
         gap: 2
       }} 
     >
-      <MyItemsFeedCard />
-      <MyItemsFeedCard />
+      <MyItemsFeedCard title="My Living Room Items"/>
+      <MyItemsFeedCard title="My Bedroom Items"/>
+      <MyItemsFeedCard title="My Dining Room Items"/>
+      <MyItemsFeedCard title="My Kitchen Items"/>
+      <MyItemsFeedCard title="My Office Items"/>
+      <MyItemsFeedCard title="My Outdoor Items"/>
+      <MyItemsFeedCard title="My Boxes"/>
+      <MyItemsFeedCard title="Other Items"/>
     </Box>
   )
 }

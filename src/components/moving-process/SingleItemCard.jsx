@@ -1,9 +1,19 @@
-import { Card, CardActions, CardMedia, IconButton } from '@mui/material'
-import React from 'react';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
+import { Button, ButtonGroup, Card, CardActions, CardMedia, IconButton } from '@mui/material'
+import React, { useState } from 'react';
+
 
 function SingleItemCard() {
+
+    const [count, setCount] = useState(0)
+
+    const handleIncrement = () => {
+        setCount(count + 1)
+    }
+
+    const handleDecrement = () => {
+        setCount(count - 1)
+    }
+
   return (
     <Card
         sx={{
@@ -16,13 +26,12 @@ function SingleItemCard() {
             image="https://images.pexels.com/photos/4246211/pexels-photo-4246211.jpeg?auto=compress&cs=tinysrgb&w=1600"
             alt="Paella dish"
         />      
-        <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="share">
-                <ShareIcon />
-            </IconButton>            
+        <CardActions disableSpacing sx={{ justifyContent: "space-between" }}>
+            <Button size="small" variant='outlined' onClick={handleIncrement}>{count}</Button>
+            <ButtonGroup size="small" aria-label="small outlined button group">
+                <Button onClick={handleDecrement}>-</Button>
+                <Button onClick={handleIncrement}>+</Button>
+            </ButtonGroup>           
         </CardActions>
     </Card>
   )

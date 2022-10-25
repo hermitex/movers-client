@@ -21,7 +21,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function MyItemsFeedCard() {
+function MyItemsFeedCard({ title }) {
 
   const [expanded, setExpanded] = React.useState(false);
 
@@ -57,7 +57,7 @@ function MyItemsFeedCard() {
             </ExpandMore>
         }
         titleTypographyProps={{ variant: "h5", fontWeight: "bold", color: "#fff" }}
-        title="My Living Room Items"        
+        title={title}        
       />
       
       <Collapse in={expanded} timeout="auto" unmountOnExit>
@@ -65,8 +65,7 @@ function MyItemsFeedCard() {
             sx={{
                 height: "150px", 
                 display: "flex", 
-                flexFlow: "row",
-                // bgcolor: "#f2f2f2",
+                flexFlow: "row",                
                 padding: 2,
                 gap: 2
             }} 

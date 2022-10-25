@@ -1,3 +1,5 @@
+/* for the navbar items */
+
 .profile-container{
     display: grid;
     grid-template-columns: 0.5fr 2fr;
@@ -9,8 +11,8 @@
     grid-row: span 4;
   }
 
+
 .dashboard-sidebar{
-    position: fixed;
     font-size: 20px;
 }
 
@@ -19,6 +21,7 @@
     color: white;
     height: 60px;
     line-height: 60px;
+    text-align: left;
 }
 
 .dashboard-sidebar li{

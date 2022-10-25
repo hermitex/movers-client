@@ -13,6 +13,11 @@ export const SideBarData = [
         cName: 'nav-text'
       },
       {
+        title: 'Financial Analytics',
+        path: '/dashboard/financial-analytics',
+        cName: 'nav-text'
+      },
+      {
         title: 'Reviews',
         path: '/dashboard/reviews',
         cName: 'nav-text'

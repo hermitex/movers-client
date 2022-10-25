@@ -5,3 +5,5 @@ function LocationAnalytics(){
         <div>Location analytics page.</div>
     )
 }
+
+export default LocationAnalytics;

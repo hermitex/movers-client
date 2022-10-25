@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import {
+  Autocomplete,
   Box,
   Button,
   Container,
@@ -8,11 +9,12 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+import { accessToken } from "mapbox-gl";
 
 import TextField from "@mui/material/TextField";
 
 import heroBg from "../../assets/homepage/home-hero.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { CalendarMonth, House, PinDrop } from "@mui/icons-material";
 
 const styles = {
@@ -55,29 +57,24 @@ const formInput = [
     name: "from",
     placeholder: "From: Address, city or zip",
     icon: <PinDrop />,
-    type: "text",
+    type: "autocomplete",
+    option: "",
   },
   {
     label: "to",
     name: "from",
     placeholder: "To: Address, city or zip",
     icon: <PinDrop />,
-    type: "text",
+    type: "autocomplete",
+    option: "",
   },
   {
     label: "house-type",
     name: "house-type",
     placeholder: "House type",
     icon: <House />,
-    type: "select",
-    options: [
-      "1 Bedroom, small(600 - 800 sqf)",
-      "1 Bedroom, small(600 - 800 sqf)",
-      "1 Bedroom, small(600 - 800 sqf)",
-      "1 Bedroom, small(600 - 800 sqf)",
-      "1 Bedroom, small(600 - 800 sqf)",
-      "1 Bedroom, small(600 - 800 sqf)",
-    ],
+    type: "autocomplete",
+    option: "house",
   },
   {
     label: "move-date",
@@ -85,11 +82,71 @@ const formInput = [
     placeholder: "Moving date",
     icon: <CalendarMonth />,
     type: "date",
+    option: "",
   },
 ];
 
+const houseOptions = [
+  { id: 1, house: "1 Bedroom, small(600 - 800 sqf)" },
+  { id: 2, house: "1 Bedroom, small(600 - 800 sqf)" },
+  { id: 3, house: "1 Bedroom, small(600 - 800 sqf)" },
+  { id: 4, house: "1 Bedroom, small(600 - 800 sqf)" },
+  { id: 5, house: "1 Bedroom, small(600 - 800 sqf)" },
+  { id: 6, house: "1 Bedroom, small(600 - 800 sqf)" },
+];
+
 function Hero() {
-  const handleChange = () => {};
+  accessToken = process.env.REACT_APP_MAPBOX_KEY;
+  const [suggestions, setSuggestions] = useState([]);
+
+  const [value, setValue] = useState("");
+
+  const [data, setData] = useState({
+    houseType: "",
+    movingFrom: {
+      name: "",
+      latitude: "",
+      longitude: "",
+    },
+    movingTo: {
+      name: "",
+      latitude: "",
+      longitude: "",
+    },
+  });
+
+  console.log(suggestions);
+
+  const handleChange = async (event) => {
+    setValue(event.target.value);
+
+    const endPoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${value}.json?$autocomplete=true&proximity=ip&types=place%2Cpostcode%2Caddress&access_token=${accessToken}`;
+    try {
+      const response = await fetch(endPoint);
+      const results = await response.json();
+
+      setSuggestions(results?.features);
+    } catch (error) {
+      console.log(error);
+    }
+
+    setData({ ...data });
+  };
+  console.log(suggestions);
+  const locations = {
+    options: suggestions,
+    getOptionLabel: (option) => option.place_name,
+  };
+
+  const houseTypes = {
+    options: houseOptions,
+    getOptionLabel: (option) => option.house,
+  };
+
+  const navigate = useNavigate();
+
+  const handleClick = (event) => navigate("/my-items");
+
   return (
     <Box>
       <Paper style={styles.paperContainer}>
@@ -137,13 +194,23 @@ function Hero() {
                 gap: 2,
               }}
             >
-              <Button
-                variant="contained"
-                color="error"
+              <Link
+                to="/"
+                sx={{ flexGrow: 0 }}
               >
-                read more
-              </Button>
-              <Button variant="contained">get started</Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                >
+                  read more
+                </Button>
+              </Link>
+              <Link
+                to="/get-started"
+                sx={{ flexGrow: 0 }}
+              >
+                <Button variant="contained">Get Started</Button>
+              </Link>
             </Box>
           </Box>
         </Container>
@@ -154,7 +221,6 @@ function Hero() {
           height: "100%",
           bgcolor: "#2F2F2F",
           display: "flex",
-
           gap: 2,
         }}
       >
@@ -175,7 +241,7 @@ function Hero() {
         >
           {pages.map((page, i) => (
             <NavLink
-              key={page}
+              key={page.id}
               to={
                 page.id === 3
                   ? `#how-it-works`
@@ -243,12 +309,30 @@ function Hero() {
               }}
             >
               {formInput.map((input) =>
-                input.type === "select" ? (
+                input.type === "autocomplete" ? (
+                  <Autocomplete
+                    {...(input.option === "house" ? houseTypes : locations)}
+                    id="disable-close-on-select"
+                    disableCloseOnSelect
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label={input.placeholder}
+                        variant="filled"
+                        sx={{
+                          bgcolor: "#fff",
+                          borderRadius: "0.1rem",
+                          width: "17vw",
+                        }}
+                        onChange={handleChange}
+                      />
+                    )}
+                  />
+                ) : (
                   <TextField
                     id={input.label}
                     key={input.name}
-                    select
-                    label={input.placeholder}
+                    type={input.type}
                     value={input.icon}
                     onChange={handleChange}
                     SelectProps={{
@@ -258,42 +342,17 @@ function Hero() {
                     sx={{
                       bgcolor: "#fff",
                       borderRadius: "0.1rem",
-                      // width: "40%",
+                      width: "20vw",
                     }}
                   >
-                    {input.options.map((option) => (
-                      <option
-                        key={option}
-                        value={option}
-                      >
-                        {option}
-                      </option>
-                    ))}
+                    <option></option>
                   </TextField>
-                ) : (
-                  <TextField
-                    key={input.label}
-                    id={input.label}
-                    label={input.placeholder}
-                    type={input.type}
-                    variant="filled"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          {input.icon}
-                        </InputAdornment>
-                      ),
-                    }}
-                    onChange={handleChange}
-                    sx={{
-                      bgcolor: "#fff",
-                      borderRadius: "0.1rem",
-                    }}
-                  />
                 )
               )}
+
               <Button
                 variant="contained"
+                onClick={handleClick}
                 color="error"
                 style={{
                   fontSize: "0.7rem",
@@ -302,7 +361,7 @@ function Hero() {
                   width: "10%",
                 }}
               >
-                start
+                next
               </Button>
             </Box>
           </Box>

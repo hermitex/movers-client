@@ -8,12 +8,14 @@ function MoverSideBar(){
 
     return(
         <div>
-            <div>
+            <div className="sidebar-holder">
                 <h1>MOOOVE.com</h1>
                 <div>
-                <div>profile photo here</div>
-                <h2>Tiberius Mairura</h2>
-                <h6>My Profile</h6>
+                <div className="sidebar-image"></div>
+                    <div className="sidebar-name">
+                        <h2>Tiberius Mairura</h2>
+                        <Link to="/dashboard/home">My profile</Link>
+                    </div>
                 </div>
                 <br/>
                 <div className="dashboard-sidebar">

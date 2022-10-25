@@ -19,11 +19,31 @@
 .dashboard-sidebar a{
     display: block;
     color: white;
-    height: 60px;
+    height: 50px;
     line-height: 60px;
     text-align: left;
 }
 
 .dashboard-sidebar li{
 list-style: none;
+}
+
+.sidebar-holder h1,h2{
+  color: white;
+}
+
+.sidebar-image{
+  width: 120px;
+  height: 120px;
+  margin-left: 80px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 60px;
+  background: url("https://images.pexels.com/photos/4246196/pexels-photo-4246196.jpeg?auto=compress&cs=tinysrgb&w=1600") no-repeat center;
+	background-size: cover;
+}
+
+.sidebar-name a{
+  color: #ff7575;
+  border-bottom: 1px #ff7575 solid;
 }

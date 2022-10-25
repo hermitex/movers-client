@@ -47,3 +47,32 @@ list-style: none;
   color: #ff7575;
   border-bottom: 1px #ff7575 solid;
 }
+
+/* for dashboard home component */
+.dashboard-home-container{
+  display: grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-gap: 2px;
+}
+
+.mover-1 h4{
+  padding: 10px;
+  color: #ff7575;
+}
+.mover-1 h6{
+  font-size: 30px;
+  padding: 10px;
+}
+
+.mover-1 p{
+  padding: 10px;
+}
+
+.mover-1:hover{
+  border-bottom: 1px solid #ff7575;
+  box-shadow: none;
+}
+
+.dashboard-home-container div{
+  box-shadow: 0px 0px 10px rgba(3, 0, 0, 0.1);
+}

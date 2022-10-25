@@ -2,7 +2,23 @@ import React from "react";
 
 function DashboardHome(){
     return(
-        <div>Here are where the mover details are seen.</div>
+        <div className="dashboard-home-container">
+            <div className="mover-1">
+                <h4>MOVES</h4>
+                <h6>98</h6>
+                <p>See all users </p>
+            </div>
+            <div className="mover-1">
+                <h4>EARNINGS</h4>
+                <h6>98</h6>
+                <p>See details</p>
+            </div>
+            <div className="mover-1">
+                <h4>BALANCE</h4>
+                <h6>98</h6>
+                <p>See details</p>
+            </div>
+        </div>
     )
 }
 

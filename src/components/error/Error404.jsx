@@ -1,4 +1,4 @@
-import { Button, Container, Paper } from "@mui/material";
+import { Button, Paper } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import error from "../../assets/error/404-error-page.png";

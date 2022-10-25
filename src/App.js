@@ -12,20 +12,18 @@ import GetStarted from "./components/moving-process/GetStarted";
 import MyItems from "./components/moving-process/MyItems";
 import Compare from "./components/moving-process/Compare";
 import Book from "./components/moving-process/Book";
+import Map from "./components/map/Map";
 
 function App() {
-
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("/me")
-      .then((r) => {
-        if (r.ok) {
-          r.json().then((user) => setUser(user))
-        }
-      })
-  }, [])
-
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
 
   return (
     <div className="App">
@@ -44,11 +42,11 @@ function App() {
             />
             <Route
               path="login"
-              element={<Login onLogin={setUser}/>}
+              element={<Login onLogin={setUser} />}
             />
             <Route
               path="signup"
-              element={<Singnup onLogin={setUser}/>}
+              element={<Singnup onLogin={setUser} />}
             />
             <Route
               path="/get-started"
@@ -56,7 +54,7 @@ function App() {
             />
             <Route
               path="/my-items"
-              element={<MyItems /> }
+              element={<MyItems />}
             />
             <Route
               path="/compare"
@@ -65,6 +63,10 @@ function App() {
             <Route
               path="/book"
               element={<Book />}
+            />
+            <Route
+              path="/map"
+              element={<Map />}
             />
             <Route
               path="*"

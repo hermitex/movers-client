@@ -1,7 +1,7 @@
 import React from "react";
 import { SideBarData } from "./SideBarData";
 import { Link } from 'react-router-dom';
-import './SideBar.css'
+import './DashboardStyles.css'
 
 function MoverSideBar(){
 

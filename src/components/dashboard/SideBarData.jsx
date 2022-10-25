@@ -8,7 +8,7 @@ export const SideBarData = [
       },
       
       {
-        title: 'Profile/Dashboard',
+        title: 'Dashboard',
         path: '/dashboard/profile',
         cName: 'nav-text'
       },

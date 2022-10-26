@@ -6,6 +6,7 @@ import LocationAnalytics from "./LocationAnalytics";
 import FinancialAnalytics from "./FinancialAnalytics";
 import Orders from "./Orders";
 import { Route, Routes } from "react-router-dom";
+import TableData from "./TableData";
 
 function MoverDashboard() {
   return (
@@ -15,6 +16,7 @@ function MoverDashboard() {
       </div>
       <div className="profile-item-2">
         <DashboardHome/>
+        <TableData/>
       </div>
     </div>
   );

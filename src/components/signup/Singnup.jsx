@@ -3,42 +3,40 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Singnup({ onLogin }) {
-
-  const[firstName, setFirstName] = useState("")
-  const[lastName, setlastName] = useState("")
-  const[email, setEmail] = useState("")
-  const[phoneNumber, setPhoneNumber] = useState("")
-  const[password, setPassword] = useState("")
-  const[passwordConfirmation, setPasswordConfirmation] = useState("")
-  const [errors, setErrors] = useState([])
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [errors, setErrors] = useState([]);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  function handleSubmit(e){
-    e.preventDefault()
-    setErrors([])
-    
-    fetch('/signup',{
-      method: 'POST',
+  function handleSubmit(e) {
+    e.preventDefault();
+    setErrors([]);
+
+    fetch("http://127.0.0.1:3000/signup", {
+      method: "POST",
       headers: {
-        'Content-type' : 'application/json'
+        "Content-type": "application/json",
       },
       body: JSON.stringify({
-        firstName, 
-        lastName, 
-        email, 
-        phoneNumber, 
-        password, 
-        passwordConfirmation
-      })
-    })
-    .then((res)=>{
-      if(res.ok){
-        res.json().then((user) => onLogin(user))
-      } else{
-        res.json().then((err)=>setErrors(err.errors))
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        password,
+        passwordConfirmation,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((user) => onLogin(user));
+      } else {
+        res.json().then((err) => setErrors(err.errors));
       }
-    })
+    });
   }
   return (
     <div className="signup-container">
@@ -89,7 +87,11 @@ function Singnup({ onLogin }) {
               placeholder="passwordConfirmation"
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
-            <input className="signup-btn" type="submit" value="REGISTER"/>
+            <input
+              className="signup-btn"
+              type="submit"
+              value="REGISTER"
+            />
           </form>
         </div>
       </div>

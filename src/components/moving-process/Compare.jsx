@@ -1,8 +1,11 @@
-import { Autocomplete, Button, Paper, TextField, Typography } from '@mui/material'
+import { Autocomplete, Button, Paper, Stack, TextField, Typography } from '@mui/material'
 import { Box, Container } from '@mui/system'
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
 import MovingProcessNavBar from './MovingProcessNavBar';
+import CompareSideBar from './CompareSideBar';
+import CompareFeed from './CompareFeed';
 
 function Compare() {
 
@@ -91,8 +94,7 @@ function Compare() {
                   <Box
                     sx={{
                       display: "flex",
-                      flexFlow: "row wrap",
-                                            
+                      flexFlow: "row wrap",                                            
                     }}
                   >
                     <Typography
@@ -122,6 +124,26 @@ function Compare() {
                       )}
                     />
                   </Box>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    padding: "20px 50px",
+                    alignItems: "left",
+                  }}
+                >
+                  
+                  <Container>
+                    <Stack
+                      direction="row" 
+                      spacing={1.5}                     
+                      gap={2}                    
+                      justifyContent="space-between"
+                    >
+                      <CompareSideBar />
+                      <CompareFeed />
+                    </Stack>
+                  </Container>
                 </Box>
               </Paper>
             </Box>            

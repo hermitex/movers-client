@@ -1,5 +1,6 @@
 import React from "react";
 import MoverSideBar from "./MoverSideBar";
+import TableData from "./TableData";
 
 function Orders() {
   return (
@@ -7,7 +8,9 @@ function Orders() {
       <div className="profile-item-1">
         <MoverSideBar />
       </div>
-      <div className="profile-item-2">some content on orders</div>
+      <div className="profile-item-2">
+        <TableData/>
+      </div>
     </div>
   );
 }

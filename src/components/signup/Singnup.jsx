@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function Singnup({ onLogin }) {
 
+
   const[fullName, setFullName] = useState("")
   const[accountType, setAccountType] = useState("")
   const[email, setEmail] = useState("")
@@ -15,12 +16,14 @@ function Singnup({ onLogin }) {
   const navigate = useNavigate();
 
   function handleSubmit(e) {
-    e.preventDefault()
-    setErrors([])    
-    fetch("http://localhost:4000/signup", {
+
+    e.preventDefault();
+    setErrors([]);
+
+    fetch("http://127.0.0.1:3000/signup", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-type": "application/json",
       },
       body: JSON.stringify({
         fullName, 
@@ -30,14 +33,13 @@ function Singnup({ onLogin }) {
         password, 
         passwordConfirmation
       }),
-    })
-    .then((res)=>{
-      if(res.ok){
-        res.json().then((user) => onLogin(user))
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((user) => onLogin(user));
       } else {
-        res.json().then((err)=>setErrors(err.errors))
+        res.json().then((err) => setErrors(err.errors));
       }
-    })
+    });
   }
   return (
     <div className="signup-container">
@@ -89,7 +91,11 @@ function Singnup({ onLogin }) {
               placeholder="passwordConfirmation"
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
-            <input className="signup-btn" type="submit" value="REGISTER"/>
+            <input
+              className="signup-btn"
+              type="submit"
+              value="REGISTER"
+            />
           </form>
         </div>
       </div>

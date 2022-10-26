@@ -21,7 +21,6 @@ import Compare from "./components/moving-process/Compare";
 import Book from "./components/moving-process/Book";
 import Map from "./components/map/Map";
 
-
 function App() {
   const [user, setUser] = useState(null);
 
@@ -39,17 +38,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/">
-            <Route index path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/dashboard/*" element={<MoverDashboard />} />
-            <Route path="/dashboard/orders" element={<Orders />} />
-            <Route path="/dashboard/home" element={<DashboardHome />} />
-            <Route path="/dashboard/orders" element={<Orders />} />
             <Route
-
-              path="/dashboard/financial-analytics"
-              element={<FinancialAnalytics />}
-
               index
               path="/"
               element={<Home />}
@@ -57,6 +46,27 @@ function App() {
             <Route
               path="/home"
               element={<Home />}
+            />
+            <Route
+              path="/dashboard/*"
+              element={<MoverDashboard />}
+            />
+            <Route
+              path="/dashboard/orders"
+              element={<Orders />}
+            />
+            <Route
+              path="/dashboard/home"
+              element={<DashboardHome />}
+            />
+            <Route
+              path="/dashboard/orders"
+              element={<Orders />}
+            />
+            <Route
+              path="/dashboard/financial-analytics"
+              element={<FinancialAnalytics />}
+              index
             />
             <Route
               path="login"
@@ -85,19 +95,30 @@ function App() {
             <Route
               path="/map"
               element={<Map />}
-
             />
-            <Route path="/dashboard/reviews" element={<Review />} />
+            <Route
+              path="/dashboard/reviews"
+              element={<Review />}
+            />
             <Route
               path="/dashboard/location-analytics"
               element={<LocationAnalytics />}
             />
-            <Route path="login" element={<Login onLogin={setUser} />} />
-            <Route path="signup" element={<Singnup onLogin={setUser} />} />
-            <Route path="*" element={<Error404 />} />
+            <Route
+              path="login"
+              element={<Login onLogin={setUser} />}
+            />
+            <Route
+              path="signup"
+              element={<Singnup onLogin={setUser} />}
+            />
+            <Route
+              path="*"
+              element={<Error404 />}
+            />
           </Route>
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </Router>
     </div>
   );

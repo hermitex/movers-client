@@ -8,7 +8,8 @@ function UpdateDetails() {
         <MoverSideBar />
       </div>
       <div className="profile-item-2">
-        <div className="profile-picture">insert photo here</div>
+        <div className="profile-picture"></div>
+        <p>Change profile picture</p>
         <form>
           <div className="profile-mover-details-2">
             <div className="profile-holder-1">

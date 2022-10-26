@@ -76,3 +76,46 @@ list-style: none;
 .dashboard-home-container div{
   box-shadow: 0px 0px 10px rgba(3, 0, 0, 0.1);
 }
+
+/* for the profile form */
+.profile-item-2 form{
+  margin: 10px;
+}
+
+
+.profile-details{
+  width: 80%;
+  padding: 5px;
+  float: left;
+  background-color: rgb(241, 236, 236);
+  margin: 5px;
+  justify-content: left;
+}
+
+.profile-item-2 form .profile-mover-details-2{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.profile-mover-details-2 .profile-holder-1{
+  width: calc(100% / 2 - 20px);
+}
+
+.profile-holder-1 input{
+  height: 40px;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid black;
+}
+
+.update-profile-btn{
+  width: 50%;
+  padding: 0.5rem 1rem;
+  background-color: #ff7575;
+  color: #fff;
+  font-size: 1.1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}

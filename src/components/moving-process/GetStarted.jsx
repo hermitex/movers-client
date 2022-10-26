@@ -112,7 +112,6 @@ function GetStarted() {
     } catch (error) {
       console.log(error);
     }
-
     setData({ ...data });
   };
   console.log(suggestions);
@@ -125,6 +124,19 @@ function GetStarted() {
     options: houseOptions,
     getOptionLabel: (option) => option.house,
   };
+
+  // data = {
+  //   moveFrom: {
+  //     name: "",
+  //     lat: "",
+  //     long: "",
+  //   },
+  //   moveTo: {
+  //     name: "",
+  //     lat: "",
+  //     long: "",
+  //   },
+  // };
   const navigate = useNavigate();
   const handleClick = (event) => navigate("/my-items");
   return (

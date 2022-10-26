@@ -185,7 +185,6 @@ function GetStarted() {
                         alignContent: "center",
                         textAlign: "center",
                         gap: 2,
-                        mt: 5,
                       }}
                     >
                       <Box>

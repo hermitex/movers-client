@@ -59,12 +59,12 @@ function App() {
             element={<DashboardHome />}
           />
           <Route
-            path="/dashboard/profile"
-            element={<UpdateDetails />}
-          />
-          <Route
             path="/dashboard/orders"
             element={<Orders />}
+          />
+          <Route
+            path="/dashboard/update-details"
+            element={<UpdateDetails />}
           />
           <Route
             path="/dashboard/financial-analytics"

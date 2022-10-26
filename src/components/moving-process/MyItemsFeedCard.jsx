@@ -70,8 +70,8 @@ function MyItemsFeedCard({ title }) {
                 gap: 2
             }} 
         >
-            <SingleItemCard />
-            <SingleItemCard />        
+            <SingleItemCard item="Sofa"/>
+            <SingleItemCard item="Table"/>        
         </Box>        
       </Collapse>
     </Card>

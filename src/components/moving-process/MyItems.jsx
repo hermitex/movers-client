@@ -5,6 +5,7 @@ import React from 'react'
 import MovingProcessNavBar from './MovingProcessNavBar';
 import MyItemsSidebar from './MyItemsSidebar';
 import MyItemsFeed from './MyItemsFeed';
+import { useNavigate } from 'react-router-dom';
 
 function MyItems() {
   const styles = {
@@ -26,6 +27,8 @@ function MyItems() {
     }
   };
   
+  const navigate = useNavigate();
+  const handleClick = (event) => navigate("/compare");
 
 
   return (
@@ -78,6 +81,7 @@ function MyItems() {
                   </Typography>
                   <Button
                     variant="contained"
+                    onClick={handleClick}
                     color="error"
                     style={{
                       fontSize: "18px"

@@ -7,7 +7,8 @@ function CompareFeedCard() {
   return (
     <Card
         sx={{
-            maxWidth: "auto"
+            width: "auto",
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
         }}
     >
         <CardHeader
@@ -38,7 +39,7 @@ function CompareFeedCard() {
                 display: "flex",
                 flexDirection: "row",
                 padding: "10px 20px",
-                gap: 5,
+                gap: 10,
                 alignItems: "center"
             }}
         >
@@ -62,7 +63,7 @@ function CompareFeedCard() {
                 display: "flex",
                 flexDirection: "row",                
                 justifyContent: "space-between",                
-                gap: 5,
+                gap: 24,
                 alignItems: "center"
             }}
         >

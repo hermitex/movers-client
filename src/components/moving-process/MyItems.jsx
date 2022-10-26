@@ -22,7 +22,7 @@ function MyItems() {
       padding :20, 
       minHeight: 800,
       maxHeight: "auto", 
-      maxWidth: 1200,       
+      maxWidth: 900,       
       margin: '100px auto'
     }
   };
@@ -94,8 +94,7 @@ function MyItems() {
                 <Container>
                   <Stack 
                     direction="row" 
-                    spacing={1.5} 
-                    
+                    spacing={1.5}                     
                     padding="10px 10px"
                     gap={2}                    
                     justifyContent="space-between"

@@ -74,7 +74,7 @@ function GetStarted() {
       backgroundColor: "#F2F2F2",
       padding: 20,
       height: "90vh",
-      width: "55vw",
+      width: 900,
       margin: "100px auto",
     },
   };

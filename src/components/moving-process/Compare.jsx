@@ -23,7 +23,7 @@ function Compare() {
       backgroundColor: "#F2F2F2", 
       padding :20, 
       height: "auto", 
-      width: 800, 
+      width: 900, 
       margin: '100px auto'
     }
   };
@@ -116,8 +116,7 @@ function Compare() {
                           sx={{
                             bgcolor: "#fff",
                             borderRadius: "0.1rem",
-                            width: "21vw",
-                            // height: "5px"
+                            width: "11vw",                            
                           }}
                           onChange={handleChange}
                         />
@@ -133,12 +132,16 @@ function Compare() {
                   }}
                 >
                   
-                  <Container>
+                  <Container
+                    sx={{
+                      display: "flex",                     
+                    }}
+                  >
                     <Stack
                       direction="row" 
-                      spacing={1.5}                     
-                      gap={2}                    
-                      justifyContent="space-between"
+                      spacing={1.5} 
+                      padding="10px 10px"                                        
+                      gap={2}                     
                     >
                       <CompareSideBar />
                       <CompareFeed />

@@ -8,10 +8,10 @@ function UpdateDetails() {
         <MoverSideBar />
       </div>
       <div className="profile-item-2">
-        <div>insert photo here</div>
+        <div className="profile-picture">insert photo here</div>
         <form>
           <div className="profile-mover-details-2">
-          <div className="profile-holder-1">
+            <div className="profile-holder-1">
               <label className="profile-details">NAME</label>
               <input type="text" placeholder="Enter full name" />
 
@@ -23,17 +23,21 @@ function UpdateDetails() {
 
               <label className="profile-details">House Type</label>
               <input type="text" placeholder="Choose House Types" />
-          </div>
-          <div className="profile-holder-1">
+            </div>
+            <div className="profile-holder-1">
               <label className="profile-details">Locations</label>
               <input type="text" placeholder="Choose locations" />
 
               <label className="profile-details">Price Range</label>
               <input type="text" placeholder="Choose price range" />
+            </div>
           </div>
-          </div>
-          <br/>
-          <input className="update-profile-btn" type="submit" value="Update Profile"/>
+          <br />
+          <input
+            className="update-profile-btn"
+            type="submit"
+            value="Update Profile"
+          />
         </form>
       </div>
     </div>
@@ -42,7 +46,8 @@ function UpdateDetails() {
 
 export default UpdateDetails;
 
-{/* <div className="profile-mover-details">
+{
+  /* <div className="profile-mover-details">
 <div className="profile-input-box">
   <label className="profile-details">Name</label>
   <input type="text" placeholder="Enter full name" />
@@ -67,4 +72,5 @@ export default UpdateDetails;
   <input type="text" placeholder="Choose price range" />
 </div>
 </div>
-</div> */}
+</div> */
+}

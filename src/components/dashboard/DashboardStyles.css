@@ -119,3 +119,13 @@ list-style: none;
   outline: none;
   cursor: pointer;
 }
+
+.profile-picture{
+  width: 150px;
+  height: 150px;
+  background-color: #ff7575;
+ margin-left: 45%;
+ margin-top: 30px;
+ margin-bottom: 30px;
+ border-radius: 75px;
+}

@@ -2,9 +2,14 @@ import { Box, Button, Divider, List, ListItem, ListItemButton, ListItemIcon, Lis
 import React from 'react';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import { useNavigate } from 'react-router-dom';
 
 
 function CompareSideBar() {
+
+  const navigate = useNavigate();
+  const handleClick = (event) => navigate("/my-items");
+
   return (
     <Box
         sx={{
@@ -23,7 +28,7 @@ function CompareSideBar() {
             <Button
                 variant="contained"
                 startIcon={<ArrowLeftIcon />}
-                // onClick={handleClick}
+                onClick={handleClick}
                 color="error"
             
                 style={{

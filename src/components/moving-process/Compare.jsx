@@ -22,7 +22,7 @@ function Compare() {
     paperStyle: {
       backgroundColor: "#F2F2F2", 
       padding :20, 
-      height: 800, 
+      height: "auto", 
       width: 800, 
       margin: '100px auto'
     }

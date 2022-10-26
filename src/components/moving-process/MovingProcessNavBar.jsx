@@ -1,11 +1,12 @@
 import { AppBar, Button, Grid, Paper, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import React from "react";
-import { NavL, NavLink, NavLinkinkNavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const isActiveStyle = {
-  color: "error",
-  variant: "container",
+  backgroundColor: "#FF515E",
+  borderRadius: "0.3rem",
+  color: "#FFF",
 };
 
 function MovingProcessNavBar({ size, color }) {
@@ -28,13 +29,13 @@ function MovingProcessNavBar({ size, color }) {
             }}
           >
             <NavLink
+              style={({ isActive }) => (isActive ? isActiveStyle : null)}
               to="/get-started"
               sx={{ flexGrow: 0 }}
             >
               <Button
                 size={size}
-                variant="contained"
-                color={color}
+                variant="outlined"
               >
                 <Box
                   sx={{
@@ -48,6 +49,7 @@ function MovingProcessNavBar({ size, color }) {
               </Button>
             </NavLink>
             <NavLink
+              style={({ isActive }) => (isActive ? isActiveStyle : null)}
               to="/my-items"
               sx={{ flexGrow: 0 }}
             >
@@ -64,6 +66,7 @@ function MovingProcessNavBar({ size, color }) {
               </Button>
             </NavLink>
             <NavLink
+              style={({ isActive }) => (isActive ? isActiveStyle : null)}
               to="/compare"
               sx={{ flexGrow: 0 }}
             >
@@ -80,6 +83,7 @@ function MovingProcessNavBar({ size, color }) {
               </Button>
             </NavLink>
             <NavLink
+              style={({ isActive }) => (isActive ? isActiveStyle : null)}
               to="/book"
               sx={{ flexGrow: 0 }}
             >

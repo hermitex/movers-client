@@ -1,11 +1,15 @@
-import { AppBar, Button, Grid, Paper, Typography } from '@mui/material'
-import { Box, Container } from '@mui/system'
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { AppBar, Button, Grid, Paper, Typography } from "@mui/material";
+import { Box, Container } from "@mui/system";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
+const isActiveStyle = {
+  backgroundColor: "#FF515E",
+  borderRadius: "0.3rem",
+  color: "#FFF",
+};
 
 function MovingProcessNavBar({ size, color }) {
-  
   return (
     <Box>
       <AppBar
@@ -14,7 +18,6 @@ function MovingProcessNavBar({ size, color }) {
           bgcolor: "#fff",
           color: "#000",
         }}
-        
       >
         <Container maxWidth="xl">
           <Box
@@ -25,11 +28,15 @@ function MovingProcessNavBar({ size, color }) {
               gap: 2,
             }}
           >
-            <Link
+            <NavLink
+              style={({ isActive }) => (isActive ? isActiveStyle : null)}
               to="/get-started"
               sx={{ flexGrow: 0 }}
             >
-              <Button size={size} variant="contained" color={color}>
+              <Button
+                size={size}
+                variant="outlined"
+              >
                 <Box
                   sx={{
                     display: "inline-block",
@@ -40,8 +47,9 @@ function MovingProcessNavBar({ size, color }) {
                   Get Started
                 </Box>
               </Button>
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
+              style={({ isActive }) => (isActive ? isActiveStyle : null)}
               to="/my-items"
               sx={{ flexGrow: 0 }}
             >
@@ -56,8 +64,9 @@ function MovingProcessNavBar({ size, color }) {
                   My Items
                 </Box>
               </Button>
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
+              style={({ isActive }) => (isActive ? isActiveStyle : null)}
               to="/compare"
               sx={{ flexGrow: 0 }}
             >
@@ -69,11 +78,12 @@ function MovingProcessNavBar({ size, color }) {
                     color: "#FF515E",
                   }}
                 >
-                  Compare 
+                  Compare
                 </Box>
               </Button>
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
+              style={({ isActive }) => (isActive ? isActiveStyle : null)}
               to="/book"
               sx={{ flexGrow: 0 }}
             >
@@ -88,12 +98,12 @@ function MovingProcessNavBar({ size, color }) {
                   book
                 </Box>
               </Button>
-            </Link>
+            </NavLink>
           </Box>
         </Container>
       </AppBar>
     </Box>
-  )
+  );
 }
 
-export default MovingProcessNavBar
+export default MovingProcessNavBar;

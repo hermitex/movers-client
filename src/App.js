@@ -33,96 +33,96 @@ function App() {
   }, []);
 
   return (
-      <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/">
-            <Route
-              index
-              path="/"
-              element={<Home />}
-            />
-            <Route
-              path="/home"
-              element={<Home />}
-            />
-            <Route
-              path="/dashboard/*"
-              element={<MoverDashboard />}
-            />
-            <Route
-              path="/dashboard/orders"
-              element={<Orders />}
-            />
-            <Route
-              path="/dashboard/home"
-              element={<DashboardHome />}
-            />
-            <Route
-              path="/dashboard/orders"
-              element={<Orders />}
-            />
-            <Route
-              path="/dashboard/update-details"
-              element={<UpdateDetails/>}
-            />
-            <Route
-              path="/dashboard/financial-analytics"
-              element={<FinancialAnalytics />}
-              index
-            />
-            <Route
-              path="login"
-              element={<Login onLogin={setUser} />}
-            />
-            <Route
-              path="signup"
-              element={<Singnup onLogin={setUser} />}
-            />
-            <Route
-              path="/get-started"
-              element={<GetStarted />}
-            />
-            <Route
-              path="/my-items"
-              element={<MyItems />}
-            />
-            <Route
-              path="/compare"
-              element={<Compare />}
-            />
-            <Route
-              path="/book"
-              element={<Book />}
-            />
-            <Route
-              path="/map"
-              element={<Map />}
-            />
-            <Route
-              path="/dashboard/reviews"
-              element={<Review />}
-            />
-            <Route
-              path="/dashboard/location-analytics"
-              element={<LocationAnalytics />}
-            />
-            <Route
-              path="login"
-              element={<Login onLogin={setUser} />}
-            />
-            <Route
-              path="signup"
-              element={<Singnup onLogin={setUser} />}
-            />
-            <Route
-              path="*"
-              element={<Error404 />}
-            />
-          </Route>
-        </Routes>
-        <Footer />
-      </Router>
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route path="/">
+          <Route
+            index
+            path="/"
+            element={<Home />}
+          />
+          <Route
+            path="/home"
+            element={<Home />}
+          />
+          <Route
+            path="/dashboard/*"
+            element={<MoverDashboard />}
+          />
+          <Route
+            path="/dashboard/orders"
+            element={<Orders />}
+          />
+          <Route
+            path="/dashboard/home"
+            element={<DashboardHome />}
+          />
+          <Route
+            path="/dashboard/orders"
+            element={<Orders />}
+          />
+          <Route
+            path="/dashboard/update-details"
+            element={<UpdateDetails />}
+          />
+          <Route
+            path="/dashboard/financial-analytics"
+            element={<FinancialAnalytics />}
+            index
+          />
+          <Route
+            path="login"
+            element={<Login onLogin={setUser} />}
+          />
+          <Route
+            path="signup"
+            element={<Singnup onLogin={setUser} />}
+          />
+          <Route
+            path="/get-started"
+            element={<GetStarted />}
+          />
+          <Route
+            path="/my-items"
+            element={<MyItems />}
+          />
+          <Route
+            path="/compare"
+            element={<Compare />}
+          />
+          <Route
+            path="/book"
+            element={<Book />}
+          />
+          <Route
+            path="/map"
+            element={<Map />}
+          />
+          <Route
+            path="/dashboard/reviews"
+            element={<Review />}
+          />
+          <Route
+            path="/dashboard/location-analytics"
+            element={<LocationAnalytics />}
+          />
+          <Route
+            path="login"
+            element={<Login onLogin={setUser} />}
+          />
+          <Route
+            path="signup"
+            element={<Singnup onLogin={setUser} />}
+          />
+          <Route
+            path="*"
+            element={<Error404 />}
+          />
+        </Route>
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 

@@ -22,6 +22,11 @@ export const SideBarData = [
     cName: "nav-text",
   },
   {
+    title: "Profile",
+    path: "/dashboard/profile",
+    cName: "nav-text",
+  },
+  {
     title: "Location Analytics",
     path: "/dashboard/location-analytics",
     cName: "nav-text",

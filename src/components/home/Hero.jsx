@@ -330,23 +330,25 @@ function Hero() {
                   />
                 ) : (
                   <TextField
-                    id={input.label}
                     key={input.name}
+                    id={input.label}
+                    label={input.placeholder}
                     type={input.type}
-                    value={input.icon}
-                    onChange={handleChange}
-                    SelectProps={{
-                      native: true,
-                    }}
                     variant="filled"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          {input.icon}
+                        </InputAdornment>
+                      ),
+                    }}
+                    onChange={handleChange}
                     sx={{
                       bgcolor: "#fff",
                       borderRadius: "0.1rem",
-                      width: "20vw",
+                      width: "17vw",
                     }}
-                  >
-                    <option></option>
-                  </TextField>
+                  />
                 )
               )}
 

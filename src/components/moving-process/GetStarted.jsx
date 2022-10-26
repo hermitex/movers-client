@@ -1,15 +1,69 @@
-import { CalendarMonth, House, PinDrop } from '@mui/icons-material';
-import { Button, InputAdornment, Paper, TextField, Typography } from '@mui/material'
-import { Box, Container } from '@mui/system'
-import React from 'react'
+import { CalendarMonth, House, PinDrop } from "@mui/icons-material";
+import {
+  Autocomplete,
+  Button,
+  InputAdornment,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { Box, Container } from "@mui/system";
+import React, { useState } from "react";
 
-import MovingProcessNavBar from './MovingProcessNavBar';
+import MovingProcessNavBar from "./MovingProcessNavBar";
+
+import { accessToken } from "mapbox-gl";
+import { useNavigate } from "react-router-dom";
+
+const formInput = [
+  {
+    label: "from",
+    name: "from",
+    placeholder: "From: Address, city or zip",
+    icon: <PinDrop />,
+    type: "autocomplete",
+    option: "",
+  },
+  {
+    label: "to",
+    name: "from",
+    placeholder: "To: Address, city or zip",
+    icon: <PinDrop />,
+    type: "autocomplete",
+    option: "",
+  },
+  {
+    label: "house-type",
+    name: "house-type",
+    placeholder: "House type",
+    icon: <House />,
+    type: "autocomplete",
+    option: "house",
+  },
+  {
+    label: "move-date",
+    name: "move-date",
+    placeholder: "Moving date",
+    icon: <CalendarMonth />,
+    type: "date",
+    option: "",
+  },
+];
+
+const houseOptions = [
+  { id: 1, house: "1 Bedroom, small(600 - 800 sqf)" },
+  { id: 2, house: "1 Bedroom, small(600 - 800 sqf)" },
+  { id: 3, house: "1 Bedroom, small(600 - 800 sqf)" },
+  { id: 4, house: "1 Bedroom, small(600 - 800 sqf)" },
+  { id: 5, house: "1 Bedroom, small(600 - 800 sqf)" },
+  { id: 6, house: "1 Bedroom, small(600 - 800 sqf)" },
+];
 
 function GetStarted() {
-
   const styles = {
     paperContainer: {
-      backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.73)), url('https://images.pexels.com/photos/4246196/pexels-photo-4246196.jpeg?auto=compress&cs=tinysrgb&w=1600')",
+      backgroundImage:
+        "linear-gradient(to bottom, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.73)), url('https://images.pexels.com/photos/4246196/pexels-photo-4246196.jpeg?auto=compress&cs=tinysrgb&w=1600')",
       height: "auto",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
@@ -17,55 +71,62 @@ function GetStarted() {
       borderRadius: 0,
     },
     paperStyle: {
-      backgroundColor: "#F2F2F2", 
-      padding :20, 
-      height: 700, 
-      width: 800, 
-      margin: '100px auto'
-    }
+      backgroundColor: "#F2F2F2",
+      padding: 20,
+      height: "90vh",
+      width: "55vw",
+      margin: "100px auto",
+    },
   };
 
-  const formInput = [
-    {
-      label: "from",
-      name: "from",
-      placeholder: "From: Address, city or zip",
-      icon: <PinDrop />,
-      type: "text",
-    },
-    {
-      label: "to",
-      name: "to",
-      placeholder: "To: Address, city or zip",
-      icon: <PinDrop />,
-      type: "text",
-    },
-    {
-      label: "house-type",
-      name: "house-type",
-      placeholder: "House type",
-      icon: <House />,
-      type: "select",
-      options: [
-        "1 Bedroom, small(600 - 800 sqf)",
-        "1 Bedroom, small(600 - 800 sqf)",
-        "1 Bedroom, small(600 - 800 sqf)",
-        "1 Bedroom, small(600 - 800 sqf)",
-        "1 Bedroom, small(600 - 800 sqf)",
-        "1 Bedroom, small(600 - 800 sqf)",
-      ],
-    },
-    {
-      label: "move-date",
-      name: "move-date",
-      placeholder: "Moving date",
-      icon: <CalendarMonth />,
-      type: "date",
-    },
-  ];
+  accessToken = process.env.REACT_APP_MAPBOX_KEY;
+  const [suggestions, setSuggestions] = useState([]);
 
-  const handleChange = () => {}
+  const [value, setValue] = useState("");
 
+  const [data, setData] = useState({
+    houseType: "",
+    movingFrom: {
+      name: "",
+      latitude: "",
+      longitude: "",
+    },
+    movingTo: {
+      name: "",
+      latitude: "",
+      longitude: "",
+    },
+  });
+
+  console.log(suggestions);
+
+  const handleChange = async (event) => {
+    setValue(event.target.value);
+
+    const endPoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${value}.json?$autocomplete=true&proximity=ip&types=place%2Cpostcode%2Caddress&access_token=${accessToken}`;
+    try {
+      const response = await fetch(endPoint);
+      const results = await response.json();
+
+      setSuggestions(results?.features);
+    } catch (error) {
+      console.log(error);
+    }
+
+    setData({ ...data });
+  };
+  console.log(suggestions);
+  const locations = {
+    options: suggestions,
+    getOptionLabel: (option) => option.place_name,
+  };
+
+  const houseTypes = {
+    options: houseOptions,
+    getOptionLabel: (option) => option.house,
+  };
+  const navigate = useNavigate();
+  const handleClick = (event) => navigate("/my-items");
   return (
     <Box>
       <Paper style={styles.paperContainer}>
@@ -76,7 +137,6 @@ function GetStarted() {
               flexDirection: "column",
               justifyContent: "center",
               alignContent: "center",
-              height: "auto",
             }}
           >
             <Box>
@@ -92,8 +152,19 @@ function GetStarted() {
               </Typography>
             </Box>
             <Box>
-              <Paper elevation={7} style={styles.paperStyle} >
-                <MovingProcessNavBar size="large" color="error"/>
+              <Paper
+                elevation={7}
+                style={styles.paperStyle}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-around",
+                }}
+              >
+                <MovingProcessNavBar
+                  size="large"
+                  color="error"
+                />
                 <Container>
                   <Box
                     sx={{
@@ -106,32 +177,56 @@ function GetStarted() {
                       gap: 5,
                     }}
                   >
-                    <Box>
-                      <Typography
-                        variant="p"                        
-                        sx={{
-                          fontWeight: "bolder",
-                          letterSpacing: 0.5,
-                          color: "#000",
-                        }}
-                      >
-                        Compare guaranteed moving quotes from the best moving companies
-                        <br />
-                        Book with Mooove and save 45% on your moving costs!
-                      </Typography>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignContent: "center",
+                        textAlign: "center",
+                        gap: 2,
+                        mt: 5,
+                      }}
+                    >
+                      <Box>
+                        <Typography
+                          variant="p"
+                          sx={{
+                            fontWeight: "bolder",
+                            letterSpacing: 0.5,
+                            color: "#000",
+                          }}
+                        >
+                          Compare guaranteed moving quotes from the best moving
+                          companies
+                        </Typography>
+                      </Box>
+                      <Box>
+                        <Typography
+                          variant="p"
+                          sx={{
+                            fontWeight: "bolder",
+                            letterSpacing: 0.5,
+                            color: "#000",
+                          }}
+                        >
+                          Book with Mooove and save 45% on your moving costs!
+                        </Typography>
+                      </Box>
+                      <Box>
+                        <Typography
+                          variant="h4"
+                          sx={{
+                            fontWeight: "bold",
+                            letterSpacing: 0.5,
+                            color: "#2f2f2f",
+                          }}
+                        >
+                          Guess what Denis! No hidden Fees
+                        </Typography>
+                      </Box>
                     </Box>
-                    <Box>
-                      <Typography
-                        variant='h4'
-                        sx={{
-                          fontWeight: "bold",
-                          letterSpacing: 0.5,
-                          color: "#2f2f2f",
-                        }}
-                      >
-                        Guess what Denis! No hidden Fees
-                      </Typography>
-                    </Box>
+
                     <Box
                       component="form"
                       noValidate
@@ -140,37 +235,31 @@ function GetStarted() {
                         display: "flex",
                         flexFlow: "row wrap",
                         justifyContent: "center",
-                        gap: 7,
+                        gap: 3,
                       }}
                     >
                       {formInput.map((input) =>
-                        input.type === "select" ? (                         
-                          <TextField
-                            id={input.label}
-                            key={input.name}
-                            select
-                            label={input.placeholder}
-                            value={input.icon}
-                            onChange={handleChange}
-                            SelectProps={{
-                              native: true,
-                            }}
-                            variant="filled"
-                            sx={{
-                              bgcolor: "#fff",
-                              borderRadius: "0.1rem",
-                              // width: "40%",
-                            }}
-                          >
-                            {input.options.map((option) => (
-                              <option
-                                key={option}
-                                value={option}
-                              >
-                                {option}
-                              </option>
-                            ))}
-                          </TextField>
+                        input.type === "autocomplete" ? (
+                          <Autocomplete
+                            {...(input.option === "house"
+                              ? houseTypes
+                              : locations)}
+                            id="disable-close-on-select"
+                            disableCloseOnSelect
+                            renderInput={(params) => (
+                              <TextField
+                                {...params}
+                                label={input.placeholder}
+                                variant="filled"
+                                sx={{
+                                  bgcolor: "#fff",
+                                  borderRadius: "0.1rem",
+                                  width: "17vw",
+                                }}
+                                onChange={handleChange}
+                              />
+                            )}
+                          />
                         ) : (
                           <TextField
                             key={input.name}
@@ -189,36 +278,37 @@ function GetStarted() {
                             sx={{
                               bgcolor: "#fff",
                               borderRadius: "0.1rem",
+                              width: "17vw",
                             }}
                           />
                         )
-                      )}      
-                    </Box>
-                    <br />
-                    <Box>
+                      )}
                       <Button
-                          variant="contained"
-                          color="error"
-                          style={{
-                            fontSize: "20px",
-                            textTransform: "capitalize",
-                            padding: 0,
-                            margin: 0,
-                          }}
-                          fullWidth
-                        >
-                          Get prices and compare movers
-                        </Button>
+                        variant="contained"
+                        onClick={handleClick}
+                        color="error"
+                        style={{
+                          fontSize: "1.2rem",
+                          padding: 10,
+                          margin: 0,
+                          width: "70%",
+                          display: "block",
+                        }}
+                      >
+                        next
+                      </Button>
                     </Box>
+
+                    <br />
                   </Box>
-                </Container>                
+                </Container>
               </Paper>
-            </Box>            
+            </Box>
           </Box>
         </Container>
-      </Paper>      
+      </Paper>
     </Box>
-  )
+  );
 }
 
-export default GetStarted
+export default GetStarted;

@@ -14,7 +14,7 @@ function MoverSideBar(){
                 <div className="sidebar-image"></div>
                     <div className="sidebar-name">
                         <h2>Tiberius Mairura</h2>
-                        <Link to="/dashboard/home">My profile</Link>
+                        <Link to="/dashboard/update-details">My profile</Link>
                     </div>
                 </div>
                 <br/>

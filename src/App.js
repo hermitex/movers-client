@@ -14,7 +14,7 @@ import DashboardHome from "./components/dashboard/DashboardHome";
 import FinancialAnalytics from "./components/dashboard/FinancialAnalytics";
 import Review from "./components/dashboard/Review";
 import LocationAnalytics from "./components/dashboard/LocationAnalytics";
-
+import UpdateDetails from "./components/dashboard/UpdateDetails";
 import GetStarted from "./components/moving-process/GetStarted";
 import MyItems from "./components/moving-process/MyItems";
 import Compare from "./components/moving-process/Compare";

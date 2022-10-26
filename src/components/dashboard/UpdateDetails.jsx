@@ -44,3 +44,5 @@ function UpdateDetails(){
         </div>
     )
 }
+
+export default UpdateDetails;

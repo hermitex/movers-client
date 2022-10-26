@@ -16,6 +16,7 @@ function MoverDashboard() {
       </div>
       <div className="profile-item-2">
         <DashboardHome/>
+        <br/>
         <TableData/>
       </div>
     </div>

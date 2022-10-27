@@ -39,9 +39,16 @@ function Singnup({ onLogin }) {
       if (res.ok) {
         setSuccess("Signup successful!");
         setErrors([]);
-        res.json().then((user) => onLogin(user));
+        res.json().then((user) => {
+          setUser(user);
+          onLogin(user);
+        });
         setTimeout(() => {
-          navigate("/home");
+          if (user && user.account_type === "mover") {
+            navigate("/dashboard");
+          } else if (user && user.account_type === "customer") {
+            navigate("/home");
+          }
         }, 3000);
       } else {
         setSuccess(null);

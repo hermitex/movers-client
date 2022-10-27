@@ -29,9 +29,16 @@ function Login({ onLogin }) {
       setSuccess("Login successful!");
       setErrors([]);
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
+        r.json().then((user) => {
+          onLogin(user);
+          setUser(user);
+        });
         setTimeout(() => {
-          navigate("/home");
+          if (user && user.account_type === "mover") {
+            navigate("/dashboard");
+          } else if (user && user.account_type === "customer") {
+            navigate("/home");
+          }
         }, 3000);
       } else {
         setSuccess(null);

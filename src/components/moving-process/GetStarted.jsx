@@ -82,9 +82,6 @@ function GetStarted({ user }) {
   accessToken = process.env.REACT_APP_MAPBOX_KEY;
   const [suggestions, setSuggestions] = useState([]);
 
-  const [value, setValue] = useState(" ");
-  const [acValue, setAcValue] = useState(" ");
-
   const [data, setData] = useState({
     house_type: "",
     moving_from: "",
@@ -93,10 +90,11 @@ function GetStarted({ user }) {
   });
 
   const handleChange = async (event, value, name) => {
-    setValue(event.target.value);
     if (name === "moving_date") {
       value = event.target.value;
     }
+
+    console.log(name, value);
 
     const endPoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${value}.json?$autocomplete=true&proximity=ip&types=place%2Cpostcode%2Caddress&access_token=${accessToken}`;
     try {
@@ -115,6 +113,7 @@ function GetStarted({ user }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const getStartedData = {
+      house_type: data.house_type.house,
       moving_from: {
         place_name: data.moving_from.place_name,
         latitude: data.moving_from.geometry.coordinates[0],

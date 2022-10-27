@@ -58,7 +58,7 @@ function Singnup({ onLogin }) {
       />
       {errors && errors && (
         <Typography
-          fontSize="0.5rem"
+          fontSize="0.7rem"
           color="red"
         >
           {errors?.full_name}
@@ -79,7 +79,7 @@ function Singnup({ onLogin }) {
       />
       {errors && errors && (
         <Typography
-          fontSize="0.5rem"
+          fontSize="0.7rem"
           color="red"
         >
           {errors?.phone}
@@ -99,7 +99,7 @@ function Singnup({ onLogin }) {
       />
       {errors && errors && (
         <Typography
-          fontSize="0.5rem"
+          fontSize="0.7rem"
           color="red"
         >
           {errors?.email}
@@ -127,7 +127,7 @@ function Singnup({ onLogin }) {
       </TextField>
       {errors && errors && (
         <Typography
-          fontSize="0.5rem"
+          fontSize="0.7rem"
           color="red"
         >
           {errors?.type}
@@ -148,7 +148,7 @@ function Singnup({ onLogin }) {
       />
       {errors && errors && (
         <Typography
-          fontSize="0.5rem"
+          fontSize="0.7rem"
           color="red"
         >
           {errors?.password}
@@ -169,7 +169,7 @@ function Singnup({ onLogin }) {
       />
       {errors && errors && (
         <Typography
-          fontSize="0.5rem"
+          fontSize="0.7rem"
           color="red"
         >
           {errors?.passwordConfirmation}

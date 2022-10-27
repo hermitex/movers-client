@@ -1,31 +1,16 @@
-import Button from "@mui/material/Button";
 import React, { useState } from "react";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Singnup from "../signup/Singnup";
-import {
-  Grid,
-  Paper,
-  TextField,
-  Typography,
-  Link,
-  Tabs,
-  Tab,
-} from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
-
 function Login({ onLogin }) {
+  const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  const [value, setValue] = useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -45,129 +30,67 @@ function Login({ onLogin }) {
       }
     });
   }
-
-  const paperStyle = {
-    backgroundImage:
-      "url('https://images.pexels.com/photos/4246211/pexels-photo-4246211.jpeg?auto=compress&cs=tinysrgb&w=1600')",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    padding: 20,
-    height: 600,
-    width: 600,
-    margin: "100px auto",
-  };
-  const paperStyleInner = {
-    padding: 20,
-    height: 600,
-    width: 300,
-    position: "relative",
-    top: "-20px",
-    left: "280px",
-  };
   const textFieldStyle = { margin: "10px auto" };
-
   return (
-    <Grid>
-      <Paper
-        elevation={10}
-        style={paperStyle}
-        sx={{ display: { xs: "none", sm: "block" } }}
+    <form onSubmit={handleSubmit}>
+      <h1>Log in here</h1>
+      <Box
+        sx={{
+          pt: 3,
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+        }}
       >
-        <Paper
-          style={paperStyleInner}
-          sx={{ display: { xs: "flex", sm: "block" } }}
+        <TextField
+          size="small"
+          id="outlined-basic"
+          value={email}
+          label="Email"
+          placeholder="enter email"
+          onChange={(e) => setEmail(e.target.value)}
+          variant="outlined"
+          style={textFieldStyle}
+          fullWidth
+          required
+        />
+        <TextField
+          size="small"
+          id="outlined-basic"
+          value={password}
+          label="Password"
+          placeholder="enter password"
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          variant="outlined"
+          style={textFieldStyle}
+          fullWidth
+          required
+        />
+        <FormControlLabel
+          control={<Checkbox defaultUnChecked />}
+          label="Are you a mover?"
+          onClick={() => setChecked(!checked)}
+        />
+        <FormControlLabel
+          control={<Checkbox defaultUnChecked />}
+          label="Remember me"
+          onClick={() => setChecked(!checked)}
+        />
+
+        <Button
+          variant="contained"
+          color="error"
+          type="submit"
+          fullWidth
         >
-          {/* <Grid> */}
-          <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              variant="fullWidth"
-              indicatorColor="secondary"
-              textColor="inherit"
-            >
-              <Tab label="LOG IN" />
-              <Tab label="SIGN UP" />
-            </Tabs>
-          </Box>
-          {/* <Button
-              variant="outlined"
-              color="secondary"
-              style={buttonStyle}
-            >
-              Log In
-            </Button>
-            <Button
-              variant="outlined"
-              color="secondary"
-              style={buttonStyle}
-            >
-              Sign Up
-            </Button> */}
-          {/* </Grid>    */}
-          <br />
-          <br />
-          <br />
-          <form onSubmit={handleSubmit}>
-            <TextField
-              size="small"
-              id="outlined-basic"
-              value={email}
-              label="Email"
-              placeholder="enter email"
-              onChange={(e) => setEmail(e.target.value)}
-              variant="outlined"
-              style={textFieldStyle}
-              fullWidth
-              required
-            />
-            <TextField
-              size="small"
-              id="outlined-basic"
-              value={password}
-              label="Password"
-              placeholder="enter password"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-              variant="outlined"
-              style={textFieldStyle}
-              fullWidth
-              required
-            />
-            <FormControlLabel
-              control={<Checkbox defaultUnChecked />}
-              label="Are you a mover?"
-              onClick={() => setChecked(!checked)}
-            />
-            <FormControlLabel
-              control={<Checkbox defaultUnChecked />}
-              label="Remember me"
-              onClick={() => setChecked(!checked)}
-            />
-            <br />
-            <br />
-            <br />
-            <Button
-              variant="contained"
-              color="error"
-              type="submit"
-              fullWidth
-            >
-              Log In
-            </Button>
-            <br />
-            <br />
-          </form>
-          <Typography>
-            <Link href="a">Forgot Password</Link>
-          </Typography>
-          <Typography>
-            Do you have an account?
-            <Link href="a">Sign up</Link>
-          </Typography>
-        </Paper>
-      </Paper>
-    </Grid>
+          Log In
+        </Button>
+      </Box>
+      <Typography>
+        <Link href="a">Forgot Password</Link>
+      </Typography>
+    </form>
   );
 }
 

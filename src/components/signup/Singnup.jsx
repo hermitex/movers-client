@@ -1,22 +1,19 @@
-import { Box, Button } from "@mui/material";
+import { Button, MenuItem, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Singnup({ onLogin }) {
-
-
-  const[fullName, setFullName] = useState("")
-  const[accountType, setAccountType] = useState("")
-  const[email, setEmail] = useState("")
-  const[phone, setPhone] = useState("")
-  const[password, setPassword] = useState("")
-  const[passwordConfirmation, setPasswordConfirmation] = useState("")
-  const [errors, setErrors] = useState([])
+  const [fullName, setFullName] = useState("");
+  const [accountType, setAccountType] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [errors, setErrors] = useState([]);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   function handleSubmit(e) {
-
     e.preventDefault();
     setErrors([]);
 
@@ -26,12 +23,13 @@ function Singnup({ onLogin }) {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        fullName, 
+        fullName,
         phone,
-        email, 
-        accountType, 
-        password, 
-        passwordConfirmation
+        email,
+        accountType,
+        password,
+        passwordConfirmation,
+        location_id: 1,
       }),
     }).then((res) => {
       if (res.ok) {
@@ -41,65 +39,103 @@ function Singnup({ onLogin }) {
       }
     });
   }
+  const textFieldStyle = { margin: "10px auto" };
   return (
-    <div className="signup-container">
-      <div className="signup-contact-box">
-        <div className="signup-left"></div>
-        <div className="signup-right">
-          <form onSubmit={handleSubmit}>
-            <h1>Sign up here</h1>
-            <input
-              type="text"
-              value={fullName}
-              className="signup-field"
-              placeholder="full name"
-              onChange={(e) => setFullName(e.target.value)}
-            />
-            <input
-              type="text"
-              value={phone}
-              className="signup-field"
-              placeholder="phone"
-              onChange={(e) => setPhone(e.target.value)}
-            />
-            <input
-              type="text"
-              value={email}
-              className="signup-field"
-              placeholder="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="text"
-              value={accountType}
-              className="signup-field"
-              placeholder="accountType"
-              onChange={(e) => setAccountType(e.target.value)}
-            />           
-            
-            <input
-              type="text"
-              value={password}
-              className="signup-field"
-              placeholder="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-              type="text"
-              value={passwordConfirmation}
-              className="signup-field"
-              placeholder="passwordConfirmation"
-              onChange={(e) => setPasswordConfirmation(e.target.value)}
-            />
-            <input
-              className="signup-btn"
-              type="submit"
-              value="REGISTER"
-            />
-          </form>
-        </div>
-      </div>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <h1>Sign up here</h1>
+
+      <TextField
+        size="small"
+        id="outlined-basic"
+        value={fullName}
+        label="Full Name"
+        placeholder="enter full name"
+        onChange={(e) => setFullName(e.target.value)}
+        variant="outlined"
+        style={textFieldStyle}
+        fullWidth
+        required
+      />
+      <TextField
+        size="small"
+        id="outlined-basic"
+        value={phone}
+        label="Phone"
+        placeholder="enter full name"
+        onChange={(e) => setPhone(e.target.value)}
+        variant="outlined"
+        style={textFieldStyle}
+        fullWidth
+        required
+      />
+      <TextField
+        size="small"
+        id="outlined-basic"
+        value={email}
+        label="Email"
+        placeholder="enter email"
+        onChange={(e) => setEmail(e.target.value)}
+        variant="outlined"
+        style={textFieldStyle}
+        fullWidth
+        required
+      />
+      <TextField
+        select
+        size="small"
+        id="outlined-basic"
+        value={accountType}
+        label="Account Type"
+        placeholder="enter account type"
+        onChange={(e) => setAccountType(e.target.value)}
+        variant="outlined"
+        style={textFieldStyle}
+        fullWidth
+        required
+      >
+        <MenuItem value="Customer">
+          <option value="Customer">Customer</option>
+        </MenuItem>
+        <MenuItem value="Mover">
+          <option value="Mover">Mover</option>
+        </MenuItem>
+      </TextField>
+
+      <TextField
+        size="small"
+        id="outlined-basic"
+        value={password}
+        label="Password"
+        placeholder="enter password"
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+        variant="outlined"
+        style={textFieldStyle}
+        fullWidth
+        required
+      />
+      <TextField
+        size="small"
+        id="outlined-basic"
+        value={password}
+        label="Password Confirmation"
+        placeholder="enter password"
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+        variant="outlined"
+        style={textFieldStyle}
+        fullWidth
+        required
+      />
+      <Button
+        variant="contained"
+        color="error"
+        type="submit"
+        fullWidth
+      >
+        Sinup
+      </Button>
+    </form>
   );
 }
 

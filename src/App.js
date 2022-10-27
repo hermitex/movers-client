@@ -20,17 +20,20 @@ import MyItems from "./components/moving-process/MyItems";
 import Compare from "./components/moving-process/Compare";
 import Book from "./components/moving-process/Book";
 import Map from "./components/map/Map";
+import LoginSignup from "./components/login/LoginSinup";
 
 function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("/me").then((r) => {
+    fetch(" http://127.0.0.1:3000/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
     });
   }, []);
+
+  console.log(user);
 
   return (
     <Router>
@@ -73,12 +76,16 @@ function App() {
           />
           <Route
             path="login"
-            element={<Login onLogin={setUser} />}
+            element={<LoginSignup onLogin={setUser} />}
           />
           <Route
             path="signup"
-            element={<Singnup onLogin={setUser} />}
+            element={<LoginSignup onLogin={setUser} />}
           />
+          {/* <Route
+            path="login-signup"
+            element={<LoginSingupTabPanel onLogin={setUser} />}
+          /> */}
           <Route
             path="/get-started"
             element={<GetStarted />}
@@ -109,7 +116,7 @@ function App() {
           />
           <Route
             path="login"
-            element={<Login onLogin={setUser} />}
+            element={<LoginSignup onLogin={setUser} />}
           />
           <Route
             path="signup"

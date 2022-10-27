@@ -169,23 +169,7 @@ const NavBar = () => {
                     color: "#FF515E",
                   }}
                 >
-                  Login
-                </Box>
-              </Button>
-            </Link>
-            <Link
-              to="signup"
-              sx={{ flexGrow: 0 }}
-            >
-              <Button variant="outlined">
-                <Box
-                  sx={{
-                    display: "inline-block",
-                    padding: "0.5",
-                    color: "#FF515E",
-                  }}
-                >
-                  Signup
+                  Login/Signup
                 </Box>
               </Button>
             </Link>

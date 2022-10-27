@@ -43,19 +43,19 @@ function Singnup({ onLogin }) {
           setUser(user);
           onLogin(user);
         });
-        setTimeout(() => {
-          if (user && user.account_type === "mover") {
-            navigate("/dashboard");
-          } else if (user && user.account_type === "customer") {
-            navigate("/home");
-          }
-        }, 3000);
       } else {
         setSuccess(null);
         res.json().then((err) => setErrors(err.errors));
       }
     });
   }
+  setTimeout(() => {
+    if (user && user.account_type === "mover") {
+      navigate("/dashboard");
+    } else if (user && user.account_type === "customer") {
+      navigate("/home");
+    }
+  }, 1100);
   const textFieldStyle = { margin: "10px auto" };
   return (
     <form onSubmit={handleSubmit}>

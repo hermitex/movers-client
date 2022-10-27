@@ -3,7 +3,7 @@ import { SideBarData } from "./SideBarData";
 import { Link } from "react-router-dom";
 import "./DashboardStyles.css";
 
-function MoverSideBar() {
+function MoverSideBar({ user }) {
   return (
     <div>
       <div className="sidebar-holder">
@@ -11,7 +11,7 @@ function MoverSideBar() {
         <div>
           <div className="sidebar-image"></div>
           <div className="sidebar-name">
-            <h2>Tiberius Mairura</h2>
+            <h2>{user.full_name}</h2>
             <Link to="/dashboard/profile">My profile</Link>
           </div>
         </div>

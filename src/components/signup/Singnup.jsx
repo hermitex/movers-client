@@ -3,17 +3,20 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Singnup({ onLogin }) {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setlastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [errors, setErrors] = useState([]);
+
+
+  const[fullName, setFullName] = useState("")
+  const[accountType, setAccountType] = useState("")
+  const[email, setEmail] = useState("")
+  const[phone, setPhone] = useState("")
+  const[password, setPassword] = useState("")
+  const[passwordConfirmation, setPasswordConfirmation] = useState("")
+  const [errors, setErrors] = useState([])
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   function handleSubmit(e) {
+
     e.preventDefault();
     setErrors([]);
 
@@ -23,12 +26,12 @@ function Singnup({ onLogin }) {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
-        password,
-        passwordConfirmation,
+        fullName, 
+        phone,
+        email, 
+        accountType, 
+        password, 
+        passwordConfirmation
       }),
     }).then((res) => {
       if (res.ok) {
@@ -47,17 +50,17 @@ function Singnup({ onLogin }) {
             <h1>Sign up here</h1>
             <input
               type="text"
-              value={firstName}
+              value={fullName}
               className="signup-field"
-              placeholder="firstName"
-              onChange={(e) => setFirstName(e.target.value)}
+              placeholder="full name"
+              onChange={(e) => setFullName(e.target.value)}
             />
             <input
               type="text"
-              value={lastName}
+              value={phone}
               className="signup-field"
-              placeholder="lastName"
-              onChange={(e) => setlastName(e.target.value)}
+              placeholder="phone"
+              onChange={(e) => setPhone(e.target.value)}
             />
             <input
               type="text"
@@ -68,11 +71,12 @@ function Singnup({ onLogin }) {
             />
             <input
               type="text"
-              value={phoneNumber}
+              value={accountType}
               className="signup-field"
-              placeholder="phoneNumber"
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            />
+              placeholder="accountType"
+              onChange={(e) => setAccountType(e.target.value)}
+            />           
+            
             <input
               type="text"
               value={password}

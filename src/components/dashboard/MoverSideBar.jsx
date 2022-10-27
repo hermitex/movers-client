@@ -11,7 +11,7 @@ function MoverSideBar({ user }) {
         <div>
           <div className="sidebar-image"></div>
           <div className="sidebar-name">
-            <h2>{user.full_name}</h2>
+            <h2>{user?.full_name}</h2>
             <Link to="/dashboard/profile">My profile</Link>
           </div>
         </div>

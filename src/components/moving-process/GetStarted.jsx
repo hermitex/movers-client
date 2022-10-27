@@ -42,7 +42,7 @@ const formInput = [
   },
   {
     label: "move-date",
-    name: "move_date",
+    name: "moving_date",
     placeholder: "Moving date",
     icon: <CalendarMonth />,
     type: "date",
@@ -92,13 +92,11 @@ function GetStarted({ user }) {
     moving_date: "",
   });
 
-  console.log(suggestions);
-
   const handleChange = async (event, value, name) => {
-    console.log(name);
     setValue(event.target.value);
-
-    // const value = event.target.value;
+    if (name === "moving_date") {
+      value = event.target.value;
+    }
 
     const endPoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${value}.json?$autocomplete=true&proximity=ip&types=place%2Cpostcode%2Caddress&access_token=${accessToken}`;
     try {
@@ -113,10 +111,28 @@ function GetStarted({ user }) {
     setData({ ...data, [name]: value });
   };
 
-  console.log(data);
-
   const navigate = useNavigate();
-  const handleClick = (event) => navigate("/my-items");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const getStartedData = {
+      moving_from: {
+        place_name: data.moving_from.place_name,
+        latitude: data.moving_from.geometry.coordinates[0],
+        longitude: data.moving_from.geometry.coordinates[1],
+      },
+      moving_to: {
+        place_name: data.moving_to.place_name,
+        latitude: data.moving_to.geometry.coordinates[0],
+        longitude: data.moving_to.geometry.coordinates[1],
+      },
+    };
+    setTimeout(() => {
+      navigate("/my-items");
+    }, 1500);
+
+    console.log(getStartedData);
+  };
+
   return (
     <Box>
       <Paper style={styles.paperContainer}>
@@ -218,7 +234,8 @@ function GetStarted({ user }) {
 
                     <Box
                       component="form"
-                      noValidate
+                      // noValidate
+                      onSubmit={handleSubmit}
                       autoComplete="off"
                       sx={{
                         display: "flex",
@@ -234,21 +251,20 @@ function GetStarted({ user }) {
                               handleChange(event, value, input.name)
                             }
                             options={
-                              input.option === "house"
+                              input?.name === "house_type"
                                 ? houseOptions
                                 : suggestions
                             }
                             id="disable-close-on-select"
                             name={input.name}
-                            value={
-                              input.name === "moving_to"
-                                ? data.moving_to
-                                : data.moving_from
-                            }
                             getOptionLabel={(option) => {
-                              return input.option === "house"
+                              return input.name === "house_type"
                                 ? option.house
-                                : option.place_name;
+                                : option.place_name
+                                ? option.place_name
+                                : input.name === "moving_date"
+                                ? data.moving_date
+                                : "";
                             }}
                             renderInput={(params) => (
                               <TextField
@@ -260,7 +276,23 @@ function GetStarted({ user }) {
                                   borderRadius: "0.1rem",
                                   width: "17vw",
                                 }}
-                                onChange={handleChange}
+                                value={
+                                  input.name === "house_type"
+                                    ? data.house_type
+                                    : data.place_name
+                                    ? data.place_name
+                                    : input.name === "moving_date"
+                                    ? data.moving_date
+                                    : ""
+                                }
+                                required
+                                onChange={(event) =>
+                                  handleChange(
+                                    event,
+                                    event.target.value,
+                                    input.name
+                                  )
+                                }
                               />
                             )}
                           />
@@ -269,9 +301,11 @@ function GetStarted({ user }) {
                             key={input.name}
                             id={input.label}
                             name={input.name}
+                            value={data.moving_date}
                             label={input.placeholder}
                             type={input.type}
                             variant="filled"
+                            required
                             InputProps={{
                               startAdornment: (
                                 <InputAdornment position="start">
@@ -292,8 +326,8 @@ function GetStarted({ user }) {
                       )}
                       <Button
                         variant="contained"
-                        onClick={handleClick}
                         color="error"
+                        type="submit"
                         style={{
                           fontSize: "1.2rem",
                           padding: 10,

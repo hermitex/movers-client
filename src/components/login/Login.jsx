@@ -42,6 +42,14 @@ function Login({ onLogin }) {
           gap: 2,
         }}
       >
+        {errors && errors && (
+          <Typography
+            fontSize="0.7rem"
+            color="red"
+          >
+            {errors?.error}
+          </Typography>
+        )}
         <TextField
           size="small"
           id="outlined-basic"
@@ -54,6 +62,7 @@ function Login({ onLogin }) {
           fullWidth
           required
         />
+
         <TextField
           size="small"
           id="outlined-basic"
@@ -67,6 +76,7 @@ function Login({ onLogin }) {
           fullWidth
           required
         />
+
         <FormControlLabel
           control={<Checkbox defaultUnChecked />}
           label="Are you a mover?"

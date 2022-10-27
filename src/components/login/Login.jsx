@@ -29,16 +29,23 @@ function Login({ onLogin }) {
       setSuccess("Login successful!");
       setErrors([]);
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
-        setTimeout(() => {
-          navigate("/home");
-        }, 3000);
+        r.json().then((user) => {
+          onLogin(user);
+          setUser(user);
+        });
       } else {
         setSuccess(null);
         r.json().then((errors) => setErrors(errors));
       }
     });
   }
+  setTimeout(() => {
+    if (user && user.account_type === "mover") {
+      navigate("/dashboard");
+    } else if (user && user.account_type === "customer") {
+      navigate("/home");
+    }
+  }, 1100);
   const textFieldStyle = { margin: "10px auto" };
   return (
     <form onSubmit={handleSubmit}>

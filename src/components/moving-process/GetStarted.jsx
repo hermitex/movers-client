@@ -59,7 +59,7 @@ const houseOptions = [
   { id: 6, house: "1 Bedroom, small(600 - 800 sqf)" },
 ];
 
-function GetStarted() {
+function GetStarted({ user }) {
   const styles = {
     paperContainer: {
       backgroundImage:
@@ -233,7 +233,7 @@ function GetStarted() {
                             color: "#2f2f2f",
                           }}
                         >
-                          Guess what Denis! No hidden Fees
+                          Guess what {user?.full_name}! No hidden Fees
                         </Typography>
                       </Box>
                     </Box>

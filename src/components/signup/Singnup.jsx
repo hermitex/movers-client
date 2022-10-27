@@ -39,16 +39,23 @@ function Singnup({ onLogin }) {
       if (res.ok) {
         setSuccess("Signup successful!");
         setErrors([]);
-        res.json().then((user) => onLogin(user));
-        setTimeout(() => {
-          navigate("/home");
-        }, 3000);
+        res.json().then((user) => {
+          setUser(user);
+          onLogin(user);
+        });
       } else {
         setSuccess(null);
         res.json().then((err) => setErrors(err.errors));
       }
     });
   }
+  setTimeout(() => {
+    if (user && user.account_type === "mover") {
+      navigate("/dashboard");
+    } else if (user && user.account_type === "customer") {
+      navigate("/home");
+    }
+  }, 1100);
   const textFieldStyle = { margin: "10px auto" };
   return (
     <form onSubmit={handleSubmit}>

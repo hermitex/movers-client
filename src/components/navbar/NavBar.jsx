@@ -13,6 +13,7 @@ import logo from "../../logo.png";
 import { Link, NavLink } from "react-router-dom";
 import Singnup from "../signup/Singnup";
 import { Button } from "@mui/material";
+import AccountMenu from "../avatar-menu/AccountMenu";
 
 const pages = ["Home", "About", "Services", "contact"];
 
@@ -20,7 +21,8 @@ const activeStyle = {
   color: "#FF515E",
 };
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
+  const [currentUser, setCurrentUser] = React.useState(user);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -156,23 +158,26 @@ const NavBar = () => {
                 </NavLink>
               ))}
             </Box>
-
-            <Link
-              to="login"
-              sx={{ flexGrow: 0 }}
-            >
-              <Button variant="outlined">
-                <Box
-                  sx={{
-                    display: "inline-block",
-                    padding: "0.5",
-                    color: "#FF515E",
-                  }}
-                >
-                  Login/Signup
-                </Box>
-              </Button>
-            </Link>
+            {user ? (
+              <AccountMenu setCurrentUser={setCurrentUser} />
+            ) : (
+              <Link
+                to="login"
+                sx={{ flexGrow: 0 }}
+              >
+                <Button variant="outlined">
+                  <Box
+                    sx={{
+                      display: "inline-block",
+                      padding: "0.5",
+                      color: "#FF515E",
+                    }}
+                  >
+                    Login/Signup
+                  </Box>
+                </Button>
+              </Link>
+            )}
           </Box>
         </Toolbar>
       </Container>

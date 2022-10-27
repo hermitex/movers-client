@@ -1,6 +1,8 @@
-import { Button, MenuItem, TextField, Typography } from "@mui/material";
+import { Box, Button, MenuItem, TextField, Typography } from "@mui/material";
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Success from "../utils/Sucess";
 
 function Singnup({ onLogin }) {
   const [fullName, setFullName] = useState("");
@@ -11,6 +13,7 @@ function Singnup({ onLogin }) {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [errors, setErrors] = useState([]);
   const [user, setUser] = useState(null);
+  const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
 
   function handleSubmit(e) {
@@ -23,18 +26,25 @@ function Singnup({ onLogin }) {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        fullName,
+        full_name: fullName,
         phone,
         email,
-        accountType,
+        account_type: accountType.toLocaleLowerCase(),
+        type: accountType,
         password,
-        passwordConfirmation,
+        password_confirmation: passwordConfirmation,
         location_id: 1,
       }),
     }).then((res) => {
       if (res.ok) {
+        setSuccess("Signup successful!");
+        setErrors([]);
         res.json().then((user) => onLogin(user));
+        setTimeout(() => {
+          navigate("/home");
+        }, 3000);
       } else {
+        setSuccess(null);
         res.json().then((err) => setErrors(err.errors));
       }
     });
@@ -43,6 +53,8 @@ function Singnup({ onLogin }) {
   return (
     <form onSubmit={handleSubmit}>
       <h1>Sign up here</h1>
+
+      {success ? <Success success={success} /> : null}
 
       <TextField
         size="small"
@@ -157,11 +169,11 @@ function Singnup({ onLogin }) {
       <TextField
         size="small"
         id="outlined-basic"
-        value={password}
+        value={passwordConfirmation}
         label="Password Confirmation"
         placeholder="enter password"
         type="password"
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => setPasswordConfirmation(e.target.value)}
         variant="outlined"
         style={textFieldStyle}
         fullWidth
@@ -172,7 +184,7 @@ function Singnup({ onLogin }) {
           fontSize="0.7rem"
           color="red"
         >
-          {errors?.passwordConfirmation}
+          {errors?.password_confirmation}
         </Typography>
       )}
       <Button

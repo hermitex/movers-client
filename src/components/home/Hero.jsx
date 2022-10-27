@@ -341,7 +341,7 @@ function Hero() {
                         sx={{
                           bgcolor: "#fff",
                           borderRadius: "0.1rem",
-                          width: "17vw",
+                          width: "15vw",
                         }}
                         value={
                           input.name === "house_type"
@@ -382,7 +382,7 @@ function Hero() {
                     sx={{
                       bgcolor: "#fff",
                       borderRadius: "0.1rem",
-                      width: "17vw",
+                      width: "15vw",
                     }}
                   />
                 )
@@ -395,7 +395,7 @@ function Hero() {
                   fontSize: "1.2rem",
                   padding: 10,
                   margin: 0,
-                  width: "70%",
+                  width: "10vw",
                   display: "block",
                 }}
               >

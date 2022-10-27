@@ -233,7 +233,7 @@ function GetStarted({ user }) {
                             color: "#2f2f2f",
                           }}
                         >
-                          Guess what {user.full_name}! No hidden Fees
+                          Guess what {user?.full_name}! No hidden Fees
                         </Typography>
                       </Box>
                     </Box>

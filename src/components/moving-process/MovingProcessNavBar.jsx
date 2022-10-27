@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 const isActiveStyle = {
   backgroundColor: "#FF515E",
   borderRadius: "0.3rem",
-  color: "#FFF",
 };
 
 function MovingProcessNavBar({ size, color }) {

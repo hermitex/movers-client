@@ -3,10 +3,7 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import React from 'react';
 import ChairIcon from '@mui/icons-material/Chair';
 import { styled } from '@mui/material/styles';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SingleItemCard from './SingleItemCard';
 
 
@@ -70,8 +67,8 @@ function MyItemsFeedCard({ title }) {
                 gap: 2
             }} 
         >
-            <SingleItemCard />
-            <SingleItemCard />        
+            <SingleItemCard item="Sofa"/>
+            <SingleItemCard item="Table"/>        
         </Box>        
       </Collapse>
     </Card>

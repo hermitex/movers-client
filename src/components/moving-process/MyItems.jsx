@@ -5,6 +5,7 @@ import React from 'react'
 import MovingProcessNavBar from './MovingProcessNavBar';
 import MyItemsSidebar from './MyItemsSidebar';
 import MyItemsFeed from './MyItemsFeed';
+import { useNavigate } from 'react-router-dom';
 
 function MyItems() {
   const styles = {
@@ -21,11 +22,13 @@ function MyItems() {
       padding :20, 
       minHeight: 800,
       maxHeight: "auto", 
-      maxWidth: 1200,       
+      maxWidth: 900,       
       margin: '100px auto'
     }
   };
   
+  const navigate = useNavigate();
+  const handleClick = (event) => navigate("/compare");
 
 
   return (
@@ -78,6 +81,7 @@ function MyItems() {
                   </Typography>
                   <Button
                     variant="contained"
+                    onClick={handleClick}
                     color="error"
                     style={{
                       fontSize: "18px"
@@ -90,8 +94,7 @@ function MyItems() {
                 <Container>
                   <Stack 
                     direction="row" 
-                    spacing={1.5} 
-                    
+                    spacing={1.5}                     
                     padding="10px 10px"
                     gap={2}                    
                     justifyContent="space-between"

@@ -68,9 +68,47 @@ function Book() {
                     noValidate
                     autoComplete="off"
                   >
+                    <h3>Contact information</h3>
                     <TextField
                       id="outlined-basic"
-                      label="Outlined"
+                      label="Name"
+                      variant="outlined"
+                    />
+                    <TextField
+                      id="outlined-basic"
+                      label="Phone Number"
+                      variant="outlined"
+                    />  
+                    <h3>Billing</h3>
+                    <TextField
+                      id="outlined-basic"
+                      label="First Name"
+                      variant="outlined"
+                    />
+                    <TextField
+                      id="outlined-basic"
+                      label="Last Name"
+                      variant="outlined"
+                    />
+                    <TextField
+                      id="outlined-basic"
+                      label="Card Number"
+                      variant="outlined"
+                    />
+                    <h3>Expiration Date</h3>
+                    <TextField
+                      id="outlined-basic"
+                      label="First Name"
+                      variant="outlined"
+                    />
+                    <TextField
+                      id="outlined-basic"
+                      label="Last Name"
+                      variant="outlined"
+                    />
+                    <TextField
+                      id="outlined-basic"
+                      label="Card Number"
                       variant="outlined"
                     />
                   </Box>

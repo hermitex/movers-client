@@ -78,7 +78,7 @@ function Book() {
                       id="outlined-basic"
                       label="Phone Number"
                       variant="outlined"
-                    />  
+                    />
                     <h3>Billing</h3>
                     <TextField
                       id="outlined-basic"

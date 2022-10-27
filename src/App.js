@@ -25,8 +25,24 @@ import LoginSignup from "./components/login/LoginSinup";
 function App() {
   const [user, setUser] = useState(null);
 
+  // // USING JWT
+  // const token = localStorage.getItem("jwt")
+  // useEffect(() => {
+  //   fetch(" http://localhost:4000/me", {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: `Bearer ${token}`
+  //     }
+  //   }).then((r) => {
+  //     if (r.ok) {
+  //       r.json().then((user) => setUser(user));
+  //     }
+  //   });
+  // });
+
+  // USING SESSION
   useEffect(() => {
-    fetch(" http://127.0.0.1:3000/me").then((r) => {
+    fetch(" http://localhost:4000/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }

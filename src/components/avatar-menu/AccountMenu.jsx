@@ -10,7 +10,7 @@ import Tooltip from "@mui/material/Tooltip";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function AccountMenu({ setCurrentUser }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,8 +22,10 @@ function AccountMenu({ setCurrentUser }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+
   const handleLogout = () => {
-    fetch("http://127.0.0.1:3000/logout", {
+    fetch("http://localhost:4000/logout", {
       method: "DELETE",
     }).then((response) => {
       if (response.ok) {
@@ -92,11 +94,16 @@ function AccountMenu({ setCurrentUser }) {
         <Divider />
 
         <MenuItem onClick={handleLogout}>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
+          <Link
+            to="/"
+            sx={{ flexGrow: 0 }}
+          >
+            <ListItemIcon>
+              <Logout fontSize="small" />
+            </ListItemIcon>
+            Logout
+          </Link>
+        </MenuItem>        
       </Menu>
     </React.Fragment>
   );

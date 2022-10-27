@@ -16,32 +16,37 @@ function Singnup({ onLogin }) {
   const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
 
+  // USING JWT
   function handleSubmit(e) {
     e.preventDefault();
     setErrors([]);
 
-    fetch("http://127.0.0.1:3000/signup", {
+    fetch("http://localhost:4000/signup", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify({
-        full_name: fullName,
-        phone,
-        email,
-        account_type: accountType.toLocaleLowerCase(),
-        type: accountType,
-        password,
-        password_confirmation: passwordConfirmation,
-        location_id: 1,
+        // user: {
+          full_name: fullName,
+          phone,
+          email,
+          account_type: accountType.toLocaleLowerCase(),
+          type: accountType,
+          password,
+          password_confirmation: passwordConfirmation,
+          location_id: 1,
+        // }        
       }),
     }).then((res) => {
       if (res.ok) {
         setSuccess("Signup successful!");
         setErrors([]);
-        res.json().then((user) => {
-          setUser(user);
-          onLogin(user);
+        res.json().then((data) => {
+          localStorage.setItem("jwt", data.jwt)
+          setUser(data.user);
+          onLogin(data.user);
         });
       } else {
         setSuccess(null);
@@ -49,6 +54,42 @@ function Singnup({ onLogin }) {
       }
     });
   }
+
+  
+  // // USING SESSION
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   setErrors([]);
+
+  //   fetch("http://localhost:4000/signup", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-type": "application/json",        
+  //     },
+  //     body: JSON.stringify({       
+  //       full_name: fullName,
+  //       phone,
+  //       email,
+  //       account_type: accountType.toLocaleLowerCase(),
+  //       type: accountType,
+  //       password,
+  //       password_confirmation: passwordConfirmation,
+  //       location_id: 1,               
+  //     }),
+  //   }).then((res) => {
+  //     if (res.ok) {
+  //       setSuccess("Signup successful!");
+  //       setErrors([]);
+  //       res.json().then((user) => {          
+  //         setUser(user);
+  //         onLogin(user);
+  //       });
+  //     } else {
+  //       setSuccess(null);
+  //       res.json().then((err) => setErrors(err.errors));
+  //     }
+  //   });
+  // }
   setTimeout(() => {
     if (user && user.account_type === "mover") {
       navigate("/dashboard");

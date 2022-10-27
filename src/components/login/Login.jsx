@@ -5,6 +5,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
 import Success from "../utils/Sucess";
+
 function Login({ onLogin }) {
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
@@ -15,13 +16,15 @@ function Login({ onLogin }) {
   const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
 
+  // USING JWT
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("http://127.0.0.1:3000/login", {
+    fetch("http://localhost:4000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify({ email, password }),
     }).then((r) => {
@@ -29,9 +32,10 @@ function Login({ onLogin }) {
       setSuccess("Login successful!");
       setErrors([]);
       if (r.ok) {
-        r.json().then((user) => {
-          onLogin(user);
-          setUser(user);
+        r.json().then((data) => {
+          localStorage.setItem("jwt", data.jwt)
+          onLogin(data.user);
+          setUser(data.user);
         });
       } else {
         setSuccess(null);
@@ -39,6 +43,34 @@ function Login({ onLogin }) {
       }
     });
   }
+    
+
+  // // USING FETCH
+
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   setIsLoading(true);
+  //   fetch("http://127.0.0.1:3000/login", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ email, password }),
+  //   }).then((r) => {
+  //     setIsLoading(false);
+  //     setSuccess("Login successful!");
+  //     setErrors([]);
+  //     if (r.ok) {
+  //       r.json().then((user) => {
+  //         onLogin(user);
+  //         setUser(user);
+  //       });
+  //     } else {
+  //       setSuccess(null);
+  //       r.json().then((errors) => setErrors(errors));
+  //     }
+  //   });
+  // }
   setTimeout(() => {
     if (user && user.account_type === "mover") {
       navigate("/dashboard");

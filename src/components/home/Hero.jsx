@@ -51,6 +51,40 @@ const pages = [
   { id: 4, description: "Get in touch", link: "contact", divider: "" },
 ];
 
+const styles = {
+  paperContainer: {
+    backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.52),
+rgba(0, 0, 0, 0.73)),url(${heroBg})`,
+    height: "60vh",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    borderRadius: 0,
+  },
+};
+
+const pages = [
+  {
+    id: 1,
+    description: "What is Moove.com?",
+    link: "about",
+    divider: <Divider />,
+  },
+  {
+    id: 2,
+    description: "What is included?",
+    link: "services",
+    divider: <Divider />,
+  },
+  {
+    id: 3,
+    description: "How it works?",
+    link: "how-it-works",
+    divider: <Divider />,
+  },
+  { id: 4, description: "Get in touch", link: "contact", divider: "" },
+];
+
 const formInput = [
   {
     label: "from",

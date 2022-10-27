@@ -1,4 +1,4 @@
-import { Button, MenuItem, TextField } from "@mui/material";
+import { Button, MenuItem, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -56,6 +56,15 @@ function Singnup({ onLogin }) {
         fullWidth
         required
       />
+      {errors && errors && (
+        <Typography
+          fontSize="0.5rem"
+          color="red"
+        >
+          {errors?.full_name}
+        </Typography>
+      )}
+
       <TextField
         size="small"
         id="outlined-basic"
@@ -68,6 +77,14 @@ function Singnup({ onLogin }) {
         fullWidth
         required
       />
+      {errors && errors && (
+        <Typography
+          fontSize="0.5rem"
+          color="red"
+        >
+          {errors?.phone}
+        </Typography>
+      )}
       <TextField
         size="small"
         id="outlined-basic"
@@ -80,6 +97,14 @@ function Singnup({ onLogin }) {
         fullWidth
         required
       />
+      {errors && errors && (
+        <Typography
+          fontSize="0.5rem"
+          color="red"
+        >
+          {errors?.email}
+        </Typography>
+      )}
       <TextField
         select
         size="small"
@@ -100,7 +125,14 @@ function Singnup({ onLogin }) {
           <option value="Mover">Mover</option>
         </MenuItem>
       </TextField>
-
+      {errors && errors && (
+        <Typography
+          fontSize="0.5rem"
+          color="red"
+        >
+          {errors?.type}
+        </Typography>
+      )}
       <TextField
         size="small"
         id="outlined-basic"
@@ -114,6 +146,14 @@ function Singnup({ onLogin }) {
         fullWidth
         required
       />
+      {errors && errors && (
+        <Typography
+          fontSize="0.5rem"
+          color="red"
+        >
+          {errors?.password}
+        </Typography>
+      )}
       <TextField
         size="small"
         id="outlined-basic"
@@ -127,6 +167,14 @@ function Singnup({ onLogin }) {
         fullWidth
         required
       />
+      {errors && errors && (
+        <Typography
+          fontSize="0.5rem"
+          color="red"
+        >
+          {errors?.passwordConfirmation}
+        </Typography>
+      )}
       <Button
         variant="contained"
         color="error"

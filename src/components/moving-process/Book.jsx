@@ -56,7 +56,8 @@ function Book() {
                 <Box>
                   <div>
                     <h1>Book your Mooove! today ...</h1>
-                    <p>Secured payment - No extra charges</p>
+                    <p>Secured payment - No extra charges
+                    </p>
                   </div>
                 </Box>
                 <Box>

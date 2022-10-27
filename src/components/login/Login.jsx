@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { Button, TextField, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
+import Success from "../utils/Sucess";
 function Login({ onLogin }) {
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
@@ -11,6 +12,8 @@ function Login({ onLogin }) {
   const [checked, setChecked] = useState(false);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(null);
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -23,9 +26,15 @@ function Login({ onLogin }) {
       body: JSON.stringify({ email, password }),
     }).then((r) => {
       setIsLoading(false);
+      setSuccess("Login successful!");
+      setErrors([]);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
+        setTimeout(() => {
+          navigate("/home");
+        }, 3000);
       } else {
+        setSuccess(null);
         r.json().then((errors) => setErrors(errors));
       }
     });
@@ -34,6 +43,7 @@ function Login({ onLogin }) {
   return (
     <form onSubmit={handleSubmit}>
       <h1>Log in here</h1>
+
       <Box
         sx={{
           pt: 3,
@@ -42,6 +52,7 @@ function Login({ onLogin }) {
           gap: 2,
         }}
       >
+        {success ? <Success success={success} /> : null}
         {errors && errors && (
           <Typography
             fontSize="0.7rem"

@@ -43,35 +43,32 @@ function App() {
           <Route
             index
             path="/"
-            element={<Home />}
+            element={<Home user={user} />}
           />
           <Route
             path="/home"
-            element={<Home />}
+            element={<Home user={user} />}
           />
           <Route
             path="/dashboard/*"
-            element={<MoverDashboard />}
+            element={<MoverDashboard user={user} />}
           />
           <Route
             path="/dashboard/orders"
-            element={<Orders />}
+            element={<Orders user={user} />}
           />
           <Route
             path="/dashboard/home"
-            element={<DashboardHome />}
+            element={<DashboardHome user={user} />}
           />
-          <Route
-            path="/dashboard/orders"
-            element={<Orders />}
-          />
+
           <Route
             path="/dashboard/update-details"
-            element={<UpdateDetails />}
+            element={<UpdateDetails user={user} />}
           />
           <Route
             path="/dashboard/financial-analytics"
-            element={<FinancialAnalytics />}
+            element={<FinancialAnalytics user={user} />}
             index
           />
           <Route
@@ -82,33 +79,30 @@ function App() {
             path="signup"
             element={<LoginSignup onLogin={setUser} />}
           />
-          {/* <Route
-            path="login-signup"
-            element={<LoginSingupTabPanel onLogin={setUser} />}
-          /> */}
+
           <Route
             path="/get-started"
-            element={<GetStarted />}
+            element={<GetStarted user={user} />}
           />
           <Route
             path="/my-items"
-            element={<MyItems />}
+            element={<MyItems user={user} />}
           />
           <Route
             path="/compare"
-            element={<Compare />}
+            element={<Compare user={user} />}
           />
           <Route
             path="/book"
-            element={<Book />}
+            element={<Book user={user} />}
           />
           <Route
             path="/map"
-            element={<Map />}
+            element={<Map user={user} />}
           />
           <Route
             path="/dashboard/reviews"
-            element={<Review />}
+            element={<Review user={user} />}
           />
           <Route
             path="/dashboard/location-analytics"

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Singnup from "../signup/Singnup";
-import { Grid, Paper, Tabs, Tab } from "@mui/material";
+import { Grid, Paper, Tabs, Tab, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
 import { useNavigate } from "react-router-dom";
@@ -38,8 +38,9 @@ function LoginSignup({ onLogin }) {
       <Paper
         elevation={10}
         style={paperStyle}
-        sx={{ display: { xs: "none", sm: "block" } }}
+        sx={{ display: { sm: "flex" } }}
       >
+        {/* <Typography variant="h1">Exact Prices No Surprises</Typography> */}
         <Paper
           style={paperStyleInner}
           sx={{ display: { xs: "flex", sm: "block" } }}

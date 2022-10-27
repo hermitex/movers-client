@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 const formInput = [
   {
     label: "from",
-    name: "from",
+    name: "moving_from",
     placeholder: "From: Address, city or zip",
     icon: <PinDrop />,
     type: "autocomplete",
@@ -26,7 +26,7 @@ const formInput = [
   },
   {
     label: "to",
-    name: "from",
+    name: "moving_to",
     placeholder: "To: Address, city or zip",
     icon: <PinDrop />,
     type: "autocomplete",
@@ -34,7 +34,7 @@ const formInput = [
   },
   {
     label: "house-type",
-    name: "house-type",
+    name: "house_type",
     placeholder: "House type",
     icon: <House />,
     type: "autocomplete",
@@ -42,7 +42,7 @@ const formInput = [
   },
   {
     label: "move-date",
-    name: "move-date",
+    name: "move_date",
     placeholder: "Moving date",
     icon: <CalendarMonth />,
     type: "date",
@@ -52,11 +52,11 @@ const formInput = [
 
 const houseOptions = [
   { id: 1, house: "1 Bedroom, small(600 - 800 sqf)" },
-  { id: 2, house: "1 Bedroom, small(600 - 800 sqf)" },
-  { id: 3, house: "1 Bedroom, small(600 - 800 sqf)" },
-  { id: 4, house: "1 Bedroom, small(600 - 800 sqf)" },
-  { id: 5, house: "1 Bedroom, small(600 - 800 sqf)" },
-  { id: 6, house: "1 Bedroom, small(600 - 800 sqf)" },
+  { id: 2, house: "2 Bedroom, small(600 - 800 sqf)" },
+  { id: 3, house: "3 Bedroom, small(600 - 800 sqf)" },
+  { id: 4, house: "4 Bedroom, small(600 - 800 sqf)" },
+  { id: 5, house: "5 Bedroom, small(600 - 800 sqf)" },
+  { id: 6, house: "6 Bedroom, small(600 - 800 sqf)" },
 ];
 
 function GetStarted({ user }) {
@@ -74,7 +74,7 @@ function GetStarted({ user }) {
       backgroundColor: "#F2F2F2",
       padding: 20,
       height: "90vh",
-      width: 900,
+      width: "55vw",
       margin: "100px auto",
     },
   };
@@ -82,26 +82,23 @@ function GetStarted({ user }) {
   accessToken = process.env.REACT_APP_MAPBOX_KEY;
   const [suggestions, setSuggestions] = useState([]);
 
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(" ");
+  const [acValue, setAcValue] = useState(" ");
 
   const [data, setData] = useState({
-    houseType: "",
-    movingFrom: {
-      name: "",
-      latitude: "",
-      longitude: "",
-    },
-    movingTo: {
-      name: "",
-      latitude: "",
-      longitude: "",
-    },
+    house_type: "",
+    moving_from: "",
+    moving_to: "",
+    moving_date: "",
   });
 
   console.log(suggestions);
 
-  const handleChange = async (event) => {
+  const handleChange = async (event, value, name) => {
+    console.log(name);
     setValue(event.target.value);
+
+    // const value = event.target.value;
 
     const endPoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${value}.json?$autocomplete=true&proximity=ip&types=place%2Cpostcode%2Caddress&access_token=${accessToken}`;
     try {
@@ -112,31 +109,12 @@ function GetStarted({ user }) {
     } catch (error) {
       console.log(error);
     }
-    setData({ ...data });
-  };
-  console.log(suggestions);
-  const locations = {
-    options: suggestions,
-    getOptionLabel: (option) => option.place_name,
+
+    setData({ ...data, [name]: value });
   };
 
-  const houseTypes = {
-    options: houseOptions,
-    getOptionLabel: (option) => option.house,
-  };
+  console.log(data);
 
-  // data = {
-  //   moveFrom: {
-  //     name: "",
-  //     lat: "",
-  //     long: "",
-  //   },
-  //   moveTo: {
-  //     name: "",
-  //     lat: "",
-  //     long: "",
-  //   },
-  // };
   const navigate = useNavigate();
   const handleClick = (event) => navigate("/my-items");
   return (
@@ -252,11 +230,26 @@ function GetStarted({ user }) {
                       {formInput.map((input) =>
                         input.type === "autocomplete" ? (
                           <Autocomplete
-                            {...(input.option === "house"
-                              ? houseTypes
-                              : locations)}
+                            onChange={(event, value) =>
+                              handleChange(event, value, input.name)
+                            }
+                            options={
+                              input.option === "house"
+                                ? houseOptions
+                                : suggestions
+                            }
                             id="disable-close-on-select"
-                            disableCloseOnSelect
+                            name={input.name}
+                            value={
+                              input.name === "moving_to"
+                                ? data.moving_to
+                                : data.moving_from
+                            }
+                            getOptionLabel={(option) => {
+                              return input.option === "house"
+                                ? option.house
+                                : option.place_name;
+                            }}
                             renderInput={(params) => (
                               <TextField
                                 {...params}
@@ -275,6 +268,7 @@ function GetStarted({ user }) {
                           <TextField
                             key={input.name}
                             id={input.label}
+                            name={input.name}
                             label={input.placeholder}
                             type={input.type}
                             variant="filled"
@@ -285,7 +279,9 @@ function GetStarted({ user }) {
                                 </InputAdornment>
                               ),
                             }}
-                            onChange={handleChange}
+                            onChange={(event, value) =>
+                              handleChange(event, value, input.name)
+                            }
                             sx={{
                               bgcolor: "#fff",
                               borderRadius: "0.1rem",

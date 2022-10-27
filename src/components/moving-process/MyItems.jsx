@@ -1,16 +1,17 @@
-import { Button, Paper, Stack, Typography } from '@mui/material'
-import { Box, Container } from '@mui/system'
-import React from 'react'
+import { Button, Paper, Stack, Typography } from "@mui/material";
+import { Box, Container } from "@mui/system";
+import React from "react";
 
-import MovingProcessNavBar from './MovingProcessNavBar';
-import MyItemsSidebar from './MyItemsSidebar';
-import MyItemsFeed from './MyItemsFeed';
-import { useNavigate } from 'react-router-dom';
+import MovingProcessNavBar from "./MovingProcessNavBar";
+import MyItemsSidebar from "./MyItemsSidebar";
+import MyItemsFeed from "./MyItemsFeed";
+import { useNavigate } from "react-router-dom";
 
 function MyItems() {
   const styles = {
     paperContainer: {
-      backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.73)), url('https://images.pexels.com/photos/4246196/pexels-photo-4246196.jpeg?auto=compress&cs=tinysrgb&w=1600')",
+      backgroundImage:
+        "linear-gradient(to bottom, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.73)), url('https://images.pexels.com/photos/4246196/pexels-photo-4246196.jpeg?auto=compress&cs=tinysrgb&w=1600')",
       height: "auto",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
@@ -18,18 +19,17 @@ function MyItems() {
       borderRadius: 0,
     },
     paperStyle: {
-      backgroundColor: "#F2F2F2", 
-      padding :20, 
+      backgroundColor: "#F2F2F2",
+      padding: 20,
       minHeight: 800,
-      maxHeight: "auto", 
-      maxWidth: 900,       
-      margin: '100px auto'
-    }
+      maxHeight: "100vh",
+      maxWidth: 900,
+      margin: "100px auto",
+    },
   };
-  
+
   const navigate = useNavigate();
   const handleClick = (event) => navigate("/compare");
-
 
   return (
     <Box>
@@ -57,20 +57,29 @@ function MyItems() {
               </Typography>
             </Box>
             <Box>
-              <Paper elevation={7} style={styles.paperStyle} >
-                <MovingProcessNavBar size="large" color="error" />
+              <Paper
+                elevation={7}
+                style={styles.paperStyle}
+                sx={{
+                  overflowY: "auto",
+                }}
+              >
+                <MovingProcessNavBar
+                  size="large"
+                  color="error"
+                />
                 <Box
                   sx={{
                     display: "flex",
                     alignItems: "center",
                     padding: "20px",
                     justifyContent: "space-between",
-                    height: "6vh",                    
+                    height: "6vh",
                   }}
                 >
                   <Typography
-                    variant="p"                        
-                    sx={{                                           
+                    variant="p"
+                    sx={{
                       fontWeight: "bolder",
                       fontSize: "20px",
                       letterSpacing: 0.5,
@@ -84,19 +93,18 @@ function MyItems() {
                     onClick={handleClick}
                     color="error"
                     style={{
-                      fontSize: "18px"
+                      fontSize: "18px",
                     }}
-                    
                   >
                     Continue
-                  </Button>                  
+                  </Button>
                 </Box>
                 <Container>
-                  <Stack 
-                    direction="row" 
-                    spacing={1.5}                     
+                  <Stack
+                    direction="row"
+                    spacing={1.5}
                     padding="10px 10px"
-                    gap={2}                    
+                    gap={2}
                     justifyContent="space-between"
                   >
                     <MyItemsSidebar />
@@ -104,12 +112,12 @@ function MyItems() {
                   </Stack>
                 </Container>
               </Paper>
-            </Box>            
+            </Box>
           </Box>
         </Container>
-      </Paper>      
+      </Paper>
     </Box>
-  )
+  );
 }
 
-export default MyItems
+export default MyItems;

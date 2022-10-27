@@ -51,40 +51,6 @@ const pages = [
   { id: 4, description: "Get in touch", link: "contact", divider: "" },
 ];
 
-const styles = {
-  paperContainer: {
-    backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.52),
-rgba(0, 0, 0, 0.73)),url(${heroBg})`,
-    height: "60vh",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    borderRadius: 0,
-  },
-};
-
-const pages = [
-  {
-    id: 1,
-    description: "What is Moove.com?",
-    link: "about",
-    divider: <Divider />,
-  },
-  {
-    id: 2,
-    description: "What is included?",
-    link: "services",
-    divider: <Divider />,
-  },
-  {
-    id: 3,
-    description: "How it works?",
-    link: "how-it-works",
-    divider: <Divider />,
-  },
-  { id: 4, description: "Get in touch", link: "contact", divider: "" },
-];
-
 const formInput = [
   {
     label: "from",
@@ -133,21 +99,7 @@ function Hero() {
   accessToken = process.env.REACT_APP_MAPBOX_KEY;
   const [suggestions, setSuggestions] = useState([]);
 
-  const [value, setValue] = useState("");
-
-  const locations = {
-    options: suggestions,
-    getOptionLabel: (option) => option.place_name,
-  };
-
-  const houseTypes = {
-    options: houseOptions,
-    getOptionLabel: (option) => option.house,
-  };
-
   accessToken = process.env.REACT_APP_MAPBOX_KEY;
-
-  const [acValue, setAcValue] = useState(" ");
 
   const [data, setData] = useState({
     house_type: "",
@@ -157,7 +109,6 @@ function Hero() {
   });
 
   const handleChange = async (event, value, name) => {
-    setValue(event.target.value);
     if (name === "moving_date") {
       value = event.target.value;
     }
@@ -179,6 +130,7 @@ function Hero() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const getStartedData = {
+      house_type: data.house_type.house,
       moving_from: {
         place_name: data.moving_from.place_name,
         latitude: data.moving_from.geometry.coordinates[0],

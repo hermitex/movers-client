@@ -5,10 +5,11 @@ import { Box } from "@mui/system";
 
 import { useNavigate } from "react-router-dom";
 import Login from "./Login";
+import ProgressIndicator from "../utils/ProgressIndicator";
 
 function LoginSignup({ onLogin }) {
   const [value, setValue] = useState(0);
-
+  const [isLoading, setIsLoading] = useState(false);
   const handleChange = (event, newValue) => {
     console.log(newValue);
     setValue(newValue);
@@ -35,6 +36,7 @@ function LoginSignup({ onLogin }) {
 
   return (
     <Grid>
+      {isLoading ? <ProgressIndicator /> : null}
       <Paper
         elevation={10}
         style={paperStyle}
@@ -58,9 +60,15 @@ function LoginSignup({ onLogin }) {
             </Tabs>
           </Box>
           {value === 0 ? (
-            <Login onLogin={onLogin} />
+            <Login
+              setLoading={setIsLoading}
+              onLogin={onLogin}
+            />
           ) : (
-            <Singnup onLogin={onLogin} />
+            <Singnup
+              setLoading={setIsLoading}
+              onLogin={onLogin}
+            />
           )}
         </Paper>
       </Paper>

@@ -21,9 +21,12 @@ import Compare from "./components/moving-process/Compare";
 import Book from "./components/moving-process/Book";
 import Map from "./components/map/Map";
 import LoginSignup from "./components/login/LoginSinup";
+import DashBoardSideDrawer from "./components/dashboard/DashBoardSideDrawer";
+import { SideBarData } from "./components/dashboard/SideBarData";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [isShowFooter, setIShowFooter] = useState(true);
 
   // // USING JWT
   // const token = localStorage.getItem("jwt")
@@ -67,8 +70,18 @@ function App() {
           />
           <Route
             path="/dashboard/*"
-            element={<MoverDashboard user={user} />}
+            element={
+              <DashBoardSideDrawer
+                setIShowFooter={setIShowFooter}
+                user={user}
+                sidebarlinks={SideBarData}
+              />
+            }
           />
+          {/* <Route
+            path="/dashboard/*"
+            element={<MoverDashboard user={user} />}
+          /> */}
           <Route
             path="/dashboard/orders"
             element={<Orders user={user} />}
@@ -116,6 +129,7 @@ function App() {
             path="/map"
             element={<Map user={user} />}
           />
+
           <Route
             path="/dashboard/reviews"
             element={<Review user={user} />}
@@ -138,7 +152,7 @@ function App() {
           />
         </Route>
       </Routes>
-      <Footer />
+      {isShowFooter ? <Footer /> : null}
     </Router>
   );
 }

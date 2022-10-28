@@ -8,9 +8,6 @@ import Success from "../utils/Sucess";
 
 
 function Login({ onLogin, setLoading }) {
-
-function Login({ onLogin }) {
-
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,10 +20,7 @@ function Login({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    setLoading(true);
-    fetch("http://127.0.0.1:3000/login", {
-
-    setIsLoading(true);
+    // setIsLoading(true);
     fetch("http://localhost:4000/login", {
 
       method: "POST",
@@ -36,16 +30,9 @@ function Login({ onLogin }) {
       },
       body: JSON.stringify({ email, password }),
     }).then((r) => {
-      setLoading(false);
-
+      // setLoading(false);
       setErrors([]);
       if (r.ok) {
-
-        r.json().then((user) => {
-          setLoading((isLoading) => !isLoading);
-          onLogin(user);
-          setUser(user);
-
         r.json().then((data) => {
           localStorage.setItem("jwt", data.jwt)
           onLogin(data.user);
@@ -95,6 +82,7 @@ function Login({ onLogin }) {
     }
   }, 4000);
   const textFieldStyle = { margin: "10px auto" };
+
   return (
     <form onSubmit={handleSubmit}>
       <h1>Log in here</h1>

@@ -20,7 +20,7 @@ function Login({ onLogin, setLoading }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    setIsLoading(true);
+    // setIsLoading(true);
     fetch("http://localhost:4000/login", {
 
       method: "POST",
@@ -30,7 +30,7 @@ function Login({ onLogin, setLoading }) {
       },
       body: JSON.stringify({ email, password }),
     }).then((r) => {
-      setLoading(false);
+      // setLoading(false);
       setErrors([]);
       if (r.ok) {
         r.json().then((data) => {

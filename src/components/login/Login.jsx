@@ -5,19 +5,19 @@ import { Button, TextField, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
 import Success from "../utils/Sucess";
-function Login({ onLogin }) {
+
+function Login({ onLogin, setLoading }) {
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
   const [errors, setErrors] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
-    setIsLoading(true);
+    setLoading(true);
     fetch("http://127.0.0.1:3000/login", {
       method: "POST",
       headers: {
@@ -25,11 +25,12 @@ function Login({ onLogin }) {
       },
       body: JSON.stringify({ email, password }),
     }).then((r) => {
-      setIsLoading(false);
-      setSuccess("Login successful!");
+      setLoading(false);
+
       setErrors([]);
       if (r.ok) {
         r.json().then((user) => {
+          setLoading((isLoading) => !isLoading);
           onLogin(user);
           setUser(user);
         });
@@ -41,11 +42,12 @@ function Login({ onLogin }) {
   }
   setTimeout(() => {
     if (user && user.account_type === "mover") {
+      setSuccess("Login successful!");
       navigate("/dashboard");
     } else if (user && user.account_type === "customer") {
       navigate("/home");
     }
-  }, 1100);
+  }, 4000);
   const textFieldStyle = { margin: "10px auto" };
   return (
     <form onSubmit={handleSubmit}>

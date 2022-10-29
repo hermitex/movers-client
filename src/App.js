@@ -29,6 +29,9 @@ import sideLinks from "./components/dashboard/sideBarData";
 import Test from "./components/datasource/Test";
 import ItemTable from "./components/table/ItemTable";
 import Profile from "./components/dashboard/Profile";
+import ItemForm from "./components/item-form/ItemForm";
+import formInputs from "./components/form-inputs/userInputs";
+import Paypal from "./components/payment/Paypal";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -135,13 +138,19 @@ function App() {
                 user={user}
                 setIShowFooter={setIShowFooter}
                 sidebarlinks={sideLinks}
-                component={<Profile />}
+                component={<ItemForm formInputs={formInputs} />}
               />
             }
           />
+
           <Route
             path="/dashboard/home"
             element={<DashboardHome user={user} />}
+          />
+
+          <Route
+            path="/pay"
+            element={<Paypal user={user} />}
           />
 
           <Route

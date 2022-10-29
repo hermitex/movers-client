@@ -26,72 +26,6 @@ function SingleItemCard({ item }) {
     dining_chair: "",
   });
 
-  const myItemsData = {
-    living_room_items: {
-      sofa: {
-        name: "sofa",
-        count: data.sofa,
-        category: "living room",
-      },
-      table: {
-        name: "table",
-        count: data.table,
-        category: "living room",
-      },
-      cabinet: {
-        name: "cabinet",
-        count: 0,
-        category: "living room",
-      },
-    },
-    dining_room_items: {
-      dining_table: {
-        name: "dining table",
-        count: data.dining_table,
-        category: "dining room",
-      },
-      dining_chair: {
-        name: "dining chair",
-        count: data.dining_chair,
-        category: "dining room",
-      },
-    },
-    kitchen_items: {
-      cooker: {
-        name: "cooker",
-        count: 0,
-        category: "kitchen",
-      },
-      washing_machine: {
-        name: "washing machine",
-        count: data.washing_machine,
-        category: "kitchen",
-      },
-      fridge: {
-        name: "fridge",
-        count: data.fridge,
-        category: "kitchen",
-      },
-      microwave: {
-        name: "microwave",
-        count: data.microwave,
-        category: "kitchen",
-      },
-    },
-    bed_room_items: {
-      bed: {
-        name: "bed",
-        count: data.bed,
-        category: "bedroom",
-      },
-      side_table: {
-        name: "side table",
-        count: data.side_table,
-        category: "bedroom",
-      },
-    },
-  };
-
   const handleIncrement = (event) => {
     setCount((count) => count + 1);
     // console.log(`add ${item}`);
@@ -101,6 +35,72 @@ function SingleItemCard({ item }) {
     setCount((count) => count - 1);
   };
   useEffect(() => {
+    const myItemsData = {
+      living_room_items: {
+        sofa: {
+          name: "sofa",
+          count: data.sofa,
+          category: "living room",
+        },
+        table: {
+          name: "table",
+          count: data.table,
+          category: "living room",
+        },
+        cabinet: {
+          name: "cabinet",
+          count: 0,
+          category: "living room",
+        },
+      },
+      dining_room_items: {
+        dining_table: {
+          name: "dining table",
+          count: data.dining_table,
+          category: "dining room",
+        },
+        dining_chair: {
+          name: "dining chair",
+          count: data.dining_chair,
+          category: "dining room",
+        },
+      },
+      kitchen_items: {
+        cooker: {
+          name: "cooker",
+          count: 0,
+          category: "kitchen",
+        },
+        washing_machine: {
+          name: "washing machine",
+          count: data.washing_machine,
+          category: "kitchen",
+        },
+        fridge: {
+          name: "fridge",
+          count: data.fridge,
+          category: "kitchen",
+        },
+        microwave: {
+          name: "microwave",
+          count: data.microwave,
+          category: "kitchen",
+        },
+      },
+      bed_room_items: {
+        bed: {
+          name: "bed",
+          count: data.bed,
+          category: "bedroom",
+        },
+        side_table: {
+          name: "side table",
+          count: data.side_table,
+          category: "bedroom",
+        },
+      },
+    };
+    console.log(myItemsData);
     return () => {
       const name = item.toLowerCase();
       setData({
@@ -111,8 +111,6 @@ function SingleItemCard({ item }) {
       });
     };
   }, [item, count]);
-
-  console.log(data);
 
   return (
     <Card

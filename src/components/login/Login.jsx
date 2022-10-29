@@ -6,11 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
 import Success from "../utils/Sucess";
 
-
 function Login({ onLogin, setLoading }) {
-
-function Login({ onLogin }) {
-
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,13 +18,8 @@ function Login({ onLogin }) {
   // USING JWT
   function handleSubmit(e) {
     e.preventDefault();
-
     setLoading(true);
-    fetch("http://127.0.0.1:3000/login", {
-
-    setIsLoading(true);
-    fetch("http://localhost:4000/login", {
-
+    fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,60 +31,54 @@ function Login({ onLogin }) {
 
       setErrors([]);
       if (r.ok) {
-
-        r.json().then((user) => {
-          setLoading((isLoading) => !isLoading);
-          onLogin(user);
-          setUser(user);
-
         r.json().then((data) => {
-          localStorage.setItem("jwt", data.jwt)
+          setLoading((isLoading) => !isLoading);
+          localStorage.setItem("jwt", data.jwt);
           onLogin(data.user);
           setUser(data.user);
-
         });
       } else {
         setSuccess(null);
         r.json().then((errors) => setErrors(errors));
       }
     });
+
+    // // USING FETCH
+
+    // function handleSubmit(e) {
+    //   e.preventDefault();
+    //   setIsLoading(true);
+    //   fetch("http://127.0.0.1:3000/login", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ email, password }),
+    //   }).then((r) => {
+    //     setIsLoading(false);
+    //     setSuccess("Login successful!");
+    //     setErrors([]);
+    //     if (r.ok) {
+    //       r.json().then((user) => {
+    //         onLogin(user);
+    //         setUser(user);
+    //       });
+    //     } else {
+    //       setSuccess(null);
+    //       r.json().then((errors) => setErrors(errors));
+    //     }
+    //   });
+    // }
+    console.log(user);
+    setTimeout(() => {
+      if (user && user.account_type === "mover") {
+        setSuccess("Login successful!");
+        navigate("/dashboard");
+      } else if (user && user.account_type === "customer") {
+        navigate("/home");
+      }
+    }, 4000);
   }
-    
-
-  // // USING FETCH
-
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-  //   fetch("http://127.0.0.1:3000/login", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ email, password }),
-  //   }).then((r) => {
-  //     setIsLoading(false);
-  //     setSuccess("Login successful!");
-  //     setErrors([]);
-  //     if (r.ok) {
-  //       r.json().then((user) => {
-  //         onLogin(user);
-  //         setUser(user);
-  //       });
-  //     } else {
-  //       setSuccess(null);
-  //       r.json().then((errors) => setErrors(errors));
-  //     }
-  //   });
-  // }
-  setTimeout(() => {
-    if (user && user.account_type === "mover") {
-      setSuccess("Login successful!");
-      navigate("/dashboard");
-    } else if (user && user.account_type === "customer") {
-      navigate("/home");
-    }
-  }, 4000);
   const textFieldStyle = { margin: "10px auto" };
   return (
     <form onSubmit={handleSubmit}>
@@ -169,5 +154,4 @@ function Login({ onLogin }) {
     </form>
   );
 }
-
 export default Login;

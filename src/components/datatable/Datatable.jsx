@@ -39,7 +39,7 @@ function Datatable() {
           }}
         >
           <NavLink
-            to={{ pathname: "/dashboard/cars/car/details" }}
+            to={{ pathname: "/dashboard/profile" }}
             state={{ row }}
           >
             <Button
@@ -52,7 +52,7 @@ function Datatable() {
             </Button>
           </NavLink>
           <NavLink
-            to={{ pathname: "/dashboard/cars/car/edit" }}
+            to={{ pathname: "/dashboard/edit" }}
             state={{ row }}
           >
             <Button
@@ -106,7 +106,7 @@ function Datatable() {
           >
             {resource}
           </Typography>
-          <NavLink to={`/dashboard/${resource}/new`}>
+          <NavLink to={`/dashboard/new`}>
             <Button
               type="button"
               variant="contained"

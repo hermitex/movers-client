@@ -27,8 +27,7 @@ function Login({ onLogin, setLoading }) {
       },
       body: JSON.stringify({ email, password }),
     }).then((r) => {
-      setLoading(false);
-
+      // setLoading(false);
       setErrors([]);
       if (r.ok) {
         r.json().then((data) => {
@@ -80,6 +79,7 @@ function Login({ onLogin, setLoading }) {
     }, 4000);
   }
   const textFieldStyle = { margin: "10px auto" };
+
   return (
     <form onSubmit={handleSubmit}>
       <h1>Log in here</h1>

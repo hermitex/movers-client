@@ -8,13 +8,13 @@ import { useEffect, useState } from "react";
 import Footer from "./components/utils/Footer";
 
 import MoverDashboard from "./components/dashboard/MoverDashboard";
+import "@tremor/react/dist/esm/tremor.css";
 import "./App.css";
 import Orders from "./components/dashboard/Orders";
 import DashboardHome from "./components/dashboard/DashboardHome";
 import FinancialAnalytics from "./components/dashboard/FinancialAnalytics";
 import Review from "./components/dashboard/Review";
 import LocationAnalytics from "./components/dashboard/LocationAnalytics";
-import UpdateDetails from "./components/dashboard/UpdateDetails";
 import GetStarted from "./components/moving-process/GetStarted";
 import MyItems from "./components/moving-process/MyItems";
 import Compare from "./components/moving-process/Compare";
@@ -22,12 +22,19 @@ import Book from "./components/moving-process/Book";
 import Map from "./components/map/Map";
 import LoginSignup from "./components/login/LoginSinup";
 import DashBoardSideDrawer from "./components/dashboard/DashBoardSideDrawer";
-import { SideBarData } from "./components/dashboard/SideBarData";
+import Datatable from "./components/datatable/Datatable";
+import useFetch from "./components/hooks/useFetch";
+import ItemList from "./components/list/List";
+import sideLinks from "./components/dashboard/sideBarData";
+import Test from "./components/datasource/Test";
+import ItemTable from "./components/table/ItemTable";
+import Profile from "./components/dashboard/Profile";
 
 function App() {
   const [user, setUser] = useState(null);
   const [isShowFooter, setIShowFooter] = useState(true);
 
+  // useFetch("http://127.0.0.1:3000/customers/");
   // // USING JWT
   // const token = localStorage.getItem("jwt")
   // useEffect(() => {
@@ -45,7 +52,7 @@ function App() {
 
   // USING SESSION
   useEffect(() => {
-    fetch(" http://localhost:4000/me").then((r) => {
+    fetch(" http://localhost:3000/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
@@ -68,33 +75,75 @@ function App() {
             path="/home"
             element={<Home user={user} />}
           />
-          <Route
+          {/* <Route
             path="/dashboard/*"
             element={
               <DashBoardSideDrawer
                 setIShowFooter={setIShowFooter}
                 user={user}
-                sidebarlinks={SideBarData}
+                sidebarlinks={sideLinks}
+                component={<DashboardHome />}
               />
             }
-          />
+          />*/}
           {/* <Route
             path="/dashboard/*"
             element={<MoverDashboard user={user} />}
           /> */}
           <Route
-            path="/dashboard/orders"
-            element={<Orders user={user} />}
+            path="/dashboard/test"
+            element={<Test user={user} />}
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <DashBoardSideDrawer
+                user={user}
+                setIShowFooter={setIShowFooter}
+                sidebarlinks={sideLinks}
+                component={<DashboardHome />}
+              />
+            }
+          />
+
+          <Route
+            path="/dashboard/customers"
+            element={
+              <ItemList
+                user={user}
+                setIShowFooter={setIShowFooter}
+                sidebarlinks={sideLinks}
+                component={<Datatable />}
+              />
+            }
+          />
+          <Route
+            path="/dashboard/movers"
+            element={
+              <ItemList
+                user={user}
+                setIShowFooter={setIShowFooter}
+                sidebarlinks={sideLinks}
+                component={<Datatable />}
+              />
+            }
+          />
+          <Route
+            path="/dashboard/profile"
+            element={
+              <ItemList
+                user={user}
+                setIShowFooter={setIShowFooter}
+                sidebarlinks={sideLinks}
+                component={<Profile />}
+              />
+            }
           />
           <Route
             path="/dashboard/home"
             element={<DashboardHome user={user} />}
           />
 
-          <Route
-            path="/dashboard/update-details"
-            element={<UpdateDetails user={user} />}
-          />
           <Route
             path="/dashboard/financial-analytics"
             element={<FinancialAnalytics user={user} />}
@@ -108,7 +157,6 @@ function App() {
             path="signup"
             element={<LoginSignup onLogin={setUser} />}
           />
-
           <Route
             path="/get-started"
             element={<GetStarted user={user} />}
@@ -129,7 +177,6 @@ function App() {
             path="/map"
             element={<Map user={user} />}
           />
-
           <Route
             path="/dashboard/reviews"
             element={<Review user={user} />}

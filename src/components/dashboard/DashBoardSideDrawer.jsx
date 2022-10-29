@@ -18,9 +18,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import DashboardHome from "./DashboardHome";
-import TableData from "./TableData";
-import AvatarImage from "../utils/Avatar.Jsx";
+
+import { NavLink } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -90,7 +89,13 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-function DashBoardSideDrawer({ user, sidebarlinks, setIShowFooter }) {
+function DashBoardSideDrawer({
+  user = "customer",
+  sidebarlinks,
+  setIShowFooter,
+  component,
+}) {
+  user = user === null ? "admin" : user;
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   setIShowFooter(false);
@@ -102,6 +107,25 @@ function DashBoardSideDrawer({ user, sidebarlinks, setIShowFooter }) {
     setOpen(false);
   };
 
+  const [sideLinks, setSideLiks] = React.useState(null);
+
+  console.log(component);
+
+  React.useEffect(() => {
+    switch (user) {
+      case "admin":
+        setSideLiks(sidebarlinks.admin);
+        break;
+      case "mover":
+        setSideLiks(sidebarlinks.mover);
+        break;
+      case "customer":
+        setSideLiks(sidebarlinks.customer);
+        break;
+      default:
+        break;
+    }
+  }, []);
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -150,35 +174,38 @@ function DashBoardSideDrawer({ user, sidebarlinks, setIShowFooter }) {
         </DrawerHeader>
         <Divider />
         <List>
-          {sidebarlinks.map(({ title, path }, index) => (
-            <ListItem
-              key={title}
-              disablePadding
-              sx={{ display: "block" }}
-            >
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
+          {sideLinks &&
+            sideLinks.map(({ title, path }, index) => (
+              <NavLink to={path}>
+                <ListItem
+                  key={title}
+                  disablePadding
+                  sx={{ display: "block" }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText
-                  primary={title}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={title}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              </NavLink>
+            ))}
         </List>
         <Divider />
         <List>
@@ -215,15 +242,10 @@ function DashBoardSideDrawer({ user, sidebarlinks, setIShowFooter }) {
       </Drawer>
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3 }}
+        sx={{ flexGrow: 1, px: 5 }}
       >
         <DrawerHeader />
-        <Box>
-          <DashboardHome />
-        </Box>
-        <Box>
-          <TableData />
-        </Box>
+        <Box>{component}</Box>
       </Box>
     </Box>
   );

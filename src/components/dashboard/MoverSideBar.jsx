@@ -1,9 +1,9 @@
 import React from "react";
-import { SideBarData } from "./SideBarData";
 import { Link } from "react-router-dom";
 import "./DashboardStyles.css";
 
-function MoverSideBar({ user }) {
+function MoverSideBar({ user, sidebarlinks }) {
+  console.log(sidebarlinks);
   return (
     <div>
       <div className="sidebar-holder">
@@ -19,7 +19,7 @@ function MoverSideBar({ user }) {
         <div className="dashboard-sidebar">
           <nav className="nav-menu-active">
             <ul className="nav-menu-items">
-              {SideBarData.map((item, index) => {
+              {/* {sidebarlinks.admin.map((item, index) => {
                 return (
                   <li
                     key={index}
@@ -28,7 +28,7 @@ function MoverSideBar({ user }) {
                     <Link to={item.path}>{item.title}</Link>
                   </li>
                 );
-              })}
+              })} */}
             </ul>
           </nav>
         </div>

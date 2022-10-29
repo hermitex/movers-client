@@ -33,6 +33,10 @@ const NavBar = ({ user }) => {
     setAnchorElNav(null);
   };
 
+  // React.useEffect(() => {
+
+  // }, [third])
+
   return (
     <AppBar
       position="static"
@@ -159,7 +163,7 @@ const NavBar = ({ user }) => {
               ))}
             </Box>
             {user ? (
-              <AccountMenu setCurrentUser={setCurrentUser} />
+              <AccountMenu />
             ) : (
               <Link
                 to="login"

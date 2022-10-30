@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
 import NavBar from "./components/navbar/NavBar";
@@ -32,6 +37,7 @@ import Profile from "./components/dashboard/Profile";
 import ItemForm from "./components/item-form/ItemForm";
 import formInputs from "./components/form-inputs/userInputs";
 import Paypal from "./components/payment/Paypal";
+import widgetData from "./components/dashboard/dashWidgetData";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -52,11 +58,27 @@ function App() {
     });
   }, []);
 
-  console.log(user);
+  const handleLogout = () => {
+    fetch("http://localhost:4000/logout", {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((response) => {
+      if (response.ok) {
+        setUser(null);
+        // navigate("/home");
+        localStorage.removeItem("jwt");
+      }
+    });
+  };
 
   return (
     <Router>
-      <NavBar user={user} />
+      <NavBar
+        user={user}
+        onLogout={handleLogout}
+      />
       <Routes>
         <Route path="/">
           <Route
@@ -80,7 +102,13 @@ function App() {
                 user={user}
                 setIShowFooter={setIShowFooter}
                 sidebarlinks={sideLinks}
-                component={<DashboardHome />}
+                component={
+                  <DashboardHome
+                    widgetData={widgetData}
+                    user={user}
+                  />
+                }
+                onLogout={handleLogout}
               />
             }
           />

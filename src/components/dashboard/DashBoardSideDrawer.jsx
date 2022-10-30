@@ -18,8 +18,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import logo from "../../logo-white.png";
 
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import AccountMenu from "../avatar-menu/AccountMenu";
 
 const drawerWidth = 240;
 
@@ -90,12 +92,14 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 function DashBoardSideDrawer({
-  user = "customer",
+  user,
   sidebarlinks,
   setIShowFooter,
   component,
+  onLogout,
 }) {
-  user = user === null ? "admin" : user;
+  user = user?.user;
+  console.log(user);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   setIShowFooter(false);
@@ -109,23 +113,28 @@ function DashBoardSideDrawer({
 
   const [sideLinks, setSideLiks] = React.useState(null);
 
-  console.log(component);
-
   React.useEffect(() => {
-    switch (user) {
+    switch (user?.account_type) {
       case "admin":
-        setSideLiks(sidebarlinks.admin);
+        setSideLiks(sidebarlinks?.admin);
         break;
       case "mover":
-        setSideLiks(sidebarlinks.mover);
+        setSideLiks(sidebarlinks?.mover);
         break;
       case "customer":
-        setSideLiks(sidebarlinks.customer);
+        setSideLiks(sidebarlinks?.customer);
         break;
       default:
+        // navigate("/login");
         break;
     }
-  }, []);
+  }, [
+    sidebarlinks?.admin,
+    sidebarlinks?.customer,
+    sidebarlinks?.mover,
+    user?.account_type,
+  ]);
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -150,13 +159,39 @@ function DashBoardSideDrawer({
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h3"
-            noWrap
-            component="div"
+
+          <Box
+            sx={{
+              width: "100vw",
+              display: "flex",
+              flexDirection: "row",
+              justifyItems: "space-between",
+              justifyContent: "space-between",
+              alignContent: "center",
+              alignItems: "center",
+            }}
           >
-            Moover.com
-          </Typography>
+            <Box>
+              <Link to="/">
+                <Box
+                  sx={{
+                    display: { xs: "none", md: "flex" },
+                    mr: 1,
+                    width: "10rem",
+                  }}
+                >
+                  <img
+                    width="100%"
+                    src={logo}
+                    alt="logo"
+                  />
+                </Box>
+              </Link>
+            </Box>
+            <Box>
+              <AccountMenu onLogout={onLogout} />
+            </Box>
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -176,7 +211,10 @@ function DashBoardSideDrawer({
         <List>
           {sideLinks &&
             sideLinks.map(({ title, path }, index) => (
-              <NavLink to={path}>
+              <NavLink
+                to={path}
+                key={path}
+              >
                 <ListItem
                   key={title}
                   disablePadding

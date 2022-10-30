@@ -316,6 +316,7 @@ function Hero() {
               {formInput.map((input) =>
                 input.type === "autocomplete" ? (
                   <Autocomplete
+                    key={input.name}
                     onChange={(event, value) =>
                       handleChange(event, value, input.name)
                     }

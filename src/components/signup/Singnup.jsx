@@ -29,22 +29,23 @@ function Singnup({ onLogin }) {
       },
       body: JSON.stringify({
         // user: {
-          full_name: fullName,
-          phone,
-          email,
-          account_type: accountType.toLocaleLowerCase(),
-          type: accountType,
-          password,
-          password_confirmation: passwordConfirmation,
-          location_id: 1,
-        // }        
+        full_name: fullName,
+        phone,
+        email,
+        account_type: accountType.toLocaleLowerCase(),
+        type: accountType,
+        password,
+        password_confirmation: passwordConfirmation,
+        location_id: 1,
+        // }
       }),
     }).then((res) => {
       if (res.ok) {
+        alert("registered!");
         setSuccess("Signup successful!");
         setErrors([]);
         res.json().then((data) => {
-          localStorage.setItem("jwt", data.jwt)
+          localStorage.setItem("jwt", data.jwt);
           setUser(data.user);
           onLogin(data.user);
         });
@@ -55,41 +56,6 @@ function Singnup({ onLogin }) {
     });
   }
 
-  
-  // // USING SESSION
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   setErrors([]);
-
-  //   fetch("http://localhost:4000/signup", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-type": "application/json",        
-  //     },
-  //     body: JSON.stringify({       
-  //       full_name: fullName,
-  //       phone,
-  //       email,
-  //       account_type: accountType.toLocaleLowerCase(),
-  //       type: accountType,
-  //       password,
-  //       password_confirmation: passwordConfirmation,
-  //       location_id: 1,               
-  //     }),
-  //   }).then((res) => {
-  //     if (res.ok) {
-  //       setSuccess("Signup successful!");
-  //       setErrors([]);
-  //       res.json().then((user) => {          
-  //         setUser(user);
-  //         onLogin(user);
-  //       });
-  //     } else {
-  //       setSuccess(null);
-  //       res.json().then((err) => setErrors(err.errors));
-  //     }
-  //   });
-  // }
   setTimeout(() => {
     if (user && user.account_type === "mover") {
       navigate("/dashboard");
@@ -183,6 +149,9 @@ function Singnup({ onLogin }) {
         </MenuItem>
         <MenuItem value="Mover">
           <option value="Mover">Mover</option>
+        </MenuItem>
+        <MenuItem value="Admin">
+          <option value="Admin">Admin</option>
         </MenuItem>
       </TextField>
       {errors && errors && (

@@ -37,25 +37,15 @@ function App() {
   const [user, setUser] = useState(null);
   const [isShowFooter, setIShowFooter] = useState(true);
 
-  // useFetch("http://127.0.0.1:3000/customers/");
-  // // USING JWT
-  // const token = localStorage.getItem("jwt")
-  // useEffect(() => {
-  //   fetch(" http://localhost:4000/me", {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: `Bearer ${token}`
-  //     }
-  //   }).then((r) => {
-  //     if (r.ok) {
-  //       r.json().then((user) => setUser(user));
-  //     }
-  //   });
-  // });
-
-  // USING SESSION
+  // USING JWT
+  const token = localStorage.getItem("jwt");
   useEffect(() => {
-    fetch(" http://localhost:3000/me").then((r) => {
+    fetch(" http://localhost:4000/me", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
@@ -78,21 +68,7 @@ function App() {
             path="/home"
             element={<Home user={user} />}
           />
-          {/* <Route
-            path="/dashboard/*"
-            element={
-              <DashBoardSideDrawer
-                setIShowFooter={setIShowFooter}
-                user={user}
-                sidebarlinks={sideLinks}
-                component={<DashboardHome />}
-              />
-            }
-          />*/}
-          {/* <Route
-            path="/dashboard/*"
-            element={<MoverDashboard user={user} />}
-          /> */}
+
           <Route
             path="/dashboard/test"
             element={<Test user={user} />}

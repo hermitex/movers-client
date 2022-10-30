@@ -189,7 +189,10 @@ function DashBoardSideDrawer({
               </Link>
             </Box>
             <Box>
-              <AccountMenu onLogout={onLogout} />
+              <AccountMenu
+                onLogout={onLogout}
+                user={user}
+              />
             </Box>
           </Box>
         </Toolbar>

@@ -148,6 +148,18 @@ function App() {
           />
 
           <Route
+            path="/dashboard/new"
+            element={
+              <ItemList
+                user={user}
+                setIShowFooter={setIShowFooter}
+                sidebarlinks={sideLinks}
+                component={<ItemForm formInputs={formInputs} />}
+              />
+            }
+          />
+
+          <Route
             path="/dashboard/home"
             element={<DashboardHome user={user} />}
           />

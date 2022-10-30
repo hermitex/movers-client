@@ -21,7 +21,11 @@ import { useLocation } from "react-router-dom";
 
 function ItemForm({ formInputs, user = "customer" }) {
   const location = useLocation();
-  const { state } = location;
+  let state = {};
+  if (location?.state) {
+    state = location.state;
+  }
+
   const customerInitialValues = formInputs.customerInputs.map(({ name }) => {
     return { [name]: "" };
   });

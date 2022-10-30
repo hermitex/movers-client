@@ -263,14 +263,14 @@ const useDatatableSource = () => {
   const baseUrl = process.env.REACT_APP_BASE_URL;
   // const [data, setData] = useState(null);
   const data = useFetch(`${baseUrl}/${resource}`);
-
+  console.log(data);
   useEffect(() => {
     if (resource === "movers") {
       setCol(moverColumns);
     } else {
       setCol(customerColumns);
     }
-  }, [data]);
+  }, [data, resource]);
 
   const [dataRows, setDataRows] = useState(null);
   useEffect(() => {
@@ -279,7 +279,7 @@ const useDatatableSource = () => {
       if (resource === "customers") {
         rows =
           data &&
-          data.map((customer) => ({
+          data?.map((customer) => ({
             id: customer.id,
             full_name: customer.full_name,
             img: image1,
@@ -292,7 +292,7 @@ const useDatatableSource = () => {
       } else if (resource === "movers") {
         rows =
           data &&
-          data.map((customer) => ({
+          data?.map((customer) => ({
             id: customer.id,
             full_name: customer.full_name,
             img: image1,

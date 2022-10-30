@@ -21,7 +21,7 @@ const activeStyle = {
   color: "#FF515E",
 };
 
-const NavBar = ({ user }) => {
+const NavBar = ({ user, onLogout }) => {
   const [currentUser, setCurrentUser] = React.useState(user);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -163,7 +163,7 @@ const NavBar = ({ user }) => {
               ))}
             </Box>
             {user ? (
-              <AccountMenu />
+              <AccountMenu onLogout={onLogout} />
             ) : (
               <Link
                 to="login"

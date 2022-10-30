@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { Button, TextField, Typography } from "@mui/material";
@@ -19,7 +19,7 @@ function Login({ onLogin, setLoading }) {
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    fetch("http://localhost:3000/login", {
+    fetch("http://localhost:4000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,8 @@ function Login({ onLogin, setLoading }) {
       setErrors([]);
       if (r.ok) {
         r.json().then((data) => {
-          setLoading((isLoading) => !isLoading);
+          // setLoading((isLoading) => !isLoading);
+          setSuccess("Login successful!");
           localStorage.setItem("jwt", data.jwt);
           onLogin(data.user);
           setUser(data.user);
@@ -42,48 +43,28 @@ function Login({ onLogin, setLoading }) {
       }
     });
 
-    // // USING FETCH
-
-    // function handleSubmit(e) {
-    //   e.preventDefault();
-    //   setIsLoading(true);
-    //   fetch("http://127.0.0.1:3000/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ email, password }),
-    //   }).then((r) => {
-    //     setIsLoading(false);
-    //     setSuccess("Login successful!");
-    //     setErrors([]);
-    //     if (r.ok) {
-    //       r.json().then((user) => {
-    //         onLogin(user);
-    //         setUser(user);
-    //       });
-    //     } else {
-    //       setSuccess(null);
-    //       r.json().then((errors) => setErrors(errors));
-    //     }
-    //   });
-    // }
     console.log(user);
-    setTimeout(() => {
-      if (user && user.account_type === "mover") {
-        setSuccess("Login successful!");
+  }
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      if (
+        (user && user.account_type === "mover") ||
+        user.account_type === "admin"
+      ) {
         navigate("/dashboard");
       } else if (user && user.account_type === "customer") {
         navigate("/home");
       }
-    }, 4000);
-  }
+    }, 3000);
+    return () => clearTimeout(id);
+  }, [navigate, user]);
+
   const textFieldStyle = { margin: "10px auto" };
 
   return (
     <form onSubmit={handleSubmit}>
       <h1>Log in here</h1>
-
       <Box
         sx={{
           pt: 3,

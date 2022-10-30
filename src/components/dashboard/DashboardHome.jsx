@@ -4,11 +4,14 @@ import Featured from "../chart/Featured";
 import ItemTable from "../table/ItemTable";
 import DashHomeWidget from "./DashHomeWidget";
 
-function DashboardHome() {
+function DashboardHome({ widgetData, user }) {
   return (
     <>
       <Box sx={{ mb: 2 }}>
-        <DashHomeWidget />
+        <DashHomeWidget
+          widgetData={widgetData}
+          user={user}
+        />
       </Box>
       <Box sx={{ width: "100%", mb: 2 }}>
         <Featured />

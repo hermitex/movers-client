@@ -10,12 +10,12 @@ import Tooltip from "@mui/material/Tooltip";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
-function AccountMenu({ setCurrentUser }) {
+function AccountMenu({ setCurrentUser, onLogout }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const navigate = useNavigate();
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -23,17 +23,6 @@ function AccountMenu({ setCurrentUser }) {
     setAnchorEl(null);
   };
 
-
-  const handleLogout = () => {
-    fetch("http://localhost:4000/logout", {
-      method: "DELETE",
-    }).then((response) => {
-      if (response.ok) {
-        setCurrentUser(null);
-        navigate("/home");
-      }
-    });
-  };
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
@@ -85,15 +74,20 @@ function AccountMenu({ setCurrentUser }) {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem>
-          <Avatar /> My account
-        </MenuItem>
+        <NavLink to="dashboard/profile">
+          <MenuItem>
+            <Avatar /> Profile
+          </MenuItem>
+        </NavLink>
+
+        <NavLink to="dashboard">
+          <MenuItem>
+            <Avatar /> My account
+          </MenuItem>
+        </NavLink>
         <Divider />
 
-        <MenuItem onClick={handleLogout}>
+        <MenuItem onClick={onLogout}>
           <Link
             to="/"
             sx={{ flexGrow: 0 }}
@@ -103,7 +97,7 @@ function AccountMenu({ setCurrentUser }) {
             </ListItemIcon>
             Logout
           </Link>
-        </MenuItem>        
+        </MenuItem>
       </Menu>
     </React.Fragment>
   );

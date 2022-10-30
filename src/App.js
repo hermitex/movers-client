@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
 import NavBar from "./components/navbar/NavBar";
@@ -32,41 +37,48 @@ import Profile from "./components/dashboard/Profile";
 import ItemForm from "./components/item-form/ItemForm";
 import formInputs from "./components/form-inputs/userInputs";
 import Paypal from "./components/payment/Paypal";
+import widgetData from "./components/dashboard/dashWidgetData";
 
 function App() {
   const [user, setUser] = useState(null);
   const [isShowFooter, setIShowFooter] = useState(true);
 
-  // useFetch("http://127.0.0.1:3000/customers/");
-  // // USING JWT
-  // const token = localStorage.getItem("jwt")
-  // useEffect(() => {
-  //   fetch(" http://localhost:4000/me", {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: `Bearer ${token}`
-  //     }
-  //   }).then((r) => {
-  //     if (r.ok) {
-  //       r.json().then((user) => setUser(user));
-  //     }
-  //   });
-  // });
-
-  // USING SESSION
+  // USING JWT
+  const token = localStorage.getItem("jwt");
   useEffect(() => {
-    fetch(" http://localhost:3000/me").then((r) => {
+    fetch(" http://localhost:4000/me", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
     });
   }, []);
 
-  console.log(user);
+  const handleLogout = () => {
+    fetch("http://localhost:4000/logout", {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((response) => {
+      if (response.ok) {
+        setUser(null);
+        // navigate("/home");
+        localStorage.removeItem("jwt");
+      }
+    });
+  };
 
   return (
     <Router>
-      <NavBar user={user} />
+      <NavBar
+        user={user}
+        onLogout={handleLogout}
+      />
       <Routes>
         <Route path="/">
           <Route
@@ -78,21 +90,7 @@ function App() {
             path="/home"
             element={<Home user={user} />}
           />
-          {/* <Route
-            path="/dashboard/*"
-            element={
-              <DashBoardSideDrawer
-                setIShowFooter={setIShowFooter}
-                user={user}
-                sidebarlinks={sideLinks}
-                component={<DashboardHome />}
-              />
-            }
-          />*/}
-          {/* <Route
-            path="/dashboard/*"
-            element={<MoverDashboard user={user} />}
-          /> */}
+
           <Route
             path="/dashboard/test"
             element={<Test user={user} />}
@@ -104,7 +102,13 @@ function App() {
                 user={user}
                 setIShowFooter={setIShowFooter}
                 sidebarlinks={sideLinks}
-                component={<DashboardHome />}
+                component={
+                  <DashboardHome
+                    widgetData={widgetData}
+                    user={user}
+                  />
+                }
+                onLogout={handleLogout}
               />
             }
           />

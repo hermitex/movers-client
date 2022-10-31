@@ -38,6 +38,7 @@ import ItemForm from "./components/item-form/ItemForm";
 import formInputs from "./components/form-inputs/userInputs";
 import Paypal from "./components/payment/Paypal";
 import widgetData from "./components/dashboard/dashWidgetData";
+import MovingProcessForm from "./components/moving-process/MovingProcessForm";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -90,7 +91,6 @@ function App() {
             path="/home"
             element={<Home user={user} />}
           />
-
           <Route
             path="/dashboard/test"
             element={<Test user={user} />}
@@ -112,7 +112,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/dashboard/customers"
             element={
@@ -121,6 +120,17 @@ function App() {
                 setIShowFooter={setIShowFooter}
                 sidebarlinks={sideLinks}
                 component={<Datatable user={user}/>}
+              />
+            }
+          />
+          <Route
+            path="/dashboard/rates"
+            element={
+              <ItemList
+                user={user}
+                setIShowFooter={setIShowFooter}
+                sidebarlinks={sideLinks}
+                component={<Datatable />}
               />
             }
           />
@@ -146,7 +156,6 @@ function App() {
               />
             }
           />
-
           <Route
             path="/dashboard/new"
             element={
@@ -158,17 +167,19 @@ function App() {
               />
             }
           />
+          <Route
+            path="/moving-process"
+            element={<MovingProcessForm />}
+          />
 
           <Route
             path="/dashboard/home"
             element={<DashboardHome user={user} />}
           />
-
           <Route
             path="/pay"
             element={<Paypal user={user} />}
           />
-
           <Route
             path="/dashboard/financial-analytics"
             element={<FinancialAnalytics user={user} />}

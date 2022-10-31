@@ -59,7 +59,7 @@ const houseOptions = [
   { id: 6, house: "6 Bedroom, small(600 - 800 sqf)" },
 ];
 
-function GetStarted({ user }) {
+function GetStarted({ user, nextStep, setGetStartedData }) {
   const styles = {
     paperContainer: {
       backgroundImage:
@@ -94,8 +94,6 @@ function GetStarted({ user }) {
       value = event.target.value;
     }
 
-    console.log(name, value);
-
     const endPoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${value}.json?$autocomplete=true&proximity=ip&types=place%2Cpostcode%2Caddress&access_token=${accessToken}`;
     try {
       const response = await fetch(endPoint);
@@ -109,7 +107,6 @@ function GetStarted({ user }) {
     setData({ ...data, [name]: value });
   };
 
-  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const getStartedData = {
@@ -125,11 +122,8 @@ function GetStarted({ user }) {
         longitude: data.moving_to.geometry.coordinates[1],
       },
     };
-    setTimeout(() => {
-      navigate("/my-items");
-    }, 1500);
 
-    console.log(getStartedData);
+    setGetStartedData(getStartedData);
   };
 
   return (
@@ -334,6 +328,7 @@ function GetStarted({ user }) {
                           width: "70%",
                           display: "block",
                         }}
+                        onClick={nextStep}
                       >
                         next
                       </Button>

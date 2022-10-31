@@ -8,101 +8,6 @@ import { useLocation } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import image1 from "../table/images/pexels-albert-nunez-88630.jpg";
 
-const carColumns = [
-  { field: "vin", headerName: "VIN", width: 200 },
-  {
-    field: "car",
-    headerName: "Car",
-    description: "This column has a value getter and is not sortable.",
-    sortable: false,
-    width: 200,
-
-    renderCell: (params) => (
-      <div
-        className="rounded-md group flex flex-row align-middle justify-between justify-items-center"
-        style={{
-          alignItems: "center",
-        }}
-      >
-        <div
-          className="bg-hero-pattern  bg-no-repeat bg-cover bg-center mr-2 hover:opacity-100 opacity-80 cursor-pointer  hover:scale-110 transition duration-300 ease-in-out rounded-full h-12 w-12"
-          style={{
-            backgroundImage: `url(${image1})`,
-          }}
-        />
-        <div>
-          {" "}
-          {params.row.make || ""}
-          {"  "}
-          {params.row.model || ""}
-          {"  "}
-          {params.row.year || ""}
-        </div>
-      </div>
-    ),
-  },
-
-  {
-    field: "color",
-    headerName: "Color",
-    sortable: true,
-    width: 90,
-  },
-  {
-    field: "condition",
-    headerName: "Condition",
-    sortable: true,
-    width: 110,
-  },
-  {
-    field: "faults",
-    headerName: "Faults",
-    type: "string",
-    width: 120,
-  },
-  {
-    field: "engine",
-    headerName: "Engine Size",
-    sortable: true,
-    width: 100,
-    type: "number",
-  },
-  {
-    field: "fuel_type",
-    headerName: "Fuel Type",
-    sortable: true,
-    width: 100,
-    type: "string",
-  },
-  {
-    field: "transmission",
-    headerName: "Transmission",
-    sortable: true,
-    width: 90,
-    type: "number",
-  },
-  {
-    field: "sold",
-    headerName: "Sold",
-    description: "This column has a value getter and is not sortable.",
-    sortable: true,
-    width: 95,
-    renderCell: (params) => (
-      <div>
-        {!params.row.status ? (
-          <span className="text-green-700 bg-green-100 py-1 px-2 rounded-sm">
-            In stock
-          </span>
-        ) : (
-          <span className="text-yellow-700 bg-yellow-100 py-1 px-2 rounded-sm">
-            Sold
-          </span>
-        )}
-      </div>
-    ),
-  },
-];
-
 const customerColumns = [
   { field: "id", headerName: "ID", width: 10 },
 
@@ -255,6 +160,84 @@ const moverColumns = [
   },
 ];
 
+const ratesColumns = [
+  { field: "id", headerName: "ID", width: 10 },
+
+  {
+    field: "item_name",
+    headerName: "Item Name",
+    description: "This column has a value getter and is not sortable.",
+    sortable: false,
+    width: 180,
+    renderCell: (params) => (
+      <div
+        className="rounded-md group flex flex-row align-middle justify-between justify-items-center"
+        style={{
+          alignItems: "center",
+        }}
+      >
+        <div
+          className="bg-hero-pattern  bg-no-repeat bg-cover bg-center mr-2 hover:opacity-100 opacity-80 cursor-pointer  hover:scale-110 transition duration-300 ease-in-out rounded-full h-12 w-12"
+          style={{
+            backgroundImage: `url(${params.row.avatar_url})`,
+          }}
+        />
+        <div> {params.row.item_name || ""}</div>
+      </div>
+    ),
+  },
+
+  {
+    field: "category",
+    headerName: "Category",
+    sortable: true,
+    width: 230,
+  },
+  {
+    field: "flat_price",
+    headerName: "Flat Price",
+    sortable: true,
+    width: 100,
+  },
+  {
+    field: "price_per_unit",
+    headerName: "PPU",
+    sortable: true,
+    width: 100,
+  },
+
+  {
+    field: "owner",
+    headerName: "Owned By",
+    sortable: true,
+    width: 50,
+    type: "number",
+    renderCell: (params) => (
+      <div
+        className="rounded-md group flex flex-row align-middle justify-between justify-items-center"
+        style={{
+          alignItems: "center",
+        }}
+      >
+        <div
+          className="bg-hero-pattern  bg-no-repeat bg-cover bg-center mr-2 hover:opacity-100 opacity-80 cursor-pointer  hover:scale-110 transition duration-300 ease-in-out rounded-full h-12 w-12"
+          style={{
+            backgroundImage: `url(${params.row.avatar_url})`,
+          }}
+        />
+        <div> {params.row.full_name || ""}</div>
+      </div>
+    ),
+  },
+
+  {
+    field: "discount",
+    headerName: "discount",
+    sortable: true,
+    width: 95,
+  },
+];
+
 const useDatatableSource = () => {
   const location = useLocation();
   // const navigate = useNavigate();
@@ -267,8 +250,10 @@ const useDatatableSource = () => {
   useEffect(() => {
     if (resource === "movers") {
       setCol(moverColumns);
-    } else {
+    } else if (resource === "customers") {
       setCol(customerColumns);
+    } else if (resource === "rates") {
+      setCol(ratesColumns);
     }
   }, [data, resource]);
 
@@ -300,6 +285,18 @@ const useDatatableSource = () => {
             orders: 0,
             phone: customer.phone,
             email: customer.email,
+            status: "Active",
+          }));
+      } else if (resource === "rates") {
+        rows =
+          data &&
+          data?.map((rate) => ({
+            id: rate.id,
+            item_name: rate.item_name,
+            category: rate.category,
+            flat_price: rate.flat_price,
+            price_per_unit: rate.price_per_unit,
+            discount: rate.discount,
             status: "Active",
           }));
       }

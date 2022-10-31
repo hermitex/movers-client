@@ -3,8 +3,23 @@ import { Box } from "@mui/material";
 import React from "react";
 
 import MyItemsFeedCard from "./MyItemsFeedCard";
+import SingleItemCard from "./SingleItemCard";
 
-function MyItemsFeed() {
+const data = [
+  {
+    title: "My Living Room Items",
+  },
+  { title: "My Bedroom Items" },
+  {
+    title: "My Dining Room Items",
+  },
+  {
+    title: "My Kitchen Items",
+  },
+  {},
+];
+
+function MyItemsFeed({ onAddItem }) {
   return (
     <Box
       flex={4}
@@ -16,14 +31,38 @@ function MyItemsFeed() {
         gap: 2,
       }}
     >
-      <MyItemsFeedCard title="My Living Room Items" />
-      <MyItemsFeedCard title="My Bedroom Items" />
-      <MyItemsFeedCard title="My Dining Room Items" />
-      <MyItemsFeedCard title="My Kitchen Items" />
-      <MyItemsFeedCard title="My Office Items" />
-      <MyItemsFeedCard title="My Outdoor Items" />
-      <MyItemsFeedCard title="My Boxes" />
-      <MyItemsFeedCard title="Other Items" />
+      <MyItemsFeedCard
+        onAddItem={onAddItem}
+        title="My Living Room Items"
+      />
+      <MyItemsFeedCard
+        onAddItem={onAddItem}
+        title="My Bedroom Items"
+      />
+      <MyItemsFeedCard
+        onAddItem={onAddItem}
+        title="My Dining Room Items"
+      />
+      <MyItemsFeedCard
+        onAddItem={onAddItem}
+        title="My Kitchen Items"
+      />
+      <MyItemsFeedCard
+        onAddItem={onAddItem}
+        title="My Office Items"
+      />
+      <MyItemsFeedCard
+        onAddItem={onAddItem}
+        title="My Outdoor Items"
+      />
+      <MyItemsFeedCard
+        onAddItem={onAddItem}
+        title="My Boxes"
+      />
+      <MyItemsFeedCard
+        onAddItem={onAddItem}
+        title="Other Items"
+      />
     </Box>
   );
 }

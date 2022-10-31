@@ -163,7 +163,10 @@ const NavBar = ({ user, onLogout }) => {
               ))}
             </Box>
             {user ? (
-              <AccountMenu onLogout={onLogout} />
+              <AccountMenu
+                onLogout={onLogout}
+                user={user}
+              />
             ) : (
               <Link
                 to="login"

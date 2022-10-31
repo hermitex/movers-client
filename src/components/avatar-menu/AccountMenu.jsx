@@ -12,7 +12,9 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-function AccountMenu({ setCurrentUser, onLogout }) {
+function AccountMenu({ user, onLogout }) {
+  // const { avatar_url } = user || " ";
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -35,7 +37,7 @@ function AccountMenu({ setCurrentUser, onLogout }) {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}>{/* {avatar_url} */}</Avatar>
           </IconButton>
         </Tooltip>
       </Box>

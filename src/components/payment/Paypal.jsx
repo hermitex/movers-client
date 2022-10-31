@@ -16,7 +16,7 @@ function Paypal({ amount }) {
               purchase_units: [
                 {
                   amount: {
-                    currency_code: "USD",
+                    currency_code: "KES",
                     value: 2,
                   },
                 },

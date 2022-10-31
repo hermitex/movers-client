@@ -149,7 +149,7 @@ const data = [
 ];
 
 const target = data.find(
-  (place) => place.place_name === "Thika, Kiambu, Kenya"
+  (place) => place.place_name === "Theta, Kiambu, Kenya"
 );
 
-console.log(target);
+console.log(target.geometry.coordinates, target.place_name);

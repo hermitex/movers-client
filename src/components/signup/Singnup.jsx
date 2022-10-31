@@ -1,99 +1,218 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, MenuItem, TextField, Typography } from "@mui/material";
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Success from "../utils/Sucess";
 
 function Singnup({ onLogin }) {
-
-  const[firstName, setFirstName] = useState("")
-  const[lastName, setlastName] = useState("")
-  const[email, setEmail] = useState("")
-  const[phoneNumber, setPhoneNumber] = useState("")
-  const[password, setPassword] = useState("")
-  const[passwordConfirmation, setPasswordConfirmation] = useState("")
-  const [errors, setErrors] = useState([])
+  const [fullName, setFullName] = useState("");
+  const [accountType, setAccountType] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [errors, setErrors] = useState([]);
   const [user, setUser] = useState(null);
+  const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
 
-  function handleSubmit(e){
-    e.preventDefault()
-    setErrors([])
-    
-    fetch('/signup',{
-      method: 'POST',
+  // USING JWT
+  function handleSubmit(e) {
+    e.preventDefault();
+    setErrors([]);
+
+    fetch("http://localhost:4000/signup", {
+      method: "POST",
       headers: {
-        'Content-type' : 'application/json'
+        "Content-type": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify({
-        firstName, 
-        lastName, 
-        email, 
-        phoneNumber, 
-        password, 
-        passwordConfirmation
-      })
-    })
-    .then((res)=>{
-      if(res.ok){
-        res.json().then((user) => onLogin(user))
-      } else{
-        res.json().then((err)=>setErrors(err.errors))
+        // user: {
+        full_name: fullName,
+        phone,
+        email,
+        account_type: accountType.toLocaleLowerCase(),
+        type: accountType,
+        password,
+        password_confirmation: passwordConfirmation,
+        location_id: 1,
+        // }
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        alert("registered!");
+        setSuccess("Signup successful!");
+        setErrors([]);
+        res.json().then((data) => {
+          localStorage.setItem("jwt", data.jwt);
+          setUser(data.user);
+          onLogin(data.user);
+        });
+      } else {
+        setSuccess(null);
+        res.json().then((err) => setErrors(err.errors));
       }
-    })
+    });
   }
+
+  setTimeout(() => {
+    if (user && user.account_type === "mover") {
+      navigate("/dashboard");
+    } else if (user && user.account_type === "customer") {
+      navigate("/home");
+    }
+  }, 1100);
+  const textFieldStyle = { margin: "10px auto" };
   return (
-    <div className="signup-container">
-      <div className="signup-contact-box">
-        <div className="signup-left"></div>
-        <div className="signup-right">
-          <form onSubmit={handleSubmit}>
-            <h1>Sign up here</h1>
-            <input
-              type="text"
-              value={firstName}
-              className="signup-field"
-              placeholder="firstName"
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            <input
-              type="text"
-              value={lastName}
-              className="signup-field"
-              placeholder="lastName"
-              onChange={(e) => setlastName(e.target.value)}
-            />
-            <input
-              type="text"
-              value={email}
-              className="signup-field"
-              placeholder="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="text"
-              value={phoneNumber}
-              className="signup-field"
-              placeholder="phoneNumber"
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            />
-            <input
-              type="text"
-              value={password}
-              className="signup-field"
-              placeholder="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-              type="text"
-              value={passwordConfirmation}
-              className="signup-field"
-              placeholder="passwordConfirmation"
-              onChange={(e) => setPasswordConfirmation(e.target.value)}
-            />
-            <input className="signup-btn" type="submit" value="REGISTER"/>
-          </form>
-        </div>
-      </div>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <h1>Sign up here</h1>
+
+      {success ? <Success success={success} /> : null}
+
+      <TextField
+        size="small"
+        id="outlined-basic"
+        value={fullName}
+        label="Full Name"
+        placeholder="enter full name"
+        onChange={(e) => setFullName(e.target.value)}
+        variant="outlined"
+        style={textFieldStyle}
+        fullWidth
+        required
+      />
+      {errors && errors && (
+        <Typography
+          fontSize="0.7rem"
+          color="red"
+        >
+          {errors?.full_name}
+        </Typography>
+      )}
+
+      <TextField
+        size="small"
+        id="outlined-basic"
+        value={phone}
+        label="Phone"
+        placeholder="enter full name"
+        onChange={(e) => setPhone(e.target.value)}
+        variant="outlined"
+        style={textFieldStyle}
+        fullWidth
+        required
+      />
+      {errors && errors && (
+        <Typography
+          fontSize="0.7rem"
+          color="red"
+        >
+          {errors?.phone}
+        </Typography>
+      )}
+      <TextField
+        size="small"
+        id="outlined-basic"
+        value={email}
+        label="Email"
+        placeholder="enter email"
+        onChange={(e) => setEmail(e.target.value)}
+        variant="outlined"
+        style={textFieldStyle}
+        fullWidth
+        required
+      />
+      {errors && errors && (
+        <Typography
+          fontSize="0.7rem"
+          color="red"
+        >
+          {errors?.email}
+        </Typography>
+      )}
+      <TextField
+        select
+        size="small"
+        id="outlined-basic"
+        value={accountType}
+        label="Account Type"
+        placeholder="enter account type"
+        onChange={(e) => setAccountType(e.target.value)}
+        variant="outlined"
+        style={textFieldStyle}
+        fullWidth
+        required
+      >
+        <MenuItem value="Customer">
+          <option value="Customer">Customer</option>
+        </MenuItem>
+        <MenuItem value="Mover">
+          <option value="Mover">Mover</option>
+        </MenuItem>
+        <MenuItem value="Admin">
+          <option value="Admin">Admin</option>
+        </MenuItem>
+      </TextField>
+      {errors && errors && (
+        <Typography
+          fontSize="0.7rem"
+          color="red"
+        >
+          {errors?.type}
+        </Typography>
+      )}
+      <TextField
+        size="small"
+        id="outlined-basic"
+        value={password}
+        label="Password"
+        placeholder="enter password"
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+        variant="outlined"
+        style={textFieldStyle}
+        fullWidth
+        required
+      />
+      {errors && errors && (
+        <Typography
+          fontSize="0.7rem"
+          color="red"
+        >
+          {errors?.password}
+        </Typography>
+      )}
+      <TextField
+        size="small"
+        id="outlined-basic"
+        value={passwordConfirmation}
+        label="Password Confirmation"
+        placeholder="enter password"
+        type="password"
+        onChange={(e) => setPasswordConfirmation(e.target.value)}
+        variant="outlined"
+        style={textFieldStyle}
+        fullWidth
+        required
+      />
+      {errors && errors && (
+        <Typography
+          fontSize="0.7rem"
+          color="red"
+        >
+          {errors?.password_confirmation}
+        </Typography>
+      )}
+      <Button
+        variant="contained"
+        color="error"
+        type="submit"
+        fullWidth
+      >
+        Sinup
+      </Button>
+    </form>
   );
 }
 

@@ -1,5 +1,5 @@
 # Movers
-
+![Moover.com-home](src/assets/documentation/mooover-home.png)
   - Clone the repo at [](movers)
   - Open the project folder in your favorite text editor (VSCode recommend)
   - Run `npm install` to install dependencies

@@ -1,15 +1,22 @@
-import { AppBar, Button, Grid, Paper, Typography } from "@mui/material";
+import { AppBar, Button } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-const isActiveStyle = {
-  backgroundColor: "#FF515E",
-  borderRadius: "0.3rem",
-  color: "#FFF",
-};
-
 function MovingProcessNavBar({ size, color }) {
+  const isActiveStyle = {
+    backgroundColor: "#FF515E",
+    borderRadius: "0.3rem",
+    color: () =>
+      setButtonStyle({
+        variant: "container",
+        color: "error",
+      }),
+  };
+  const [buttonStyle, setButtonStyle] = useState({
+    variant: "outlined",
+    color: "error",
+  });
   return (
     <Box>
       <AppBar

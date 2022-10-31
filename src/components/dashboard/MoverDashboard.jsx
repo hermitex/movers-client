@@ -8,16 +8,17 @@ import Orders from "./Orders";
 import { Route, Routes } from "react-router-dom";
 import TableData from "./TableData";
 
-function MoverDashboard() {
+function MoverDashboard({ user }) {
+  console.log(user);
   return (
     <div className="profile-container">
       <div className="profile-item-1">
-        <MoverSideBar />
+        <MoverSideBar user={user} />
       </div>
       <div className="profile-item-2">
-        <DashboardHome/>
-        <br/>
-        <TableData/>
+        <DashboardHome user={user} />
+        <br />
+        <TableData />
       </div>
     </div>
   );

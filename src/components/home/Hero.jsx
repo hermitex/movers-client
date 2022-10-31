@@ -54,7 +54,7 @@ const pages = [
 const formInput = [
   {
     label: "from",
-    name: "from",
+    name: "moving_from",
     placeholder: "From: Address, city or zip",
     icon: <PinDrop />,
     type: "autocomplete",
@@ -62,7 +62,7 @@ const formInput = [
   },
   {
     label: "to",
-    name: "from",
+    name: "moving_to",
     placeholder: "To: Address, city or zip",
     icon: <PinDrop />,
     type: "autocomplete",
@@ -70,7 +70,7 @@ const formInput = [
   },
   {
     label: "house-type",
-    name: "house-type",
+    name: "house_type",
     placeholder: "House type",
     icon: <House />,
     type: "autocomplete",
@@ -78,7 +78,7 @@ const formInput = [
   },
   {
     label: "move-date",
-    name: "move-date",
+    name: "moving_date",
     placeholder: "Moving date",
     icon: <CalendarMonth />,
     type: "date",
@@ -88,37 +88,30 @@ const formInput = [
 
 const houseOptions = [
   { id: 1, house: "1 Bedroom, small(600 - 800 sqf)" },
-  { id: 2, house: "1 Bedroom, small(600 - 800 sqf)" },
-  { id: 3, house: "1 Bedroom, small(600 - 800 sqf)" },
-  { id: 4, house: "1 Bedroom, small(600 - 800 sqf)" },
-  { id: 5, house: "1 Bedroom, small(600 - 800 sqf)" },
-  { id: 6, house: "1 Bedroom, small(600 - 800 sqf)" },
+  { id: 2, house: "2 Bedroom, small(600 - 800 sqf)" },
+  { id: 3, house: "3 Bedroom, small(600 - 800 sqf)" },
+  { id: 4, house: "4 Bedroom, small(600 - 800 sqf)" },
+  { id: 5, house: "5 Bedroom, small(600 - 800 sqf)" },
+  { id: 6, house: "6 Bedroom, small(600 - 800 sqf)" },
 ];
 
 function Hero() {
   accessToken = process.env.REACT_APP_MAPBOX_KEY;
   const [suggestions, setSuggestions] = useState([]);
 
-  const [value, setValue] = useState("");
+  accessToken = process.env.REACT_APP_MAPBOX_KEY;
 
   const [data, setData] = useState({
-    houseType: "",
-    movingFrom: {
-      name: "",
-      latitude: "",
-      longitude: "",
-    },
-    movingTo: {
-      name: "",
-      latitude: "",
-      longitude: "",
-    },
+    house_type: "",
+    moving_from: "",
+    moving_to: "",
+    moving_date: "",
   });
 
-  console.log(suggestions);
-
-  const handleChange = async (event) => {
-    setValue(event.target.value);
+  const handleChange = async (event, value, name) => {
+    if (name === "moving_date") {
+      value = event.target.value;
+    }
 
     const endPoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${value}.json?$autocomplete=true&proximity=ip&types=place%2Cpostcode%2Caddress&access_token=${accessToken}`;
     try {
@@ -130,22 +123,31 @@ function Hero() {
       console.log(error);
     }
 
-    setData({ ...data });
-  };
-  console.log(suggestions);
-  const locations = {
-    options: suggestions,
-    getOptionLabel: (option) => option.place_name,
-  };
-
-  const houseTypes = {
-    options: houseOptions,
-    getOptionLabel: (option) => option.house,
+    setData({ ...data, [name]: value });
   };
 
   const navigate = useNavigate();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const getStartedData = {
+      house_type: data.house_type.house,
+      moving_from: {
+        place_name: data.moving_from.place_name,
+        latitude: data.moving_from.geometry.coordinates[0],
+        longitude: data.moving_from.geometry.coordinates[1],
+      },
+      moving_to: {
+        place_name: data.moving_to.place_name,
+        latitude: data.moving_to.geometry.coordinates[0],
+        longitude: data.moving_to.geometry.coordinates[1],
+      },
+    };
+    setTimeout(() => {
+      navigate("/my-items");
+    }, 1500);
 
-  const handleClick = (event) => navigate("/my-items");
+    console.log(getStartedData);
+  };
 
   return (
     <Box>
@@ -301,19 +303,37 @@ function Hero() {
 
             <Box
               component="form"
-              noValidate
+              // noValidate
+              onSubmit={handleSubmit}
               autoComplete="off"
               sx={{
                 display: "flex",
-                gap: 0.5,
+                flexFlow: "row wrap",
+                justifyContent: "center",
+                gap: 3,
               }}
             >
               {formInput.map((input) =>
                 input.type === "autocomplete" ? (
                   <Autocomplete
-                    {...(input.option === "house" ? houseTypes : locations)}
+                    key={input.name}
+                    onChange={(event, value) =>
+                      handleChange(event, value, input.name)
+                    }
+                    options={
+                      input?.name === "house_type" ? houseOptions : suggestions
+                    }
                     id="disable-close-on-select"
-                    disableCloseOnSelect
+                    name={input.name}
+                    getOptionLabel={(option) => {
+                      return input.name === "house_type"
+                        ? option.house
+                        : option.place_name
+                        ? option.place_name
+                        : input.name === "moving_date"
+                        ? data.moving_date
+                        : "";
+                    }}
                     renderInput={(params) => (
                       <TextField
                         {...params}
@@ -322,9 +342,21 @@ function Hero() {
                         sx={{
                           bgcolor: "#fff",
                           borderRadius: "0.1rem",
-                          width: "17vw",
+                          width: "15vw",
                         }}
-                        onChange={handleChange}
+                        value={
+                          input.name === "house_type"
+                            ? data.house_type
+                            : data.place_name
+                            ? data.place_name
+                            : input.name === "moving_date"
+                            ? data.moving_date
+                            : ""
+                        }
+                        required
+                        onChange={(event) =>
+                          handleChange(event, event.target.value, input.name)
+                        }
                       />
                     )}
                   />
@@ -332,9 +364,12 @@ function Hero() {
                   <TextField
                     key={input.name}
                     id={input.label}
+                    name={input.name}
+                    value={data.moving_date}
                     label={input.placeholder}
                     type={input.type}
                     variant="filled"
+                    required
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
@@ -342,25 +377,27 @@ function Hero() {
                         </InputAdornment>
                       ),
                     }}
-                    onChange={handleChange}
+                    onChange={(event, value) =>
+                      handleChange(event, value, input.name)
+                    }
                     sx={{
                       bgcolor: "#fff",
                       borderRadius: "0.1rem",
-                      width: "17vw",
+                      width: "15vw",
                     }}
                   />
                 )
               )}
-
               <Button
                 variant="contained"
-                onClick={handleClick}
                 color="error"
+                type="submit"
                 style={{
-                  fontSize: "0.7rem",
-                  padding: 0,
+                  fontSize: "1.2rem",
+                  padding: 10,
                   margin: 0,
-                  width: "10%",
+                  width: "10vw",
+                  display: "block",
                 }}
               >
                 next

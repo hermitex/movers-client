@@ -7,7 +7,7 @@ import MyItemsSidebar from "./MyItemsSidebar";
 import MyItemsFeed from "./MyItemsFeed";
 import { useNavigate } from "react-router-dom";
 
-function MyItems() {
+function MyItems({ nextStep }) {
   const styles = {
     paperContainer: {
       backgroundImage:
@@ -27,9 +27,6 @@ function MyItems() {
       margin: "100px auto",
     },
   };
-
-  const navigate = useNavigate();
-  const handleClick = (event) => navigate("/compare");
 
   return (
     <Box>
@@ -90,11 +87,11 @@ function MyItems() {
                   </Typography>
                   <Button
                     variant="contained"
-                    onClick={handleClick}
                     color="error"
                     style={{
                       fontSize: "18px",
                     }}
+                    onClick={nextStep}
                   >
                     Continue
                   </Button>

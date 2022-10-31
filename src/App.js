@@ -120,7 +120,7 @@ function App() {
                 user={user}
                 setIShowFooter={setIShowFooter}
                 sidebarlinks={sideLinks}
-                component={<Datatable />}
+                component={<Datatable user={user}/>}
               />
             }
           />
@@ -131,7 +131,7 @@ function App() {
                 user={user}
                 setIShowFooter={setIShowFooter}
                 sidebarlinks={sideLinks}
-                component={<Datatable />}
+                component={<Datatable user={user} />}
               />
             }
           />

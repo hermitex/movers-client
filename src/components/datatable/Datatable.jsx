@@ -12,7 +12,10 @@ import useDatatableSource from "../datasource/datatableSource";
 import ProgressIndicator from "../utils/ProgressIndicator";
 import { Box, Button, Typography } from "@mui/material";
 
-function Datatable() {
+function Datatable({user}) {
+  
+  const[userType, setUserType] = useState(null)
+  console.log(user?.account_type)
   const { dataRows, cols } = useDatatableSource();
   console.log(dataRows, cols);
   const [resource, setResource] = useState("");
@@ -21,8 +24,11 @@ function Datatable() {
   useEffect(() => {
     const path = pathname.split("/").pop();
     setResource(path);
-  }, [pathname]);
-
+    if(user?.user.account_type === "customer"){
+      setUserType(user?.user.account_type)
+    }
+  }, [pathname, user?.user.account_type]);
+  console.log(userType)
   function handleClick() {}
   const actionColumn = [
     {

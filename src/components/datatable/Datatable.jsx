@@ -25,6 +25,9 @@ function Datatable({user}) {
     const path = pathname.split("/").pop();
     setResource(path);
     if(user?.user.account_type === "customer"){
+      alert(1)
+      setUserType(user?.user.account_type)
+    } else if(user?.user.account_type === "mover"){
       setUserType(user?.user.account_type)
     }
   }, [pathname, user?.user.account_type]);
@@ -57,7 +60,20 @@ function Datatable({user}) {
               view
             </Button>
           </NavLink>
-          <NavLink
+          {userType === "customer"? <NavLink
+            to={{ pathname: "/dashboard/profile" }}
+            state={{ row }}
+          >
+            <Button
+              type="button"
+              variant="outlined"
+              color="success"
+            >
+              <ion-icon name="eye" />
+              book
+            </Button>
+          </NavLink>:null}
+          {(userType === "customer"||userType === "mover")?null:<><NavLink
             to={{ pathname: "/dashboard/edit" }}
             state={{ row }}
           >
@@ -71,7 +87,8 @@ function Datatable({user}) {
               edit
             </Button>
           </NavLink>
-          <Button
+          
+           <Button
             type="button"
             onClick={(e) => handleClick(e, row)}
             variant="outlined"
@@ -83,6 +100,7 @@ function Datatable({user}) {
             />
             delete
           </Button>
+          </>}
         </Box>
       ),
     },

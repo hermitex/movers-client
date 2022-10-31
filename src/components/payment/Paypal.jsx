@@ -1,77 +1,42 @@
-import {
-  PayPalScriptProvider,
-  PayPalHostedFieldsProvider,
-  PayPalHostedField,
-  usePayPalHostedFields,
-} from "@paypal/react-paypal-js";
+import React from "react";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
-const SubmitPayment = () => {
-  // Here declare the variable containing the hostedField instance
-  const hostedFields = usePayPalHostedFields();
-
-  const submitHandler = () => {
-    if (typeof hostedFields.submit !== "function") return; // validate that `submit()` exists before using it
-    hostedFields
-      .submit({
-        // The full name as shown in the card and billing address
-        cardholderName: "John Wick",
-      })
-      .then((order) => {
-        fetch("/your-server-side-integration-endpoint/capture-payment-info")
-          .then((response) => response.json())
-          .then((data) => {
-            // Inside the data you can find all the information related to the payment
-          })
-          .catch((err) => {
-            // Handle any error
-          });
-      });
+function Paypal({ amount }) {
+  const initialOptions = {
+    client_id: `${process.env.REACT_APP_PAYPAL_ID}`,
   };
-
-  return <button onClick={submitHandler}>Pay</button>;
-};
-
-function Paypal() {
   return (
-    <PayPalScriptProvider
-      options={{
-        "client-id": "your-client-id",
-        "data-client-token": "your-data-client-token",
-      }}
-    >
-      <PayPalHostedFieldsProvider
-        createOrder={() => {
-          // Here define the call to create and order
-          return fetch("/your-server-side-integration-endpoint/orders")
-            .then((response) => response.json())
-            .then((order) => order.id)
-            .catch((err) => {
-              // Handle any error
+    <div>
+      <PayPalScriptProvider>
+        <PayPalButtons
+          style={{ color: "blue", label: "pay" }}
+          fundingSource="paypal"
+          createOrder={async (data, actions) => {
+            const orderId = await actions.order.create({
+              purchase_units: [
+                {
+                  amount: {
+                    currency_code: "USD",
+                    value: 2,
+                  },
+                },
+              ],
             });
-        }}
-      >
-        <PayPalHostedField
-          id="card-number"
-          hostedFieldType="number"
-          options={{ selector: "#card-number" }}
-        />
-        <PayPalHostedField
-          id="cvv"
-          hostedFieldType="cvv"
-          options={{ selector: "#cvv" }}
-        />
-        <PayPalHostedField
-          id="expiration-date"
-          hostedFieldType="expirationDate"
-          options={{
-            selector: "#expiration-date",
-            placeholder: "MM/YY",
+            return orderId;
+          }}
+          onApprove={async (data, actions) => {
+            console.log(data);
+            const details = await actions.order.capture();
+            console.log(
+              `Transaction completed by ${details.payer.name.given_name}`
+            );
           }}
         />
-        <SubmitPayment />
-      </PayPalHostedFieldsProvider>
-    </PayPalScriptProvider>
+      </PayPalScriptProvider>
+    </div>
   );
 }
 
 export default Paypal;
+
+// sb-tqcry8133188@business.example.com

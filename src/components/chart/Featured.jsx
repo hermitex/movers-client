@@ -32,7 +32,7 @@ function Featured() {
           }}
         >
           <Box>
-            <Text>Total Revenue</Text>
+            <Text>Total Income</Text>
             <Metric>{dataFormatter(71465)} </Metric>
             <Flex marginTop="mt-4">
               <Text>32% of annual target</Text>

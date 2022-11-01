@@ -56,8 +56,14 @@ function Book({ user }) {
               </Typography>
             </Box>
             <Box>
-              <Paper elevation={7} style={styles.paperStyle}>
-                <MovingProcessNavBar size="large" color="error" />
+              <Paper
+                elevation={7}
+                style={styles.paperStyle}
+              >
+                <MovingProcessNavBar
+                  size="large"
+                  color="error"
+                />
                 <Container>
                   <Box
                     sx={{
@@ -80,7 +86,11 @@ function Book({ user }) {
                       }}
                     >
                       <Box sx={{ width: "3rem" }}>
-                        <img width="100%" src={truckIcon} alt="truck" />
+                        <img
+                          width="100%"
+                          src={truckIcon}
+                          alt="truck"
+                        />
                       </Box>
 
                       <Box
@@ -90,7 +100,10 @@ function Book({ user }) {
                           paddingLeft: 1,
                         }}
                       >
-                        <Typography variant="p" fontWeight="bolder">
+                        <Typography
+                          variant="p"
+                          fontWeight="bolder"
+                        >
                           Book your Mooove today...
                         </Typography>
                         <Typography variant="p">
@@ -100,7 +113,13 @@ function Book({ user }) {
                     </Box>
                   </Box>
                 </Container>
-                <Divider />
+                <Divider
+                  sx={{
+                    borderBottomWidth: 2,
+
+                    borderColor: "grey",
+                  }}
+                />
                 <Box
                   sx={{
                     display: "flex",
@@ -108,71 +127,70 @@ function Book({ user }) {
                     padding: "20px 0px",
                   }}
                 >
-                  <Box                  
+                  <Box
                     sx={{
-                      flex: 1.3,                     
+                      flex: 1.3,
                     }}
-                   
                   >
                     <Box
                       component="form"
-                      sx={{                        
+                      sx={{
                         "& > :not(style)": { m: 1, width: "25ch" },
                       }}
                       noValidate
                       autoComplete="off"
                     >
-                    <h3>Contact information</h3>
-                    <TextField
-                      id="outlined-basic"
-                      label="Name"
-                      variant="outlined"
-                    />
-                    <TextField
-                      id="outlined-basic"
-                      label="Phone Number"
-                      variant="outlined"
-                    />
-                    <br />
-                    <br />
-                    <h3>Billing</h3>
-                    <TextField
-                      id="outlined-basic"
-                      label="First Name"
-                      variant="outlined"
-                    />
-                    <TextField
-                      id="outlined-basic"
-                      label="Last Name"
-                      variant="outlined"
-                    />
-                    <TextField
-                      id="outlined-basic"
-                      label="Card Number"
-                      variant="outlined"
-                    />
-                    <br />
-                    <br />
-                    <h3>Expiration Date</h3>
-                    <TextField
-                      id="outlined-basic"
-                      label="First Name"
-                      variant="outlined"
-                    />
-                    <TextField
-                      id="outlined-basic"
-                      label="Last Name"
-                      variant="outlined"
-                    />
-                    <TextField
-                      id="outlined-basic"
-                      label="Card Number"
-                      variant="outlined"
-                    />
+                      <h3>Contact information</h3>
+                      <TextField
+                        id="outlined-basic"
+                        label="Name"
+                        variant="outlined"
+                      />
+                      <TextField
+                        id="outlined-basic"
+                        label="Phone Number"
+                        variant="outlined"
+                      />
+                      <br />
+                      <br />
+                      <h3>Billing</h3>
+                      <TextField
+                        id="outlined-basic"
+                        label="First Name"
+                        variant="outlined"
+                      />
+                      <TextField
+                        id="outlined-basic"
+                        label="Last Name"
+                        variant="outlined"
+                      />
+                      <TextField
+                        id="outlined-basic"
+                        label="Card Number"
+                        variant="outlined"
+                      />
+                      <br />
+                      <br />
+                      <h3>Expiration Date</h3>
+                      <TextField
+                        id="outlined-basic"
+                        label="First Name"
+                        variant="outlined"
+                      />
+                      <TextField
+                        id="outlined-basic"
+                        label="Last Name"
+                        variant="outlined"
+                      />
+                      <TextField
+                        id="outlined-basic"
+                        label="Card Number"
+                        variant="outlined"
+                      />
                     </Box>
                     <Paypal />
                   </Box>
-                  
+
                   <Box
                     sx={{
                       display: "flex",
@@ -225,7 +243,10 @@ function Book({ user }) {
                           }}
                         >
                           <Box sx={{ width: "3rem" }}>
-                            <IconButton sx={{ bgcolor: "white" }} size="large">
+                            <IconButton
+                              sx={{ bgcolor: "white" }}
+                              size="large"
+                            >
                               <AccountCircleIcon />
                             </IconButton>
                           </Box>
@@ -237,7 +258,10 @@ function Book({ user }) {
                               paddingLeft: 1,
                             }}
                           >
-                            <Typography variant="h6" fontWeight="bolder">
+                            <Typography
+                              variant="h6"
+                              fontWeight="bolder"
+                            >
                               Pyramid Moovers
                             </Typography>
                           </Box>
@@ -251,8 +275,14 @@ function Book({ user }) {
                         }}
                       >
                         <Typography variant="h6">Details</Typography>
-                        <Typography variant="p" sx={{ color: "#FF515E" }}></Typography>
-                        <Link href="#" underline="always" >
+                        <Typography
+                          variant="p"
+                          sx={{ color: "#FF515E" }}
+                        ></Typography>
+                        <Link
+                          href="#"
+                          underline="always"
+                        >
                           Edit my Details
                         </Link>
                       </Box>
@@ -280,7 +310,14 @@ function Book({ user }) {
                             Friday, Oct 30, 2022
                           </Typography>
                         </Box>
-                        <Divider />
+                        <Divider
+                          sx={{
+                            borderBottomWidth: 2,
+                            borderStyle: "dotted",
+                            borderColor: "#c4c4c4",
+                            mb: 0.2,
+                          }}
+                        />
                         <Box
                           sx={{
                             display: "flex",
@@ -304,7 +341,14 @@ function Book({ user }) {
                             8:00-10:00am
                           </Typography>
                         </Box>
-                        <Divider />
+                        <Divider
+                          sx={{
+                            borderBottomWidth: 2,
+                            borderStyle: "dotted",
+                            borderColor: "#c4c4c4",
+                            mb: 0.2,
+                          }}
+                        />
                         <br />
                       </Box>
                       <Box
@@ -315,8 +359,14 @@ function Book({ user }) {
                         }}
                       >
                         <Typography variant="h6">Pricing</Typography>
-                        <Typography variant="p" sx={{ color: "#FF515E" }}></Typography>
-                        <Link href="#" underline="always" >
+                        <Typography
+                          variant="p"
+                          sx={{ color: "#FF515E" }}
+                        ></Typography>
+                        <Link
+                          href="#"
+                          underline="always"
+                        >
                           See detailed pricing
                         </Link>
                       </Box>
@@ -344,7 +394,14 @@ function Book({ user }) {
                             KES 4,999
                           </Typography>
                         </Box>
-                        <Divider />
+                        <Divider
+                          sx={{
+                            borderBottomWidth: 2,
+                            borderStyle: "dotted",
+                            borderColor: "#c4c4c4",
+                            mb: 0.2,
+                          }}
+                        />
                         <Box
                           sx={{
                             display: "flex",
@@ -368,7 +425,14 @@ function Book({ user }) {
                             KES 1,299
                           </Typography>
                         </Box>
-                        <Divider />
+                        <Divider
+                          sx={{
+                            borderBottomWidth: 2,
+                            borderStyle: "dotted",
+                            borderColor: "#c4c4c4",
+                            mb: 0.2,
+                          }}
+                        />
                         <Box
                           sx={{
                             display: "flex",
@@ -392,47 +456,54 @@ function Book({ user }) {
                             KES 999
                           </Typography>
                         </Box>
-                        <Divider />
+                        <Divider
+                          sx={{
+                            borderBottomWidth: 2,
+                            borderStyle: "dotted",
+                            borderColor: "#c4c4c4",
+                            mb: 0.2,
+                          }}
+                        />
                         <br />
                       </Box>
                       <br />
-                      <br />                      
+                      <br />
                     </Box>
                     <Box
+                      sx={{
+                        padding: "10px",
+                        bgcolor: "#2a2a2a",
+                        color: "#fff",
+                      }}
+                    >
+                      <Box
                         sx={{
-                          padding: "10px",                          
-                          bgcolor: "#2a2a2a",
-                          color: "#fff",
+                          display: "flex",
+                          justifyContent: "space-between",
                         }}
                       >
-                        <Box
+                        <Typography
+                          variant="p"
                           sx={{
-                            display: "flex",
-                            justifyContent: "space-between",
+                            lineHeight: 2,
+                            fontSize: "20px",
+                            fontWeight: "bold",
                           }}
                         >
-                          <Typography
-                            variant="p"
-                            sx={{
-                              lineHeight: 2,
-                              fontSize: "20px",
-                              fontWeight: "bold",
-                            }}
-                          >
-                            Grand Total
-                          </Typography>
-                          <Typography
-                            variant="p"
-                            sx={{
-                              lineHeight: 2,
-                              fontSize: "20px",
-                              fontWeight: "bold",
-                            }}
-                          >
-                            KES 6,999
-                          </Typography>
-                        </Box>
+                          Grand Total
+                        </Typography>
+                        <Typography
+                          variant="p"
+                          sx={{
+                            lineHeight: 2,
+                            fontSize: "20px",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          KES 6,999
+                        </Typography>
                       </Box>
+                    </Box>
                   </Box>
                 </Box>
               </Paper>

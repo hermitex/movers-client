@@ -38,6 +38,9 @@ import ItemForm from "./components/item-form/ItemForm";
 import formInputs from "./components/form-inputs/userInputs";
 import Paypal from "./components/payment/Paypal";
 import widgetData from "./components/dashboard/dashWidgetData";
+import About from "./components/About/About";
+import Services from "./components/Services/Services";
+import Contact from "./components/Contacts/Contact";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -217,12 +220,25 @@ function App() {
           <Route
             path="signup"
             element={<Singnup onLogin={setUser} />}
-          />
+          />          
           <Route
             path="*"
             element={<Error404 />}
           />
+          <Route
+            path="/about"
+            element={<About user={user}/>}
+          />
+          <Route
+            path="/services"
+            element={<Services />}
+          />
+          <Route
+            path="/contact"
+            element={<Contact />}
+          />
         </Route>
+        
       </Routes>
       {isShowFooter ? <Footer /> : null}
     </Router>

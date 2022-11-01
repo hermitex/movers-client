@@ -144,6 +144,7 @@ function CompareFeedCard({ nextStep, quotes }) {
                     fontSize: "18px",
                   }}
                   onClick={nextStep}
+                  quote={quote}
                 >
                   SELECT
                 </Button>

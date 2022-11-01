@@ -40,7 +40,7 @@ const dataFormatter = (number) => {
 function Chart() {
   return (
     <Card>
-      <Title>Last six months revenue (KSH)</Title>
+      <Title>Last six months income (KSH)</Title>
       <AreaChart
         data={chartdata}
         categories={["Analysis"]}

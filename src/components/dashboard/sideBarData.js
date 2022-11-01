@@ -97,12 +97,12 @@ const customerSideBarData = [
     cName: "nav-text",
     type: "lists",
   },
-  {
-    title: "Rates",
-    path: "/dashboard/rates",
-    cName: "nav-text",
-    type: "lists",
-  },
+  // {
+  //   title: "Rates",
+  //   path: "/dashboard/rates",
+  //   cName: "nav-text",
+  //   type: "lists",
+  // },
   {
     title: "Profile",
     path: "/dashboard/profile",

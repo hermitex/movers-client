@@ -1,4 +1,4 @@
-import { Button, CardMedia, Container, Grid, Paper, Typography } from '@mui/material'
+import { Button, CardMedia, Container, Divider, Grid, Paper, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -7,7 +7,7 @@ const styles = {
   paperContainer: {
     backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.52),
 rgba(0, 0, 0, 0.73)),url('https://images.pexels.com/photos/4246196/pexels-photo-4246196.jpeg?auto=compress&cs=tinysrgb&w=1600')`,
-    height: "60vh",
+    height: "30vh",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -59,7 +59,7 @@ function About() {
               flexDirection: "column",
               justifyContent: "center",
               alignContent: "center",
-              height: "60vh",
+              height: "30vh",
               gap: 3,
             }}
           >
@@ -76,7 +76,8 @@ function About() {
               >
                 ABOUT US
               </Typography>
-            </Box>                      
+            </Box> 
+                                 
           </Box>
         </Container>
       </Paper>
@@ -113,7 +114,8 @@ function About() {
             >
               THE TEAM
             </Typography>
-          </Box>          
+          </Box>  
+          <Divider />        
         </Box>
         <Grid
           sx={{ flexGrow: 1, my: 1 }}

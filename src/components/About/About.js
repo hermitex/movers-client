@@ -83,11 +83,14 @@ function About() {
       </Paper>
       <Box
         sx={{
+
+          textAlign: "center",
           height: "100%",
           width: "100%",        
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          flexFlow: "column",
+          padding: "1rem ",
+          justifyContent: "center",          
           gap: 2,
         }}
       >
@@ -96,11 +99,8 @@ function About() {
             height: "5vh",
             color: "#000",
             fontSize: "3.5rem",
-            fontWeight: "bolder",
-            display: "flex",
-            flexDirection: "column",            
-            padding: "1rem 0",
-            gap: 2,
+            fontWeight: "bolder",           
+            padding: "1rem 0",            
           }}
         >
           <Box>

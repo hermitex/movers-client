@@ -29,7 +29,7 @@ function Contact() {
         <Container
           sx={{
             // height: "150vh",
-            width: "75%",
+            width: "60%",
             display: "flex",
             flexFlow: "column",
             gap: 1,
@@ -178,7 +178,7 @@ function Contact() {
               }}
             >
               Need help or just looking to learn more about Mooove?
-            </Typography>
+            </Typography><br />
             <Button sx={{ my: 1 }} variant="text" color="error">
               Read more <ArrowRight />
             </Button>
@@ -197,7 +197,7 @@ function Contact() {
           >
             <Card sx={{ maxWidth: 300 }}>
               <CardContent>
-                <Typography variant="h6" sx={{ color: "red"}}>Hours of Availability</Typography>
+                <Typography variant="h6" sx={{ color: "#FF515E"}}>Hours of Availability</Typography>
                 <Divider /><br />
                 <Typography
                   variant="p"
@@ -215,7 +215,7 @@ function Contact() {
             </Card>
             <Card sx={{ maxWidth: 300 }}>
               <CardContent>
-                <Typography variant="h6" sx={{ color: "red"}}>Headquarters</Typography>
+                <Typography variant="h6" sx={{ color: "#FF515E"}}>Headquarters</Typography>
                 <Divider /><br />
                 <Typography
                   variant="p"
@@ -225,16 +225,16 @@ function Contact() {
                     color: "#000",
                   }}
                 >
-                  787 14-Street
+                  49-Street
                   <br />
-                  P.O.BOX 14, 00100, 
-                  NAIROBI
+                  P.O.BOX 49, 00100, 
+                  LAVINGTON
                 </Typography>
               </CardContent>
             </Card>
             <Card sx={{ maxWidth: 300 }}>
               <CardContent>
-                <Typography variant="h6" sx={{ color: "red"}}>Email</Typography>
+                <Typography variant="h6" sx={{ color: "#FF515E"}}>Email</Typography>
                 <Divider /><br />
                 <Typography
                   variant="p"
@@ -250,7 +250,7 @@ function Contact() {
             </Card>
             <Card sx={{ maxWidth: 300 }}>
               <CardContent>
-                <Typography variant="h6" sx={{ color: "red"}}>Telephone</Typography>
+                <Typography variant="h6" sx={{ color: "#FF515E"}}>Telephone</Typography>
                 <Divider /><br />
                 <Typography
                   variant="p"
@@ -260,9 +260,9 @@ function Contact() {
                     color: "#000",
                   }}
                 >
-                  +254-710121212
+                  +254-710111111
                   <br />
-                  +254-735121212
+                  +254-735111111
                 </Typography>
               </CardContent>
             </Card>

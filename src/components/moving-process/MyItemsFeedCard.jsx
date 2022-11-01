@@ -11,11 +11,12 @@ import {
   Typography,
 } from "@mui/material";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ChairIcon from "@mui/icons-material/Chair";
 import { styled } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SingleItemCard from "./SingleItemCard";
+import useFetch from "../hooks/useFetch";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -34,6 +35,52 @@ function MyItemsFeedCard({ title, component, onAddItem }) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+  const rates = useFetch(`${baseUrl}/rates`);
+  const [availableCategories, setAvailableCategories] = useState([]);
+  useEffect(() => {
+    const livingRoom = rates?.filter(
+      (item) => item?.category.toLowerCase() === "living room"
+    );
+    const kitchen = rates?.filter(
+      (item) => item?.category.toLowerCase() === "kitchen"
+    );
+    const bedroom = rates?.filter(
+      (item) => item?.category.toLowerCase() === "bedroom"
+    );
+    const others = rates?.filter(
+      (item) => item?.category.toLowerCase() === "others"
+    );
+    const office = rates?.filter(
+      (item) => item?.category.toLowerCase() === "office"
+    );
+    const dining = rates?.filter(
+      (item) => item?.category.toLowerCase() === "dining room"
+    );
+    const outdoor = rates?.filter(
+      (item) => item?.category.toLowerCase() === "outdoor"
+    );
+
+    setAvailableCategories({
+      livingRoom,
+      bedroom,
+      dining,
+      office,
+      others,
+      outdoor,
+    });
+  }, [rates, setAvailableCategories]);
+
+  const allowedCategories = [
+    "living room",
+    "kitchen",
+    "bedroom",
+    "others",
+    "office",
+    "dining",
+    "outdoor",
+  ];
 
   return (
     <Card
@@ -84,11 +131,12 @@ function MyItemsFeedCard({ title, component, onAddItem }) {
             gap: 2,
           }}
         >
-          <SingleItemCard
+          {/* {availableCategories.map(category=> <SingleItemCard
             onAddItem={onAddItem}
             item="Sofa"
             category="living room"
-          />
+          />)} */}
+
           <SingleItemCard
             onAddItem={onAddItem}
             item="Table"

@@ -33,78 +33,65 @@ function MovingProcessNavBar({ size, color }) {
               justifyContent: "center",
               alignItems: "center",
               gap: 2,
+
+              p: 2,
             }}
           >
             <NavLink
               style={({ isActive }) => (isActive ? isActiveStyle : null)}
-              to="/get-started"
-              sx={{ flexGrow: 0 }}
+              to="/moving-process"
+              sx={{ flexGrow: 0, my: 1, p: 3 }}
             >
-              <Button
-                size={size}
-                variant="outlined"
+              <Box
+                sx={{
+                  display: "inline-block",
+                  p: 2,
+                }}
               >
-                <Box
-                  sx={{
-                    display: "inline-block",
-                    padding: "0.5",
-                    color: "#fff",
-                  }}
-                >
-                  Get Started
-                </Box>
-              </Button>
+                Get Started
+              </Box>
             </NavLink>
             <NavLink
               style={({ isActive }) => (isActive ? isActiveStyle : null)}
               to="/my-items"
-              sx={{ flexGrow: 0 }}
+              sx={{ flexGrow: 0, my: 1, p: 3 }}
             >
-              <Button variant="outlined">
-                <Box
-                  sx={{
-                    display: "inline-block",
-                    padding: "0.5",
-                    color: "#FF515E",
-                  }}
-                >
-                  My Items
-                </Box>
-              </Button>
+              <Box
+                sx={{
+                  display: "inline-block",
+                  p: 2,
+                }}
+              >
+                My Items
+              </Box>
             </NavLink>
             <NavLink
               style={({ isActive }) => (isActive ? isActiveStyle : null)}
               to="/compare"
-              sx={{ flexGrow: 0 }}
+              sx={{ flexGrow: 0, my: 1, p: 3 }}
             >
-              <Button variant="outlined">
-                <Box
-                  sx={{
-                    display: "inline-block",
-                    padding: "0.5",
-                    color: "#FF515E",
-                  }}
-                >
-                  Compare
-                </Box>
-              </Button>
+              <Box
+                sx={{
+                  display: "inline-block",
+                  p: 2,
+                }}
+              >
+                Compare
+              </Box>
             </NavLink>
             <NavLink
               style={({ isActive }) => (isActive ? isActiveStyle : null)}
               to="/book"
-              sx={{ flexGrow: 0 }}
+              sx={{ flexGrow: 0, my: 1, p: 3 }}
             >
-              <Button variant="outlined">
-                <Box
-                  sx={{
-                    display: "inline-block",
-                    padding: "0.5",
-                    color: "#FF515E",
-                  }}
-                >
-                  book
-                </Box>
-              </Button>
+              <Box
+                sx={{
+                  display: "inline-block",
+                  p: 2,
+                }}
+              >
+                book
+              </Box>
             </NavLink>
           </Box>
         </Container>

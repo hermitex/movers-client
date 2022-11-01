@@ -51,13 +51,18 @@ function Book() {
               </Typography>
             </Box>
             <Box>
-              <Paper elevation={7} style={styles.paperStyle}>
-                <MovingProcessNavBar size="large" color="error" />
+              <Paper
+                elevation={7}
+                style={styles.paperStyle}
+              >
+                <MovingProcessNavBar
+                  size="large"
+                  color="error"
+                />
                 <Box>
                   <div>
                     <h1>Book your Mooove! today ...</h1>
-                    <p>Secured payment - No extra charges
-                    </p>
+                    <p>Secured payment - No extra charges</p>
                   </div>
                 </Box>
                 <Box>

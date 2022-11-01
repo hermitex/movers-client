@@ -174,7 +174,7 @@ function App() {
           />
           <Route
             path="/moving-process"
-            element={<MovingProcessForm />}
+            element={<MovingProcessForm user={user} />}
           />
 
           <Route

@@ -14,7 +14,7 @@ import MovingProcessNavBar from "./MovingProcessNavBar";
 import CompareSideBar from "./CompareSideBar";
 import CompareFeed from "./CompareFeed";
 
-function Compare() {
+function Compare({ user, nextStep }) {
   const [value, setValue] = useState("");
   const styles = {
     paperContainer: {
@@ -85,6 +85,7 @@ function Compare() {
                 <MovingProcessNavBar
                   size="large"
                   color="error"
+                  nextStep={nextStep}
                 />
                 <Box
                   sx={{
@@ -158,7 +159,7 @@ function Compare() {
                       gap={2}
                     >
                       <CompareSideBar />
-                      <CompareFeed />
+                      <CompareFeed nextStep={nextStep} />
                     </Stack>
                   </Container>
                 </Box>

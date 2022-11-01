@@ -125,23 +125,24 @@ function About() {
           <Grid
             container
             justifyContent="center"
-            spacing={2}
+            spacing={10}
           >
             {steps.map(({ title, content, subtitle }) => (
               <Grid
-                key={title}
-                item
+                key={title}                
+                item sm={8} md={4}
+                
               >
                 <Paper
                   sx={{
-                    height: 140,
-                    width: "30vw",
+                    height: 250,                   
+                    Maxwidth: "30vw",
                     padding: "0.5rem",
                     backgroundColor: (theme) =>
                       theme.palette.mode === "dark" ? "#1A2027" : "#fff",
                     display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
+                    flexDirection: "column",                    
+                    // justifyContent: "space-between",
                   }}
                 >
                   <Box
@@ -154,7 +155,7 @@ function About() {
                   >
                      <CardMedia
                       component="img"
-                      height="90"
+                      height="170"
                       image={content}
                       alt="Paella dish"
                     />

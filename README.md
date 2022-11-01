@@ -4,10 +4,10 @@ Moove.com is an web app that simplifies the logistics of moving out. Users are a
 # Live link
 
 # Users should be able to
-. Enter Your Details - Indicate when, where, and what you need help with.
-. Get Your Price - Select one or two Movers and get an instant guaranteed price.
-. Book Your Move - Get connected to and scheduled with a Mover in minutes.
-. Track and Communicate - contact your Mover in real-time.
+  - Enter Your Details - Indicate when, where, and what you need help with.
+  - Get Your Price - Select one or two Movers and get an instant guaranteed price.
+  - Book Your Move - Get connected to and scheduled with a Mover in minutes.
+  - Track and Communicate - contact your Mover in real-time.
 
 ![Moover.com-home](src/assets/documentation/mooover-home.png)
   - Clone the repo at [](movers)

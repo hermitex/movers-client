@@ -7,7 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SingleItemCard from "./SingleItemCard";
 import { Box } from "@mui/system";
 
-function ItemsHolder({ onAddItem }) {
+function ItemsHolder({ onAddItem, values }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -50,16 +50,19 @@ function ItemsHolder({ onAddItem }) {
           >
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Sofa"
               category="living room"
             />
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Table"
               category="living room"
             />
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Cabinet"
               category="living room"
             />
@@ -100,16 +103,19 @@ function ItemsHolder({ onAddItem }) {
           >
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Bed"
               category="bedroom"
             />
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Side Table"
               category="bedroom"
             />
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Wardrob"
               category="bedroom"
             />
@@ -150,11 +156,13 @@ function ItemsHolder({ onAddItem }) {
           >
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Dining Table"
               category="dining"
             />
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Dining Chair"
               category="dining"
             />
@@ -195,21 +203,25 @@ function ItemsHolder({ onAddItem }) {
           >
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Cooker"
               category="kitchen"
             />
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Fridge"
               category="kitchen"
             />
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Washing machine"
               category="kitchen"
             />
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Microwave"
               category="kitchen"
             />
@@ -251,11 +263,13 @@ function ItemsHolder({ onAddItem }) {
           >
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Office Table"
               category="office"
             />
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Office Chair"
               category="office"
             />
@@ -297,6 +311,7 @@ function ItemsHolder({ onAddItem }) {
           >
             <SingleItemCard
               onAddItem={onAddItem}
+              values={values}
               item="Boxes"
               category="others"
             />

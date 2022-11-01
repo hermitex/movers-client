@@ -7,7 +7,7 @@ import MyItemsSidebar from "./MyItemsSidebar";
 
 import ItemsHolder from "./ItemsHolder";
 
-function MyItems({ nextStep, onAddItem }) {
+function MyItems({ user, nextStep, onAddItem, values }) {
   const styles = {
     paperContainer: {
       backgroundImage:
@@ -105,7 +105,10 @@ function MyItems({ nextStep, onAddItem }) {
                     justifyContent="space-between"
                   >
                     <MyItemsSidebar />
-                    <ItemsHolder onAddItem={onAddItem} />
+                    <ItemsHolder
+                      onAddItem={onAddItem}
+                      values={values}
+                    />
                   </Stack>
                 </Container>
               </Paper>

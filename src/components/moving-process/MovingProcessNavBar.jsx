@@ -3,7 +3,7 @@ import { Box, Container } from "@mui/system";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function MovingProcessNavBar({ size, color }) {
+function MovingProcessNavBar({ size, color, nextStep }) {
   const isActiveStyle = {
     backgroundColor: "#FF515E",
     borderRadius: "0.3rem",
@@ -37,62 +37,46 @@ function MovingProcessNavBar({ size, color }) {
               p: 2,
             }}
           >
-            <NavLink
-              style={({ isActive }) => (isActive ? isActiveStyle : null)}
-              to="/moving-process"
-              sx={{ flexGrow: 0, my: 1, p: 3 }}
+            <Button
+              // component={NavLink}
+              // style={({ isActive }) => (isActive ? isActiveStyle : null)}
+              variant="outlined"
+              color="error"
+              sx={{ flexGrow: 0, my: 1, px: 3 }}
+              onClick={nextStep}
             >
-              <Box
-                sx={{
-                  display: "inline-block",
-                  p: 2,
-                }}
-              >
-                Get Started
-              </Box>
-            </NavLink>
-            <NavLink
-              style={({ isActive }) => (isActive ? isActiveStyle : null)}
-              to="/my-items"
-              sx={{ flexGrow: 0, my: 1, p: 3 }}
+              Get Started
+            </Button>
+            <Button
+              // component={NavLink}
+              // style={({ isActive }) => (isActive ? isActiveStyle : null)}
+              variant="outlined"
+              color="error"
+              sx={{ flexGrow: 0, my: 1, px: 3 }}
+              onClick={nextStep}
             >
-              <Box
-                sx={{
-                  display: "inline-block",
-                  p: 2,
-                }}
-              >
-                My Items
-              </Box>
-            </NavLink>
-            <NavLink
-              style={({ isActive }) => (isActive ? isActiveStyle : null)}
-              to="/compare"
-              sx={{ flexGrow: 0, my: 1, p: 3 }}
+              My Items
+            </Button>
+            <Button
+              // component={NavLink}
+              // style={({ isActive }) => (isActive ? isActiveStyle : null)}
+              variant="outlined"
+              color="error"
+              sx={{ flexGrow: 0, my: 1, px: 3 }}
+              onClick={nextStep}
             >
-              <Box
-                sx={{
-                  display: "inline-block",
-                  p: 2,
-                }}
-              >
-                Compare
-              </Box>
-            </NavLink>
-            <NavLink
-              style={({ isActive }) => (isActive ? isActiveStyle : null)}
-              to="/book"
-              sx={{ flexGrow: 0, my: 1, p: 3 }}
+              Compare
+            </Button>
+            <Button
+              // component={NavLink}
+              // style={({ isActive }) => (isActive ? isActiveStyle : null)}
+              variant="outlined"
+              color="error"
+              sx={{ flexGrow: 0, my: 1, px: 3 }}
+              onClick={nextStep}
             >
-              <Box
-                sx={{
-                  display: "inline-block",
-                  p: 2,
-                }}
-              >
-                book
-              </Box>
-            </NavLink>
+              book
+            </Button>
           </Box>
         </Container>
       </AppBar>

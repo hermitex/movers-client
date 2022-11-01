@@ -9,8 +9,12 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import useFetch from "../hooks/useFetch";
 
-function SingleItemCard({ item, onAddItem, category }) {
+function SingleItemCard({ item, onAddItem, category, values }) {
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+  let rates = useFetch(`${baseUrl}/rates`);
+  console.log(rates);
   const [cat, setCat] = useState(null);
   const [data, setData] = useState({
     item: "",

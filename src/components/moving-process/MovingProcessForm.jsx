@@ -4,7 +4,7 @@ import Compare from "./Compare";
 import GetStarted from "./GetStarted";
 import MyItems from "./MyItems";
 
-function MovingProcessForm({ getStartedFromHome }) {
+function MovingProcessForm({ user, getStartedFromHome }) {
   const [step, setStep] = useState(1);
 
   const [component, setComponent] = useState(null);
@@ -52,6 +52,7 @@ function MovingProcessForm({ getStartedFromHome }) {
   };
 
   useEffect(() => {
+    console.log(getStartedFromHome);
     const values = { getStartedData, items, quotes };
 
     switch (step) {
@@ -61,6 +62,7 @@ function MovingProcessForm({ getStartedFromHome }) {
             nextStep={nextStep}
             setGetStartedData={setGetStartedData}
             values={values}
+            user={user}
           />
         );
         break;
@@ -70,6 +72,7 @@ function MovingProcessForm({ getStartedFromHome }) {
             nextStep={nextStep}
             onAddItem={onAddItem}
             values={values}
+            user={user}
           />
         );
         break;
@@ -79,6 +82,7 @@ function MovingProcessForm({ getStartedFromHome }) {
             nextStep={nextStep}
             handleChange={handleChange}
             values={values}
+            user={user}
           />
         );
         break;
@@ -88,6 +92,7 @@ function MovingProcessForm({ getStartedFromHome }) {
             nextStep={nextStep}
             handleChange={handleChange}
             values={values}
+            user={user}
           />
         );
         break;

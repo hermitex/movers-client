@@ -5,7 +5,7 @@ import React from "react";
 
 import MovingProcessNavBar from "./MovingProcessNavBar";
 
-function Book() {
+function Book({ user }) {
   const styles = {
     paperContainer: {
       backgroundImage:

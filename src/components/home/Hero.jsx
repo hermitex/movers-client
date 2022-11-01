@@ -208,7 +208,7 @@ function Hero() {
                 </Button>
               </Link>
               <Link
-                to="/get-started"
+                to="/moving-process"
                 sx={{ flexGrow: 0 }}
               >
                 <Button variant="contained">Get Started</Button>

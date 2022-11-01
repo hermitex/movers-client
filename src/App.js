@@ -42,7 +42,7 @@ import About from "./components/About/About";
 import Services from "./components/Services/Services";
 import Contact from "./components/Contacts/Contact";
 import MovingProcessForm from "./components/moving-process/MovingProcessForm";
-
+import ItemsHolder from "./components/moving-process/ItemsHolder";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -99,6 +99,7 @@ function App() {
             path="/dashboard/test"
             element={<Test user={user} />}
           />
+
           <Route
             path="/dashboard"
             element={
@@ -123,7 +124,7 @@ function App() {
                 user={user}
                 setIShowFooter={setIShowFooter}
                 sidebarlinks={sideLinks}
-                component={<Datatable user={user}/>}
+                component={<Datatable user={user} />}
               />
             }
           />
@@ -173,7 +174,7 @@ function App() {
           />
           <Route
             path="/moving-process"
-            element={<MovingProcessForm />}
+            element={<MovingProcessForm user={user} />}
           />
 
           <Route
@@ -198,21 +199,10 @@ function App() {
             element={<LoginSignup onLogin={setUser} />}
           />
           <Route
-            path="/get-started"
+            path="/moving-process"
             element={<GetStarted user={user} />}
           />
-          <Route
-            path="/my-items"
-            element={<MyItems user={user} />}
-          />
-          <Route
-            path="/compare"
-            element={<Compare user={user} />}
-          />
-          <Route
-            path="/book"
-            element={<Book user={user} />}
-          />
+
           <Route
             path="/map"
             element={<Map user={user} />}
@@ -232,25 +222,24 @@ function App() {
           <Route
             path="signup"
             element={<Singnup onLogin={setUser} />}
-          />          
+          />
           <Route
             path="*"
             element={<Error404 />}
           />
           <Route
             path="/about"
-            element={<About user={user}/>}
+            element={<About user={user} />}
           />
           <Route
             path="/services"
-            element={<Services user={user}/>}
+            element={<Services user={user} />}
           />
           <Route
             path="/contact"
-            element={<Contact user={user}/>}
+            element={<Contact user={user} />}
           />
         </Route>
-        
       </Routes>
       {isShowFooter ? <Footer /> : null}
     </Router>

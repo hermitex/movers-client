@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import MovingProcessNavBar from "./MovingProcessNavBar";
 
@@ -60,6 +60,7 @@ const houseOptions = [
 ];
 
 function GetStarted({ user, nextStep, setGetStartedData }) {
+  console.log(user);
   const styles = {
     paperContainer: {
       backgroundImage:
@@ -125,6 +126,10 @@ function GetStarted({ user, nextStep, setGetStartedData }) {
 
     setGetStartedData(getStartedData);
   };
+  const [currentUser, setCurrentUser] = useState(null);
+  useEffect(() => {
+    setCurrentUser(user);
+  }, [user, currentUser]);
 
   return (
     <Box>
@@ -220,7 +225,7 @@ function GetStarted({ user, nextStep, setGetStartedData }) {
                             color: "#2f2f2f",
                           }}
                         >
-                          Guess what {user?.full_name}! No hidden Fees
+                          Guess what {currentUser?.full_name}! No hidden Fees
                         </Typography>
                       </Box>
                     </Box>

@@ -191,7 +191,7 @@ const ratesColumns = [
     field: "category",
     headerName: "Category",
     sortable: true,
-    width: 230,
+    width: 100,
   },
   {
     field: "flat_price",
@@ -229,7 +229,13 @@ const ratesColumns = [
       </div>
     ),
   },
-
+  {
+    field: "count",
+    headerName: "Count",
+    sortable: true,
+    align: "center",
+    width: 95,
+  },
   {
     field: "discount",
     headerName: "discount",
@@ -297,6 +303,7 @@ const useDatatableSource = () => {
             flat_price: rate.flat_price,
             price_per_unit: rate.price_per_unit,
             discount: rate.discount,
+            count: rate.count,
             status: "Active",
           }));
       }

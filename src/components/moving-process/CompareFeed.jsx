@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import CompareFeedCard from "./CompareFeedCard";
 
-function CompareFeed() {
+function CompareFeed({ nextStep }) {
   return (
     <Box
       flex={4}
@@ -14,13 +14,13 @@ function CompareFeed() {
         gap: 1,
       }}
     >
-      <CompareFeedCard />
-      <CompareFeedCard />
-      <CompareFeedCard />
-      <CompareFeedCard />
-      <CompareFeedCard />
-      <CompareFeedCard />
-      <CompareFeedCard />
+      <CompareFeedCard nextStep={nextStep} />
+      <CompareFeedCard nextStep={nextStep} />
+      <CompareFeedCard nextStep={nextStep} />
+      <CompareFeedCard nextStep={nextStep} />
+      <CompareFeedCard nextStep={nextStep} />
+      <CompareFeedCard nextStep={nextStep} />
+      <CompareFeedCard nextStep={nextStep} />
     </Box>
   );
 }

@@ -3,7 +3,7 @@ import { Box, Container } from "@mui/system";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function MovingProcessNavBar({ size, color }) {
+function MovingProcessNavBar({ size, color, nextStep }) {
   const isActiveStyle = {
     backgroundColor: "#FF515E",
     borderRadius: "0.3rem",
@@ -33,79 +33,50 @@ function MovingProcessNavBar({ size, color }) {
               justifyContent: "center",
               alignItems: "center",
               gap: 2,
+
+              p: 2,
             }}
           >
-            <NavLink
-              style={({ isActive }) => (isActive ? isActiveStyle : null)}
-              to="/get-started"
-              sx={{ flexGrow: 0 }}
+            <Button
+              // component={NavLink}
+              // style={({ isActive }) => (isActive ? isActiveStyle : null)}
+              variant="outlined"
+              color="error"
+              sx={{ flexGrow: 0, my: 1, px: 3 }}
+              onClick={nextStep}
             >
-              <Button
-                size={size}
-                variant="outlined"
-              >
-                <Box
-                  sx={{
-                    display: "inline-block",
-                    padding: "0.5",
-                    color: "#fff",
-                  }}
-                >
-                  Get Started
-                </Box>
-              </Button>
-            </NavLink>
-            <NavLink
-              style={({ isActive }) => (isActive ? isActiveStyle : null)}
-              to="/my-items"
-              sx={{ flexGrow: 0 }}
+              Get Started
+            </Button>
+            <Button
+              // component={NavLink}
+              // style={({ isActive }) => (isActive ? isActiveStyle : null)}
+              variant="outlined"
+              color="error"
+              sx={{ flexGrow: 0, my: 1, px: 3 }}
+              onClick={nextStep}
             >
-              <Button variant="outlined">
-                <Box
-                  sx={{
-                    display: "inline-block",
-                    padding: "0.5",
-                    color: "#FF515E",
-                  }}
-                >
-                  My Items
-                </Box>
-              </Button>
-            </NavLink>
-            <NavLink
-              style={({ isActive }) => (isActive ? isActiveStyle : null)}
-              to="/compare"
-              sx={{ flexGrow: 0 }}
+              My Items
+            </Button>
+            <Button
+              // component={NavLink}
+              // style={({ isActive }) => (isActive ? isActiveStyle : null)}
+              variant="outlined"
+              color="error"
+              sx={{ flexGrow: 0, my: 1, px: 3 }}
+              onClick={nextStep}
             >
-              <Button variant="outlined">
-                <Box
-                  sx={{
-                    display: "inline-block",
-                    padding: "0.5",
-                    color: "#FF515E",
-                  }}
-                >
-                  Compare
-                </Box>
-              </Button>
-            </NavLink>
-            <NavLink
-              style={({ isActive }) => (isActive ? isActiveStyle : null)}
-              to="/book"
-              sx={{ flexGrow: 0 }}
+              Compare
+            </Button>
+            <Button
+              // component={NavLink}
+              // style={({ isActive }) => (isActive ? isActiveStyle : null)}
+              variant="outlined"
+              color="error"
+              sx={{ flexGrow: 0, my: 1, px: 3 }}
+              onClick={nextStep}
             >
-              <Button variant="outlined">
-                <Box
-                  sx={{
-                    display: "inline-block",
-                    padding: "0.5",
-                    color: "#FF515E",
-                  }}
-                >
-                  book
-                </Box>
-              </Button>
-            </NavLink>
+              book
+            </Button>
           </Box>
         </Container>
       </AppBar>

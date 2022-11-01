@@ -4,10 +4,10 @@ import React from "react";
 
 import MovingProcessNavBar from "./MovingProcessNavBar";
 import MyItemsSidebar from "./MyItemsSidebar";
-import MyItemsFeed from "./MyItemsFeed";
-import { useNavigate } from "react-router-dom";
 
-function MyItems({ nextStep }) {
+import ItemsHolder from "./ItemsHolder";
+
+function MyItems({ user, nextStep, onAddItem, values }) {
   const styles = {
     paperContainer: {
       backgroundImage:
@@ -105,7 +105,10 @@ function MyItems({ nextStep }) {
                     justifyContent="space-between"
                   >
                     <MyItemsSidebar />
-                    <MyItemsFeed />
+                    <ItemsHolder
+                      onAddItem={onAddItem}
+                      values={values}
+                    />
                   </Stack>
                 </Container>
               </Paper>

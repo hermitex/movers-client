@@ -30,12 +30,23 @@ function Services() {
           bgcolor: "#2a2a2a",
           padding: "10px 0px",
           justifyContent: "center",
-          height: "30vh",
+          height: "50vh",
         }}
       >
-        <Grid sx={{ flexGrow: 1, my: 1 }} container spacing={2}>
-          <Grid item xs={12}>
-            <Grid container justifyContent="center" spacing={2}>
+        <Grid
+          sx={{ flexGrow: 1, my: 1 }}
+          container
+          spacing={2}
+        >
+          <Grid
+            item
+            xs={12}
+          >
+            <Grid
+              container
+              justifyContent="center"
+              spacing={2}
+            >
               <Grid item>
                 <ServiceCard
                   description="Moving within the same state or within a short distance?"
@@ -81,7 +92,11 @@ function Services() {
             LOCAL MOVING
           </Typography>
           <Divider />
-          <Typography variant="h6" textAlign="center" fontSize="1rem">
+          <Typography
+            variant="h6"
+            textAlign="center"
+            fontSize="1rem"
+          >
             Moving locally usually means moving within the same county and is
             also referred to as intracounty moving. The easiest way to book
             local movers is through Mooove. Mooove allows you to find
@@ -114,7 +129,11 @@ function Services() {
             LONG-DISTANCE MOVING
           </Typography>
           <Divider />
-          <Typography variant="h6" textAlign="center" fontSize="1rem">
+          <Typography
+            variant="h6"
+            textAlign="center"
+            fontSize="1rem"
+          >
             Moving long-distance usually means moving between counties and is
             also referred to as intercounty moving. The easiest way to book
             local movers is through Mooove. Mooove allows you to find
@@ -148,7 +167,11 @@ function Services() {
             CORPORATE MOVING
           </Typography>
           <Divider />
-          <Typography variant="h6" textAlign="center" fontSize="1rem">
+          <Typography
+            variant="h6"
+            textAlign="center"
+            fontSize="1rem"
+          >
             Moving corporately usually means moving business premises. The
             easiest way to book corporate movers is through Mooove. Mooove
             allows you to find experienced, reliable movers in your area,

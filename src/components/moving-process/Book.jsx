@@ -199,8 +199,6 @@ function Book({ user }) {
                       gap: 2,
                       flex: 1,
                       textAlign: "center",
-                      // #FF515E
-                      // "& > :not(style)": { m: 1, width: "25ch" }
                     }}
                   >
                     <Typography

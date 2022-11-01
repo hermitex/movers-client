@@ -70,6 +70,7 @@ function Footer() {
         alignItems: "center",
         width: "100%",
         bgcolor: "#2F2F2F",
+        bottom: 0,
       }}
     >
       <Box

@@ -1,4 +1,7 @@
 # Movers
+Moove.com is an web app that simplifies the logistics of moving out. Users are able to login and indicate the details for when and where to be moved to, get the price and Book a move, And he/she will be able to track and communicate with the mover in time..
+
+
 ![Moover.com-home](src/assets/documentation/mooover-home.png)
   - Clone the repo at [](movers)
   - Open the project folder in your favorite text editor (VSCode recommend)

@@ -9,6 +9,8 @@ Moove.com is an web app that simplifies the logistics of moving out. Users are a
   - Book Your Move - Get connected to and scheduled with a Mover in minutes.
   - Track and Communicate - contact your Mover in real-time.
 
+Frontend Design (Figma) Access the UI design (figma)
+
 ![Moover.com-home](src/assets/documentation/mooover-home.png)
   - Clone the repo at [](movers)
   - Open the project folder in your favorite text editor (VSCode recommend)

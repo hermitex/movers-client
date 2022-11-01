@@ -46,29 +46,15 @@ function Datatable({ user }) {
             gap: 0.2,
           }}
         >
-          <NavLink
-            to={{ pathname: "/dashboard/profile" }}
-            state={{ row }}
-          >
-            <Button
-              type="button"
-              variant="outlined"
-              color="success"
-            >
+          <NavLink to={{ pathname: "/dashboard/profile" }} state={{ row }}>
+            <Button type="button" variant="outlined" color="success">
               <ion-icon name="eye" />
               view
             </Button>
           </NavLink>
           {userType === "customer" ? (
-            <NavLink
-              to={{ pathname: "/dashboard/profile" }}
-              state={{ row }}
-            >
-              <Button
-                type="button"
-                variant="outlined"
-                color="success"
-              >
+            <NavLink to={{ pathname: "/dashboard/profile" }} state={{ row }}>
+              <Button type="button" variant="outlined" color="success">
                 <ion-icon name="eye" />
                 book
               </Button>
@@ -76,10 +62,7 @@ function Datatable({ user }) {
           ) : null}
           {userType === "customer" || userType === "mover" ? null : (
             <>
-              <NavLink
-                to={{ pathname: "/dashboard/edit" }}
-                state={{ row }}
-              >
+              <NavLink to={{ pathname: "/dashboard/edit" }} state={{ row }}>
                 <Button
                   type="button"
                   onClick={(e) => handleClick(e, row)}
@@ -97,10 +80,7 @@ function Datatable({ user }) {
                 variant="outlined"
                 color="error"
               >
-                <ion-icon
-                  name="trash"
-                  action="delete"
-                />
+                <ion-icon name="trash" action="delete" />
                 delete
               </Button>
             </>
@@ -134,12 +114,8 @@ function Datatable({ user }) {
           >
             {resource}
           </Typography>
-          <NavLink to={`/dashboard/new`}>
-            <Button
-              type="button"
-              variant="contained"
-              color="success"
-            >
+          {userType === "customer" || userType === "mover" ? null: <NavLink to={`/dashboard/new`}>
+            <Button type="button" variant="contained" color="success">
               <AddCircleIcon />
               Add new{" "}
               {resource
@@ -147,7 +123,7 @@ function Datatable({ user }) {
                 .slice(0, resource.length - 1)
                 .join("")}
             </Button>
-          </NavLink>
+          </NavLink>}
         </Box>
         {console.log(cols, dataRows)}
         {dataRows === null || cols === null ? (
@@ -167,3 +143,58 @@ function Datatable({ user }) {
 }
 
 export default Datatable;
+
+// const bookAction = ()=> {
+//   <NavLink to={{ pathname: "/dashboard/profile" }} state={{ row }}>
+//     <Button type="button" variant="outlined" color="success">
+//       <ion-icon name="eye" />
+//       book
+//     </Button>
+//   </NavLink>
+// };
+
+// const editAction =()=> { 
+//   <NavLink to={{ pathname: "/dashboard/edit" }} state={{ row }}>
+//     <Button
+//       type="button"
+//       onClick={(e) => handleClick(e, row)}
+//       variant="outlined"
+//       color="warning"
+//     >
+//       <ion-icon name="create" />
+//       edit
+//     </Button>
+//   </NavLink>
+// };
+
+// const viewAction = ()=>{
+//   <NavLink to={{ pathname: "/dashboard/profile" }} state={{ row }}>
+//     <Button type="button" variant="outlined" color="success">
+//       <ion-icon name="eye" />
+//       view
+//     </Button>
+//   </NavLink>
+// };
+
+// const deleteAction = () => {
+//   <Button
+//     type="button"
+//     onClick={(e) => handleClick(e, row)}
+//     variant="outlined"
+//     color="error"
+//   >
+//     <ion-icon name="trash" action="delete" />
+//     delete
+//   </Button>
+// };
+
+// if(userType === "customer"){
+//   {bookAction()}
+// } else if (userType === "mover"){
+//   {viewAction()}
+//   {editAction()}
+// } else{
+//   {viewAction()}
+//   {editAction()}
+//   {deleteAction()}
+// };

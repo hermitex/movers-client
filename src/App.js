@@ -231,11 +231,11 @@ function App() {
           />
           <Route
             path="/services"
-            element={<Services />}
+            element={<Services user={user}/>}
           />
           <Route
             path="/contact"
-            element={<Contact />}
+            element={<Contact user={user}/>}
           />
         </Route>
         

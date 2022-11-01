@@ -56,11 +56,6 @@ const moverSideBarData = [
     cName: "nav-text",
   },
   {
-    title: "Rates",
-    path: "/dashboard/rates",
-    cName: "nav-text",
-  },
-  {
     title: "Pending Orders",
     path: "/dashboard/orders",
     cName: "nav-text",

@@ -19,61 +19,61 @@ function ItemTable() {
   const rows = [
     {
       id: 1,
-      car: "Honda Buick 2021",
+      houseType: "One Bedroom",
       img: image1,
-      customer: "John Doe",
-      date: "1 Sep",
-      amount: "1200",
+      customer: "Denis Maina",
+      date: "3 Aug",
+      amount: "5200",
       method: "Online",
       status: "Approved",
     },
     {
       id: 2,
-      car: "Honda Buick 2021",
+      houseType: "Two Bedroom",
       img: image2,
-      customer: "John Doe",
-      date: "1 Sep",
-      amount: "1200",
+      customer: "Tiberius Mairura",
+      date: "1 Jan",
+      amount: "6200",
       method: "Online",
       status: "Approved",
     },
     {
       id: 3,
-      car: "Honda Buick 2021",
+      houseType: "Bedsitter",
       img: image3,
-      customer: "John Doe",
-      date: "1 Sep",
-      amount: "1200",
+      customer: "Elijah Bundi",
+      date: "2 Nov",
+      amount: "3800",
       method: "Online",
       status: "Pending",
     },
     {
       id: 4,
-      car: "Honda Buick 2021",
+      houseType: "One bedroom",
       img: image4,
-      customer: "John Doe",
-      date: "1 Sep",
-      amount: "1200",
+      customer: "Festus Kiprop",
+      date: "1 Apr",
+      amount: "5200",
       method: "Online",
       status: "Approved",
     },
     {
       id: 5,
-      car: "Honda Buick 2021",
+      houseType: "Three bedroom",
       img: image5,
-      customer: "John Doe",
-      date: "1 Sep",
-      amount: "1200",
+      customer: "Jackline Jebet",
+      date: "31 July",
+      amount: "4500",
       method: "Online",
       status: "Pending",
     },
     {
       id: 6,
-      car: "Honda Buick 2021",
+      houseType: "Two bedroom",
       img: image6,
       customer: "John Doe",
       date: "1 Sep",
-      amount: "1200",
+      amount: "3000",
       method: "Online",
       status: "Pending",
     },
@@ -88,10 +88,10 @@ function ItemTable() {
         <TableHead>
           <TableRow>
             <TableCell>ID</TableCell>
-            <TableCell>Car</TableCell>
+            <TableCell>House-Type</TableCell>
             <TableCell>Customer&nbsp;</TableCell>
             <TableCell>Date&nbsp;</TableCell>
-            <TableCell>Amount&nbsp;($)</TableCell>
+            <TableCell>Amount&nbsp;(Ksh)</TableCell>
             <TableCell>Method&nbsp;</TableCell>
             <TableCell>Status&nbsp;</TableCell>
           </TableRow>
@@ -113,14 +113,14 @@ function ItemTable() {
                   }}
                 >
                   <div
-                    className="bg-hero-pattern  bg-no-repeat bg-cover bg-center rounded-md mr-2 hover:opacity-100 opacity-80 cursor-pointer  hover:scale-110 transition duration-300 ease-in-out"
-                    style={{
-                      height: "10vh",
-                      width: "10vw",
-                      backgroundImage: `url(${row.img})`,
-                    }}
+                    // className="bg-hero-pattern  bg-no-repeat bg-cover bg-center rounded-md mr-2 hover:opacity-100 opacity-80 cursor-pointer  hover:scale-110 transition duration-300 ease-in-out"
+                    // style={{
+                    //   height: "10vh",
+                    //   width: "10vw",
+                    //   backgroundImage: `url(${row.img})`,
+                    // }}
                   />
-                  {row.car}
+                  {row.houseType}
                 </div>
               </TableCell>
               <TableCell>{row.customer}</TableCell>

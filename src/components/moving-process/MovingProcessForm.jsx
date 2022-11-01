@@ -52,7 +52,6 @@ function MovingProcessForm({ user, getStartedFromHome }) {
   };
 
   useEffect(() => {
-    console.log(getStartedFromHome);
     const values = { getStartedData, items, quotes };
 
     switch (step) {

@@ -274,7 +274,7 @@ const useDatatableSource = () => {
             id: customer.id,
             full_name: customer.full_name,
             img: image1,
-            location: customer.location.name,
+            // location: customer?.location.name,
             orders: 0,
             phone: customer.phone,
             email: customer.email,
@@ -283,14 +283,14 @@ const useDatatableSource = () => {
       } else if (resource === "movers") {
         rows =
           data &&
-          data?.map((customer) => ({
-            id: customer.id,
-            full_name: customer.full_name,
+          data?.map((mover) => ({
+            id: mover.id,
+            full_name: mover.full_name,
             img: image1,
-            location: customer.location.name,
+            // location: mover?.location.name,
             orders: 0,
-            phone: customer.phone,
-            email: customer.email,
+            phone: mover.phone,
+            email: mover.email,
             status: "Active",
           }));
       } else if (resource === "rates") {

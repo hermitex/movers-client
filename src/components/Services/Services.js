@@ -30,7 +30,7 @@ function Services() {
           bgcolor: "#2a2a2a",
           padding: "10px 0px",
           justifyContent: "center",
-          height: "50vh",
+          height: "60vh",
         }}
       >
         <Grid

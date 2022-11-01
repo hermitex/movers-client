@@ -10,107 +10,29 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-function SingleItemCard({ item }) {
-  const [count, setCount] = useState(0);
+function SingleItemCard({ item, onAddItem, category }) {
+  const [cat, setCat] = useState(null);
   const [data, setData] = useState({
-    cabinet: "",
-    table: "",
-    side_table: "",
-    sofa: "",
-    bed: "",
-    cooker: "",
-    fridge: "",
-    washing_machine: "",
-    microwave: "",
-    dining_table: "",
-    dining_chair: "",
+    item: "",
+    category: "",
+    count: 0,
   });
 
-  const handleIncrement = (event) => {
-    setCount((count) => count + 1);
-    // console.log(`add ${item}`);
+  const handleIncrement = (event, item, category) => {
+    setCat(category);
+    setData({ ...data, item, category, count: data.count + 1 });
   };
 
-  const handleDecrement = (event) => {
-    setCount((count) => count - 1);
+  const handleDecrement = (event, item, category) => {
+    setCat(category);
+    setData({ ...data, item, category, count: data.count - 1 });
   };
+
   useEffect(() => {
-    const myItemsData = {
-      living_room_items: {
-        sofa: {
-          name: "sofa",
-          count: data.sofa,
-          category: "living room",
-        },
-        table: {
-          name: "table",
-          count: data.table,
-          category: "living room",
-        },
-        cabinet: {
-          name: "cabinet",
-          count: 0,
-          category: "living room",
-        },
-      },
-      dining_room_items: {
-        dining_table: {
-          name: "dining table",
-          count: data.dining_table,
-          category: "dining room",
-        },
-        dining_chair: {
-          name: "dining chair",
-          count: data.dining_chair,
-          category: "dining room",
-        },
-      },
-      kitchen_items: {
-        cooker: {
-          name: "cooker",
-          count: 0,
-          category: "kitchen",
-        },
-        washing_machine: {
-          name: "washing machine",
-          count: data.washing_machine,
-          category: "kitchen",
-        },
-        fridge: {
-          name: "fridge",
-          count: data.fridge,
-          category: "kitchen",
-        },
-        microwave: {
-          name: "microwave",
-          count: data.microwave,
-          category: "kitchen",
-        },
-      },
-      bed_room_items: {
-        bed: {
-          name: "bed",
-          count: data.bed,
-          category: "bedroom",
-        },
-        side_table: {
-          name: "side table",
-          count: data.side_table,
-          category: "bedroom",
-        },
-      },
-    };
-    console.log(myItemsData);
-    return () => {
-      const name = item.toLowerCase();
-      setData({
-        ...data,
-        [name]: item,
-        count: count,
-        category: [data[name]].category,
-      });
-    };
-  }, [item, count]);
+    if (data.item) {
+      onAddItem(data);
+    }
+  }, [data]);
 
   return (
     <Card
@@ -141,9 +63,9 @@ function SingleItemCard({ item }) {
         <Button
           size="small"
           variant="outlined"
-          onClick={handleIncrement}
+          onClick={(event) => handleIncrement(event, item, category)}
         >
-          {count}
+          {data.count}
         </Button>
         <ButtonGroup
           size="small"
@@ -151,13 +73,13 @@ function SingleItemCard({ item }) {
         >
           <Button
             item={item}
-            onClick={handleDecrement}
+            onClick={(event) => handleDecrement(event, item, category)}
           >
             -
           </Button>
           <Button
             item={item}
-            onClick={handleIncrement}
+            onClick={(event) => handleIncrement(event, item, category)}
           >
             +
           </Button>

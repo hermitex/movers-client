@@ -53,7 +53,7 @@ function Datatable({ user }) {
             </Button>
           </NavLink>
           {userType === "customer" ? (
-            <NavLink to={{ pathname: "/dashboard/profile" }} state={{ row }}>
+            <NavLink to={{ pathname: "/get-started" }} state={{ row }}>
               <Button type="button" variant="outlined" color="success">
                 <ion-icon name="eye" />
                 book

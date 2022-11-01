@@ -7,14 +7,30 @@ import {
   Typography,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 
 import MovingProcessNavBar from "./MovingProcessNavBar";
 import CompareSideBar from "./CompareSideBar";
 import CompareFeed from "./CompareFeed";
+import quoteGenerator from "../hooks/quoteGenerator";
+import useFetch from "../hooks/useFetch";
+import ProgressIndicator from "../utils/ProgressIndicator";
 
-function Compare({ user, nextStep }) {
+function Compare({ user, nextStep, values }) {
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+  let rates = useFetch(`${baseUrl}/rates`);
+  console.log(rates);
+
+  const [quotes, setQuotes] = useState(null);
+
+  useEffect(() => {
+    if (rates) {
+      setQuotes(quoteGenerator(values, rates));
+    }
+  }, [rates]);
+  console.log(quotes);
+
   const [value, setValue] = useState("");
   const styles = {
     paperContainer: {
@@ -159,7 +175,14 @@ function Compare({ user, nextStep }) {
                       gap={2}
                     >
                       <CompareSideBar />
-                      <CompareFeed nextStep={nextStep} />
+                      {!quotes ? (
+                        <ProgressIndicator />
+                      ) : (
+                        <CompareFeed
+                          nextStep={nextStep}
+                          quotes={quotes}
+                        />
+                      )}
                     </Stack>
                   </Container>
                 </Box>

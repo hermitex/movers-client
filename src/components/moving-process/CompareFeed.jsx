@@ -1,8 +1,9 @@
 import { Box } from "@mui/material";
 import React from "react";
+import ProgressIndicator from "../utils/ProgressIndicator";
 import CompareFeedCard from "./CompareFeedCard";
 
-function CompareFeed({ nextStep }) {
+function CompareFeed({ nextStep, quotes }) {
   return (
     <Box
       flex={4}
@@ -14,13 +15,14 @@ function CompareFeed({ nextStep }) {
         gap: 1,
       }}
     >
-      <CompareFeedCard nextStep={nextStep} />
-      <CompareFeedCard nextStep={nextStep} />
-      <CompareFeedCard nextStep={nextStep} />
-      <CompareFeedCard nextStep={nextStep} />
-      <CompareFeedCard nextStep={nextStep} />
-      <CompareFeedCard nextStep={nextStep} />
-      <CompareFeedCard nextStep={nextStep} />
+      {!quotes ? (
+        <ProgressIndicator />
+      ) : (
+        <CompareFeedCard
+          nextStep={nextStep}
+          quotes={quotes}
+        />
+      )}
     </Box>
   );
 }

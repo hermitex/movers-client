@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Book from "./Book";
 import Compare from "./Compare";
 import GetStarted from "./GetStarted";
 import MyItems from "./MyItems";
@@ -75,6 +76,15 @@ function MovingProcessForm({ getStartedFromHome }) {
       case 3:
         setComponent(
           <Compare
+            nextStep={nextStep}
+            handleChange={handleChange}
+            values={values}
+          />
+        );
+        break;
+      case 4:
+        setComponent(
+          <Book
             nextStep={nextStep}
             handleChange={handleChange}
             values={values}

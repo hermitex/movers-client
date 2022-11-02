@@ -59,8 +59,8 @@ const houseOptions = [
   { id: 6, house: "6 Bedroom, small(600 - 800 sqf)" },
 ];
 
-function GetStarted({ user, nextStep, setGetStartedData, stepper }) {
-  console.log(user);
+function GetStarted({ user, nextStep, values, setGetStartedData, stepper }) {
+  console.log(values);
   const styles = {
     paperContainer: {
       backgroundImage:
@@ -84,12 +84,7 @@ function GetStarted({ user, nextStep, setGetStartedData, stepper }) {
   const [suggestions, setSuggestions] = useState([]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const [data, setData] = useState({
-    house_type: "",
-    moving_from: "",
-    moving_to: "",
-    moving_date: "",
-  });
+  const [data, setData] = useState(values.getStartedData);
 
   const handleChange = async (event, value, name) => {
     if (name === "moving_date") {

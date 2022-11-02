@@ -13,12 +13,17 @@ import { Box } from "@mui/system";
 import ProgressIndicator from "../utils/ProgressIndicator";
 import numberFormatter from "../utils/numberFormatter";
 
-function CompareFeedCard({ nextStep, quotes }) {
+function CompareFeedCard({ prevStep, nextStep, onSelect, quotes }) {
   const [availableQuotes, setAvailableQuotes] = useState(null);
   useEffect(() => {
     setAvailableQuotes(quotes);
   }, [quotes]);
-  console.log(availableQuotes);
+
+  const handleClick = (data) => {
+    onSelect(data);
+    nextStep();
+  };
+
   return (
     <>
       {!availableQuotes ? (
@@ -143,7 +148,7 @@ function CompareFeedCard({ nextStep, quotes }) {
                     width: "140px",
                     fontSize: "18px",
                   }}
-                  onClick={nextStep}
+                  onClick={() => handleClick(quote)}
                   quote={quote}
                 >
                   SELECT

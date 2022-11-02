@@ -17,7 +17,7 @@ import quoteGenerator from "../hooks/quoteGenerator";
 import useFetch from "../hooks/useFetch";
 import ProgressIndicator from "../utils/ProgressIndicator";
 
-function Compare({ user, stepper, nextStep, values }) {
+function Compare({ user, onSelect, stepper, prevStep, nextStep, values }) {
   const baseUrl = process.env.REACT_APP_BASE_URL;
   let rates = useFetch(`${baseUrl}/rates`);
   console.log(rates);
@@ -29,7 +29,6 @@ function Compare({ user, stepper, nextStep, values }) {
       setQuotes(quoteGenerator(values, rates));
     }
   }, [rates]);
-  console.log(quotes);
 
   const [value, setValue] = useState("");
   const styles = {
@@ -122,7 +121,7 @@ function Compare({ user, stepper, nextStep, values }) {
                       color: "#000",
                     }}
                   >
-                    EXACT PRICES, 5 movers found.
+                    EXACT PRICES, {quotes?.length} movers found.
                   </Typography>
                   <Box
                     sx={{
@@ -175,12 +174,14 @@ function Compare({ user, stepper, nextStep, values }) {
                       padding="10px 10px"
                       gap={2}
                     >
-                      <CompareSideBar />
+                      <CompareSideBar prevStep={prevStep} />
                       {!quotes ? (
                         <ProgressIndicator />
                       ) : (
                         <CompareFeed
                           nextStep={nextStep}
+                          prevStep={prevStep}
+                          onSelect={onSelect}
                           quotes={quotes}
                         />
                       )}

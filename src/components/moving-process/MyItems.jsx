@@ -7,7 +7,7 @@ import MyItemsSidebar from "./MyItemsSidebar";
 
 import ItemsHolder from "./ItemsHolder";
 
-function MyItems({ user, stepper, nextStep, onAddItem, values }) {
+function MyItems({ user, stepper, nextStep, prevStep, onAddItem, values }) {
   const styles = {
     paperContainer: {
       backgroundImage:
@@ -86,16 +86,33 @@ function MyItems({ user, stepper, nextStep, onAddItem, values }) {
                   >
                     Are these all that you are moving?
                   </Typography>
-                  <Button
-                    variant="contained"
-                    color="error"
-                    style={{
-                      fontSize: "18px",
+                  <Box
+                    sx={{
+                      display: "flex",
+                      gap: 0.1,
                     }}
-                    onClick={nextStep}
                   >
-                    Continue
-                  </Button>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      style={{
+                        fontSize: "18px",
+                      }}
+                      onClick={prevStep}
+                    >
+                      Back
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      style={{
+                        fontSize: "18px",
+                      }}
+                      onClick={nextStep}
+                    >
+                      Continue
+                    </Button>
+                  </Box>
                 </Box>
                 <Container>
                   <Stack

@@ -18,6 +18,7 @@ function MovingProcessForm({ user, getStartedFromHome }) {
   });
 
   const [items, setItems] = useState([]);
+  const [selectedQuote, setSelectedQuote] = useState({});
   const [quotes, setQuotes] = useState({
     mover: [{}],
   });
@@ -28,6 +29,14 @@ function MovingProcessForm({ user, getStartedFromHome }) {
 
   const prevStep = () => {
     setStep((step) => step - 1);
+  };
+
+  const onSelect = (data) => {
+    setSelectedQuote({
+      ...selectedQuote,
+      getStartedData,
+      customer_id: user?.id,
+    });
   };
 
   const handleChange = (input) => (e) => {
@@ -60,6 +69,7 @@ function MovingProcessForm({ user, getStartedFromHome }) {
         setComponent(
           <GetStarted
             nextStep={nextStep}
+            prevStep={prevStep}
             setGetStartedData={setGetStartedData}
             values={values}
             stepper={
@@ -76,6 +86,7 @@ function MovingProcessForm({ user, getStartedFromHome }) {
         setComponent(
           <MyItems
             nextStep={nextStep}
+            prevStep={prevStep}
             onAddItem={onAddItem}
             values={values}
             stepper={
@@ -92,8 +103,10 @@ function MovingProcessForm({ user, getStartedFromHome }) {
         setComponent(
           <Compare
             nextStep={nextStep}
+            prevStep={prevStep}
             handleChange={handleChange}
             values={values}
+            onSelect={onSelect}
             stepper={
               <MovingProcessStepper
                 step={step}
@@ -108,7 +121,9 @@ function MovingProcessForm({ user, getStartedFromHome }) {
         setComponent(
           <Book
             nextStep={nextStep}
+            prevStep={prevStep}
             handleChange={handleChange}
+            selectedQuote={selectedQuote}
             values={values}
             stepper={
               <MovingProcessStepper

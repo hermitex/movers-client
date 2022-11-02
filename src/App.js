@@ -7,7 +7,7 @@ import {
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
 import NavBar from "./components/navbar/NavBar";
-import Singnup from "./components/signup/Singnup";
+import Singnup from "./components/signup/Signup";
 import Error404 from "./components/error/Error404";
 import { useEffect, useState } from "react";
 import Footer from "./components/utils/Footer";

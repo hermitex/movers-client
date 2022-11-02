@@ -43,6 +43,8 @@ import Services from "./components/Services/Services";
 import Contact from "./components/Contacts/Contact";
 import MovingProcessForm from "./components/moving-process/MovingProcessForm";
 import ItemsHolder from "./components/moving-process/ItemsHolder";
+import HowitWorks from "./components/home/HowitWorks";
+import WhyMoover from "./components/home/WhyMoover";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -238,6 +240,14 @@ function App() {
           <Route
             path="/contact"
             element={<Contact user={user} />}
+          />
+          <Route
+            path="/home/how-it-works"
+            element={<HowitWorks user={user} />}
+          />
+          <Route
+            path="/mooove-package"
+            element={<WhyMoover user={user} />}
           />
         </Route>
       </Routes>

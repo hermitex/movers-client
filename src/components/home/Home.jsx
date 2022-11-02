@@ -10,25 +10,15 @@ import HowitWorks from "./HowitWorks";
 import Pricing from "./Pricing";
 import Partners from "./Partners";
 import ReadMore from "./ReadMore";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
     <>
       <Hero />
-      <Grid
-        sx={{ flexGrow: 1, my: 1 }}
-        container
-        spacing={2}
-      >
-        <Grid
-          item
-          xs={12}
-        >
-          <Grid
-            container
-            justifyContent="center"
-            spacing={2}
-          >
+      <Grid sx={{ flexGrow: 1, my: 1 }} container spacing={2}>
+        <Grid item xs={12}>
+          <Grid container justifyContent="center" spacing={2}>
             <Grid item>
               <ServiceCard
                 description="Moving within the same state or within a short distance?"
@@ -71,11 +61,7 @@ function Home() {
             }}
           >
             <Box sx={{ width: "3rem" }}>
-              <img
-                width="100%"
-                src={truckIcon}
-                alt="truck"
-              />
+              <img width="100%" src={truckIcon} alt="truck" />
             </Box>
 
             <Box
@@ -85,10 +71,7 @@ function Home() {
                 paddingLeft: 1,
               }}
             >
-              <Typography
-                variant="p"
-                fontWeight="bolder"
-              >
+              <Typography variant="p" fontWeight="bolder">
                 Get moooving today!!
               </Typography>
               <Typography variant="p">
@@ -97,12 +80,11 @@ function Home() {
             </Box>
           </Box>
           <Box>
-            <Button
-              variant="contained"
-              color="error"
-            >
-              view all services
-            </Button>
+            <Link to="/services" sx={{ flexGrow: 0 }}>
+              <Button variant="contained" color="error">
+                view all services
+              </Button>
+            </Link>
           </Box>
         </Box>
       </Container>

@@ -8,7 +8,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MovingProcessNavBar from "./MovingProcessNavBar";
 import { ArrowRight } from "@mui/icons-material";
 import Link from "@mui/material/Link";
-import PaypalPayment from "../payment/Paypal";
+import PaypalPayment from "../payment/PaypalPayment";
 
 function Book({ user, prevStep, stepper, selectedQuote }) {
   console.log(selectedQuote);
@@ -371,6 +371,7 @@ function Book({ user, prevStep, stepper, selectedQuote }) {
                           See detailed pricing
                         </Link>
                       </Box>
+                      8
                       <Box>
                         <Box
                           sx={{

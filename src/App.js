@@ -36,7 +36,6 @@ import ItemTable from "./components/table/ItemTable";
 import Profile from "./components/dashboard/Profile";
 import ItemForm from "./components/item-form/ItemForm";
 import formInputs from "./components/form-inputs/userInputs";
-import Paypal from "./components/payment/Paypal";
 import widgetData from "./components/dashboard/dashWidgetData";
 import About from "./components/About/About";
 import Services from "./components/Services/Services";
@@ -45,6 +44,8 @@ import MovingProcessForm from "./components/moving-process/MovingProcessForm";
 import ItemsHolder from "./components/moving-process/ItemsHolder";
 import HowitWorks from "./components/home/HowitWorks";
 import WhyMoover from "./components/home/WhyMoover";
+import PaypalPayment from "./components/payment/PaypalPayment";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -81,178 +82,182 @@ function App() {
   };
 
   return (
-    <Router>
-      <NavBar
-        user={user}
-        onLogout={handleLogout}
-      />
-      <Routes>
-        <Route path="/">
-          <Route
-            index
-            path="/"
-            element={<Home user={user} />}
-          />
-          <Route
-            path="/home"
-            element={<Home user={user} />}
-          />
-          <Route
-            path="/dashboard/test"
-            element={<Test user={user} />}
-          />
-
-          <Route
-            path="/dashboard"
-            element={
-              <DashBoardSideDrawer
-                user={user}
-                setIShowFooter={setIShowFooter}
-                sidebarlinks={sideLinks}
-                component={
-                  <DashboardHome
-                    widgetData={widgetData}
-                    user={user}
-                  />
-                }
-                onLogout={handleLogout}
-              />
-            }
-          />
-          <Route
-            path="/dashboard/customers"
-            element={
-              <ItemList
-                user={user}
-                setIShowFooter={setIShowFooter}
-                sidebarlinks={sideLinks}
-                component={<Datatable user={user} />}
-              />
-            }
-          />
-          <Route
-            path="/dashboard/rates"
-            element={
-              <ItemList
-                user={user}
-                setIShowFooter={setIShowFooter}
-                sidebarlinks={sideLinks}
-                component={<Datatable />}
-              />
-            }
-          />
-          <Route
-            path="/dashboard/movers"
-            element={
-              <ItemList
-                user={user}
-                setIShowFooter={setIShowFooter}
-                sidebarlinks={sideLinks}
-                component={<Datatable user={user} />}
-              />
-            }
-          />
-          <Route
-            path="/dashboard/profile"
-            element={
-              <ItemList
-                user={user}
-                setIShowFooter={setIShowFooter}
-                sidebarlinks={sideLinks}
-                component={<ItemForm formInputs={formInputs} />}
-              />
-            }
-          />
-          <Route
-            path="/dashboard/new"
-            element={
-              <ItemList
-                user={user}
-                setIShowFooter={setIShowFooter}
-                sidebarlinks={sideLinks}
-                component={<ItemForm formInputs={formInputs} />}
-              />
-            }
-          />
-          <Route
-            path="/moving-process"
-            element={<MovingProcessForm user={user} />}
-          />
-
-          <Route
-            path="/dashboard/home"
-            element={<DashboardHome user={user} />}
-          />
-          <Route
-            path="/pay"
-            element={<Paypal user={user} />}
-          />
-          <Route
-            path="/dashboard/financial-analytics"
-            element={<FinancialAnalytics user={user} />}
-            index
-          />
-          <Route
-            path="login"
-            element={<LoginSignup onLogin={setUser} />}
-          />
-          <Route
-            path="signup"
-            element={<LoginSignup onLogin={setUser} />}
-          />
-          <Route
-            path="/moving-process"
-            element={<GetStarted user={user} />}
-          />
-
-          <Route
-            path="/map"
-            element={<Map user={user} />}
-          />
-          <Route
-            path="/dashboard/reviews"
-            element={<Review user={user} />}
-          />
-          <Route
-            path="/dashboard/location-analytics"
-            element={<LocationAnalytics />}
-          />
-          <Route
-            path="login"
-            element={<LoginSignup onLogin={setUser} />}
-          />
-          <Route
-            path="signup"
-            element={<Singnup onLogin={setUser} />}
-          />
-          <Route
-            path="*"
-            element={<Error404 />}
-          />
-          <Route
-            path="/about"
-            element={<About user={user} />}
-          />
-          <Route
-            path="/services"
-            element={<Services user={user} />}
-          />
-          <Route
-            path="/contact"
-            element={<Contact user={user} />}
-          />
-          <Route
-            path="/home/how-it-works"
-            element={<HowitWorks user={user} />}
-          />
-          <Route
-            path="/mooove-package"
-            element={<WhyMoover user={user} />}
-          />
-        </Route>
-      </Routes>
-      {isShowFooter ? <Footer /> : null}
-    </Router>
+    <PayPalScriptProvider
+      options={{
+        "client-id":
+          "AVFQQPBVQ3lGiR05sGozQMEQDMAO0Egq3ckF4qe1jA8Y6EOits4nOpzXUMzNw_aWthfYFBVC5HmkUirq",
+      }}
+    >
+      <Router>
+        <NavBar
+          user={user}
+          onLogout={handleLogout}
+        />
+        <Routes>
+          <Route path="/">
+            <Route
+              index
+              path="/"
+              element={<Home user={user} />}
+            />
+            <Route
+              path="/home"
+              element={<Home user={user} />}
+            />
+            <Route
+              path="/dashboard/test"
+              element={<Test user={user} />}
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <DashBoardSideDrawer
+                  user={user}
+                  setIShowFooter={setIShowFooter}
+                  sidebarlinks={sideLinks}
+                  component={
+                    <DashboardHome
+                      widgetData={widgetData}
+                      user={user}
+                    />
+                  }
+                  onLogout={handleLogout}
+                />
+              }
+            />
+            <Route
+              path="/dashboard/customers"
+              element={
+                <ItemList
+                  user={user}
+                  setIShowFooter={setIShowFooter}
+                  sidebarlinks={sideLinks}
+                  component={<Datatable user={user} />}
+                />
+              }
+            />
+            <Route
+              path="/dashboard/rates"
+              element={
+                <ItemList
+                  user={user}
+                  setIShowFooter={setIShowFooter}
+                  sidebarlinks={sideLinks}
+                  component={<Datatable />}
+                />
+              }
+            />
+            <Route
+              path="/dashboard/movers"
+              element={
+                <ItemList
+                  user={user}
+                  setIShowFooter={setIShowFooter}
+                  sidebarlinks={sideLinks}
+                  component={<Datatable user={user} />}
+                />
+              }
+            />
+            <Route
+              path="/dashboard/profile"
+              element={
+                <ItemList
+                  user={user}
+                  setIShowFooter={setIShowFooter}
+                  sidebarlinks={sideLinks}
+                  component={<ItemForm formInputs={formInputs} />}
+                />
+              }
+            />
+            <Route
+              path="/dashboard/new"
+              element={
+                <ItemList
+                  user={user}
+                  setIShowFooter={setIShowFooter}
+                  sidebarlinks={sideLinks}
+                  component={<ItemForm formInputs={formInputs} />}
+                />
+              }
+            />
+            <Route
+              path="/moving-process"
+              element={<MovingProcessForm user={user} />}
+            />
+            <Route
+              path="/dashboard/home"
+              element={<DashboardHome user={user} />}
+            />
+            <Route
+              path="/pay"
+              element={<PaypalPayment user={user} />}
+            />
+            <Route
+              path="/dashboard/financial-analytics"
+              element={<FinancialAnalytics user={user} />}
+              index
+            />
+            <Route
+              path="login"
+              element={<LoginSignup onLogin={setUser} />}
+            />
+            <Route
+              path="signup"
+              element={<LoginSignup onLogin={setUser} />}
+            />
+            <Route
+              path="/moving-process"
+              element={<GetStarted user={user} />}
+            />
+            <Route
+              path="/map"
+              element={<Map user={user} />}
+            />
+            <Route
+              path="/dashboard/reviews"
+              element={<Review user={user} />}
+            />
+            <Route
+              path="/dashboard/location-analytics"
+              element={<LocationAnalytics />}
+            />
+            <Route
+              path="login"
+              element={<LoginSignup onLogin={setUser} />}
+            />
+            <Route
+              path="signup"
+              element={<Singnup onLogin={setUser} />}
+            />
+            <Route
+              path="*"
+              element={<Error404 />}
+            />
+            <Route
+              path="/about"
+              element={<About user={user} />}
+            />
+            <Route
+              path="/services"
+              element={<Services user={user} />}
+            />
+            <Route
+              path="/contact"
+              element={<Contact user={user} />}
+            />
+            <Route
+              path="/home/how-it-works"
+              element={<HowitWorks user={user} />}
+            />
+            <Route
+              path="/mooove-package"
+              element={<WhyMoover user={user} />}
+            />
+          </Route>
+        </Routes>
+        {isShowFooter ? <Footer /> : null}
+      </Router>
+    </PayPalScriptProvider>
   );
 }
 

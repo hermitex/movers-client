@@ -16,41 +16,36 @@ function Home() {
   return (
     <>
       <Hero />
-      <Grid sx={{ flexGrow: 1, my: 1 }} container spacing={2}>
-        <Grid item xs={12}>
-          <Grid container justifyContent="center" spacing={2}>
-            <Grid item>
-              <ServiceCard
-                description="Moving within the same state or within a short distance?"
-                service="local moving"
-              />
-            </Grid>
-            <Grid item>
-              <ServiceCard
-                description="Does your move take you across state lines?"
-                service="long-distance moving"
-              />
-            </Grid>
-            <Grid item>
-              <ServiceCard
-                description="Moving your business to a new address?"
-                service="corporate moving"
-              />
+      <Box
+        sx={{
+          bgcolor: "#f7f7f7"
+        }}
+      >
+        <Grid sx={{ flexGrow: 1, my: 1 }} container spacing={2}>
+          <Grid item xs={12}>
+            <Grid container justifyContent="center" spacing={2}>
+              <Grid item>
+                <ServiceCard
+                  description="Moving within the same state or within a short distance?"
+                  service="local moving"
+                />
+              </Grid>
+              <Grid item>
+                <ServiceCard
+                  description="Does your move take you across state lines?"
+                  service="long-distance moving"
+                />
+              </Grid>
+              <Grid item>
+                <ServiceCard
+                  description="Moving your business to a new address?"
+                  service="corporate moving"
+                />
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-      <Container>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            alignContent: "center",
-            padding: "0.5rem 5rem",
-          }}
-        >
+        <Container>
           <Box
             sx={{
               display: "flex",
@@ -58,36 +53,48 @@ function Home() {
               justifyContent: "space-between",
               alignItems: "center",
               alignContent: "center",
+              padding: "0.5rem 5rem",
             }}
           >
-            <Box sx={{ width: "3rem" }}>
-              <img width="100%" src={truckIcon} alt="truck" />
-            </Box>
-
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "column",
-                paddingLeft: 1,
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                alignContent: "center",
               }}
             >
-              <Typography variant="p" fontWeight="bolder">
-                Get moooving today!!
-              </Typography>
-              <Typography variant="p">
-                We have a team of dedicated moving specialists waiting to help.
-              </Typography>
+              <Box sx={{ width: "3rem" }}>
+                <img width="100%" src={truckIcon} alt="truck" />
+              </Box>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  paddingLeft: 1,
+                }}
+              >
+                <Typography variant="p" fontWeight="bolder">
+                  Get moooving today!!
+                </Typography>
+                <Typography variant="p">
+                  We have a team of dedicated moving specialists waiting to
+                  help.
+                </Typography>
+              </Box>
+            </Box>
+            <Box>
+              <Link to="/services" sx={{ flexGrow: 0 }}>
+                <Button variant="contained" color="error">
+                  view all services
+                </Button>
+              </Link>
             </Box>
           </Box>
-          <Box>
-            <Link to="/services" sx={{ flexGrow: 0 }}>
-              <Button variant="contained" color="error">
-                view all services
-              </Button>
-            </Link>
-          </Box>
-        </Box>
-      </Container>
+        </Container>
+      </Box>
       <WhyMoover />
       <HowitWorks />
       <Pricing />

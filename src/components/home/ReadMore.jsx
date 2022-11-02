@@ -10,6 +10,8 @@ function ReadMore() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        bgcolor: "#f7f7f7",
+        padding: "1.5rem 0.5rem",
         alignItems: "center",
         width: "100%",
         gap: 3,
@@ -82,7 +84,7 @@ function ReadMore() {
           </Link>
         </Box>
       </Box>
-    </Box>
+      </Box>
   );
 }
 

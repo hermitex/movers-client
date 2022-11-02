@@ -9,8 +9,9 @@ function Pricing() {
         flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
+        bgcolor: "#f7f7f7",
         alignContent: "center",
-        padding: "0.5rem 5rem",
+        padding: "1.5rem 5rem",
         gap: 2,
       }}
     >

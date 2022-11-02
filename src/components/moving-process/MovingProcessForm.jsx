@@ -35,6 +35,7 @@ function MovingProcessForm({ user, getStartedFromHome }) {
     setSelectedQuote({
       ...selectedQuote,
       getStartedData,
+      data,
       customer_id: user?.id,
     });
   };
@@ -134,6 +135,7 @@ function MovingProcessForm({ user, getStartedFromHome }) {
             user={user}
           />
         );
+        //   <Paypal amount={selectedQuote?.data.total} />
         break;
       default:
         break;

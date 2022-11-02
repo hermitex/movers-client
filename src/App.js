@@ -46,6 +46,7 @@ import HowitWorks from "./components/home/HowitWorks";
 import WhyMoover from "./components/home/WhyMoover";
 import PaypalPayment from "./components/payment/PaypalPayment";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import SuccessModal from "./components/moving-process/Success";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -208,6 +209,16 @@ function App() {
             <Route
               path="/moving-process"
               element={<GetStarted user={user} />}
+            />
+            <Route
+              path="/success"
+              element={
+                <SuccessModal
+                  isOpen={true}
+                  message="Thanks for booking your move with us"
+                  user={user}
+                />
+              }
             />
             <Route
               path="/map"

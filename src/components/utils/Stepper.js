@@ -13,7 +13,7 @@ import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
 import Inventory from "@mui/icons-material/Inventory";
-import { Book, Compare, List } from "@mui/icons-material";
+import { Book, Compare, DoneAll, List } from "@mui/icons-material";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {

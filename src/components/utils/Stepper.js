@@ -13,7 +13,7 @@ import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
 import Inventory from "@mui/icons-material/Inventory";
-import { Book, Compare } from "@mui/icons-material";
+import { Book, Compare, List } from "@mui/icons-material";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -143,7 +143,7 @@ function ColorlibStepIcon(props) {
 
   const icons = {
     1: <SettingsIcon />,
-    2: <Inventory />,
+    2: <List />,
     3: <Compare />,
     4: <Book />,
   };

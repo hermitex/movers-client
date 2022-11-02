@@ -1,5 +1,5 @@
 # Movers
-Moove.com is an web app that simplifies the logistics of moving out. Users are able to login and indicate the details for when and where to be moved to, get the price and Book a move, And he/she will be able to track and communicate with the mover in time.
+ Moove.com is A web application that allows people who wish to relocate their residence to connect with people who can assist them to relocate seamlessly and affordably.
 
 # Live link
  https://moovers.vercel.app/

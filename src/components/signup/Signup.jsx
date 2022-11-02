@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Success from "../utils/Sucess";
 
-function Singnup({ onLogin }) {
+function Signup({ onLogin }) {
   const [fullName, setFullName] = useState("");
   const [accountType, setAccountType] = useState("");
   const [email, setEmail] = useState("");
@@ -66,8 +66,7 @@ function Singnup({ onLogin }) {
   const textFieldStyle = { margin: "10px auto" };
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Sign up here</h1>
-
+      <br />
       {success ? <Success success={success} /> : null}
 
       <TextField
@@ -204,16 +203,17 @@ function Singnup({ onLogin }) {
           {errors?.password_confirmation}
         </Typography>
       )}
+      <br /><br />
       <Button
         variant="contained"
         color="error"
         type="submit"
         fullWidth
       >
-        Sinup
+        Sign Up
       </Button>
     </form>
   );
 }
 
-export default Singnup;
+export default Signup;

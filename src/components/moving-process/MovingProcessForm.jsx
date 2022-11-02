@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import MovingProcessStepper from "../utils/Stepper";
 import Book from "./Book";
 import Compare from "./Compare";
 import GetStarted from "./GetStarted";
@@ -61,6 +62,12 @@ function MovingProcessForm({ user, getStartedFromHome }) {
             nextStep={nextStep}
             setGetStartedData={setGetStartedData}
             values={values}
+            stepper={
+              <MovingProcessStepper
+                step={step}
+                title="Get Started"
+              />
+            }
             user={user}
           />
         );
@@ -71,6 +78,12 @@ function MovingProcessForm({ user, getStartedFromHome }) {
             nextStep={nextStep}
             onAddItem={onAddItem}
             values={values}
+            stepper={
+              <MovingProcessStepper
+                step={step}
+                title="List Your Inventory"
+              />
+            }
             user={user}
           />
         );
@@ -81,6 +94,12 @@ function MovingProcessForm({ user, getStartedFromHome }) {
             nextStep={nextStep}
             handleChange={handleChange}
             values={values}
+            stepper={
+              <MovingProcessStepper
+                step={step}
+                title="Compare"
+              />
+            }
             user={user}
           />
         );
@@ -91,6 +110,12 @@ function MovingProcessForm({ user, getStartedFromHome }) {
             nextStep={nextStep}
             handleChange={handleChange}
             values={values}
+            stepper={
+              <MovingProcessStepper
+                step={step}
+                title="Book"
+              />
+            }
             user={user}
           />
         );

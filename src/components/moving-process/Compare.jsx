@@ -17,7 +17,7 @@ import quoteGenerator from "../hooks/quoteGenerator";
 import useFetch from "../hooks/useFetch";
 import ProgressIndicator from "../utils/ProgressIndicator";
 
-function Compare({ user, nextStep, values }) {
+function Compare({ user, stepper, nextStep, values }) {
   const baseUrl = process.env.REACT_APP_BASE_URL;
   let rates = useFetch(`${baseUrl}/rates`);
   console.log(rates);
@@ -98,11 +98,12 @@ function Compare({ user, nextStep, values }) {
                   overflowY: "auto",
                 }}
               >
-                <MovingProcessNavBar
+                {/* <MovingProcessNavBar
                   size="large"
                   color="error"
                   nextStep={nextStep}
-                />
+                /> */}
+                {stepper}
                 <Box
                   sx={{
                     display: "flex",

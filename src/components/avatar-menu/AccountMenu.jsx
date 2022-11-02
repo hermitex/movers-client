@@ -12,7 +12,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-function AccountMenu({ user, onLogout }) {
+function AccountMenu({ user, title, link, onLogout }) {
   // const { avatar_url } = user || " ";
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -82,9 +82,9 @@ function AccountMenu({ user, onLogout }) {
           </MenuItem>
         </NavLink>
 
-        <NavLink to="dashboard">
+        <NavLink to={`/${link}`}>
           <MenuItem>
-            <Avatar /> My account
+            <Avatar /> {title}
           </MenuItem>
         </NavLink>
         <Divider />

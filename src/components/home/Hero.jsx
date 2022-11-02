@@ -48,11 +48,7 @@ const pages = [
     link: "home/how-it-works",
     divider: <Divider />,
   },
-  { id: 4, 
-    description: "Get in touch", 
-    link: "contact", 
-    divider: <Divider />, 
-  },
+  { id: 4, description: "Get in touch", link: "contact", divider: <Divider /> },
 ];
 
 const formInput = [
@@ -99,7 +95,7 @@ const houseOptions = [
   { id: 6, house: "6 Bedroom, small(600 - 800 sqf)" },
 ];
 
-function Hero() {
+function Hero({ user }) {
   accessToken = process.env.REACT_APP_MAPBOX_KEY;
   const [suggestions, setSuggestions] = useState([]);
 
@@ -212,7 +208,7 @@ function Hero() {
                 </Button>
               </Link>
               <Link
-                to="/moving-process"
+                to={user ? "/moving-process" : "/login"}
                 sx={{ flexGrow: 0 }}
               >
                 <Button variant="contained">Get Started</Button>
@@ -309,7 +305,7 @@ function Hero() {
               sx={{
                 display: "flex",
                 flexFlow: "row wrap",
-                justifyContent: "center",                
+                justifyContent: "center",
                 gap: 3,
               }}
             >
@@ -384,7 +380,7 @@ function Hero() {
                       bgcolor: "#fff",
                       borderRadius: "0.1rem",
                       width: "15vw",
-                      height: "100%"
+                      height: "100%",
                     }}
                   />
                 )

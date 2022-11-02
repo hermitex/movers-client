@@ -3,7 +3,7 @@ import React from "react";
 import ProgressIndicator from "../utils/ProgressIndicator";
 import CompareFeedCard from "./CompareFeedCard";
 
-function CompareFeed({ nextStep, quotes }) {
+function CompareFeed({ prevStep, onSelect, nextStep, quotes }) {
   return (
     <Box
       flex={4}
@@ -20,6 +20,8 @@ function CompareFeed({ nextStep, quotes }) {
       ) : (
         <CompareFeedCard
           nextStep={nextStep}
+          prevStep={prevStep}
+          onSelect={onSelect}
           quotes={quotes}
         />
       )}

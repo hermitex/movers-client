@@ -10,7 +10,7 @@ import { ArrowRight } from "@mui/icons-material";
 import Link from "@mui/material/Link";
 import Paypal from "../payment/Paypal";
 
-function Book({ user, stepper }) {
+function Book({ user, prevStep, stepper, selectedQuote }) {
   const styles = {
     paperContainer: {
       backgroundImage:
@@ -279,7 +279,8 @@ function Book({ user, stepper }) {
                           sx={{ color: "#FF515E" }}
                         ></Typography>
                         <Link
-                          href="#"
+                          onClick={prevStep}
+                          to="#"
                           underline="always"
                         >
                           Edit my Details

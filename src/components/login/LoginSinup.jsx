@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import Signup from "../signup/Signup";
-import { Grid, Paper, Tabs, Tab, Typography, Container } from "@mui/material";
+import { Paper, Tabs, Tab, Container } from "@mui/material";
 import { Box } from "@mui/system";
-import heroBg from "../../assets/homepage/home-hero.png";
-import { useNavigate } from "react-router-dom";
 import Login from "./Login";
 import ProgressIndicator from "../utils/ProgressIndicator";
 import Carousel from "./Carousel";
@@ -35,40 +33,58 @@ function LoginSignup({ onLogin }) {
   };
 
   return (
-    <Box
-      sx={{       
+    <Container
+      sx={{
         display: "flex",
+        flexWrap: "wrap",
         justifyContent: "center",
-        gap: 0,
+        alignItems: "center",
+        justifyItems: "center",
       }}
     >
       {isLoading ? <ProgressIndicator /> : null}
-      <Paper elevation={10} style={paperStyle}>
+      <Paper
+        elevation={10}
+        style={paperStyle}
+        sx={{ display: { xs: "none", md: "flex" } }}
+      >
         <Carousel />
       </Paper>
       <Paper
         style={paperStyleInner}
         sx={{ display: { xs: "flex", sm: "block" } }}
       >
-        <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            variant="fullWidth"
-            indicatorColor="secondary"
-            textColor="inherit"
-          >
-            <Tab label="LOG IN" />
-            <Tab label="SIGN UP" />
-          </Tabs>
+        <Box
+          sx={{
+            width: 400,
+          }}
+        >
+          <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              variant="fullWidth"
+              indicatorColor="secondary"
+              textColor="inherit"
+            >
+              <Tab label="LOG IN" />
+              <Tab label="SIGN UP" />
+            </Tabs>
+          </Box>
+          {value === 0 ? (
+            <Login
+              setLoading={setIsLoading}
+              onLogin={onLogin}
+            />
+          ) : (
+            <Signup
+              setLoading={setIsLoading}
+              onLogin={onLogin}
+            />
+          )}
         </Box>
-        {value === 0 ? (
-          <Login setLoading={setIsLoading} onLogin={onLogin} />
-        ) : (
-          <Signup setLoading={setIsLoading} onLogin={onLogin} />
-        )}
       </Paper>
-    </Box>
+    </Container>
   );
 }
 

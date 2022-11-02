@@ -145,7 +145,7 @@ function ColorlibStepIcon(props) {
     1: <SettingsIcon />,
     2: <Inventory />,
     3: <Compare />,
-    3: <Book />,
+    4: <Book />,
   };
 
   return (

@@ -7,7 +7,7 @@ import MyItemsSidebar from "./MyItemsSidebar";
 
 import ItemsHolder from "./ItemsHolder";
 
-function MyItems({ user, nextStep, onAddItem, values }) {
+function MyItems({ user, stepper, nextStep, onAddItem, values }) {
   const styles = {
     paperContainer: {
       backgroundImage:
@@ -61,10 +61,11 @@ function MyItems({ user, nextStep, onAddItem, values }) {
                   overflowY: "auto",
                 }}
               >
-                <MovingProcessNavBar
+                {/* <MovingProcessNavBar
                   size="large"
                   color="error"
-                />
+                /> */}
+                {stepper}
                 <Box
                   sx={{
                     display: "flex",
@@ -105,6 +106,7 @@ function MyItems({ user, nextStep, onAddItem, values }) {
                     justifyContent="space-between"
                   >
                     <MyItemsSidebar />
+
                     <ItemsHolder
                       onAddItem={onAddItem}
                       values={values}

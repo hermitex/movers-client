@@ -10,7 +10,7 @@ import { ArrowRight } from "@mui/icons-material";
 import Link from "@mui/material/Link";
 import Paypal from "../payment/Paypal";
 
-function Book({ user }) {
+function Book({ user, stepper }) {
   const styles = {
     paperContainer: {
       backgroundImage:
@@ -60,10 +60,11 @@ function Book({ user }) {
                 elevation={7}
                 style={styles.paperStyle}
               >
-                <MovingProcessNavBar
+                {/* <MovingProcessNavBar
                   size="large"
                   color="error"
-                />
+                /> */}
+                {stepper}
                 <Container>
                   <Box
                     sx={{

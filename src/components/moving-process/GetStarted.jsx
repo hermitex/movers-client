@@ -59,7 +59,7 @@ const houseOptions = [
   { id: 6, house: "6 Bedroom, small(600 - 800 sqf)" },
 ];
 
-function GetStarted({ user, nextStep, setGetStartedData }) {
+function GetStarted({ user, nextStep, setGetStartedData, stepper }) {
   console.log(user);
   const styles = {
     paperContainer: {
@@ -165,10 +165,11 @@ function GetStarted({ user, nextStep, setGetStartedData }) {
                   justifyContent: "space-around",
                 }}
               >
-                <MovingProcessNavBar
+                {/* <MovingProcessNavBar
                   size="large"
                   color="error"
-                />
+                /> */}
+                {stepper}
                 <Container>
                   <Box
                     sx={{

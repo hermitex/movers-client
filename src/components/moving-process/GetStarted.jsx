@@ -82,6 +82,7 @@ function GetStarted({ user, nextStep, setGetStartedData, stepper }) {
 
   accessToken = process.env.REACT_APP_MAPBOX_KEY;
   const [suggestions, setSuggestions] = useState([]);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const [data, setData] = useState({
     house_type: "",
@@ -106,6 +107,15 @@ function GetStarted({ user, nextStep, setGetStartedData, stepper }) {
     }
 
     setData({ ...data, [name]: value });
+
+    if (
+      data.house_type !== "" ||
+      data.moving_date !== "" ||
+      data.moving_from !== "" ||
+      data.moving_to !== ""
+    ) {
+      setIsButtonDisabled((isButtonDisabled) => !isButtonDisabled);
+    }
   };
 
   const handleSubmit = (event) => {
@@ -324,6 +334,7 @@ function GetStarted({ user, nextStep, setGetStartedData, stepper }) {
                         )
                       )}
                       <Button
+                        disabled={isButtonDisabled}
                         variant="contained"
                         color="error"
                         type="submit"

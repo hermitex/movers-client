@@ -64,12 +64,12 @@ function Login({ onLogin, setLoading }) {
 
   return (
     <form onSubmit={handleSubmit}>
-     
       <Box
         sx={{
           pt: 3,
           display: "flex",
           flexDirection: "column",
+          width: "100%",
           gap: 2,
         }}
       >
@@ -107,7 +107,7 @@ function Login({ onLogin, setLoading }) {
           style={textFieldStyle}
           fullWidth
           required
-        />        
+        />
         <FormControlLabel
           control={<Checkbox defaultUnChecked />}
           label="Remember me"

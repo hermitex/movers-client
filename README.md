@@ -35,3 +35,10 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 <!-- https://www.bigdatacloud.com/docs/api/free-reverse-geocode-to-city-api -->
 ### Technology Used
+Front End
+- ReactJs
+- Material UI
+
+Backend
+- Ruby on Rails
+- Postgresql

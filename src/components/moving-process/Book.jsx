@@ -8,9 +8,10 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MovingProcessNavBar from "./MovingProcessNavBar";
 import { ArrowRight } from "@mui/icons-material";
 import Link from "@mui/material/Link";
-import Paypal from "../payment/Paypal";
+import PaypalPayment from "../payment/Paypal";
 
 function Book({ user, prevStep, stepper, selectedQuote }) {
+  console.log(selectedQuote);
   const styles = {
     paperContainer: {
       backgroundImage:
@@ -189,7 +190,7 @@ function Book({ user, prevStep, stepper, selectedQuote }) {
                         variant="outlined"
                       />
                     </Box>
-                    <Paypal />
+                    <PaypalPayment amount={selectedQuote?.data.total} />
                   </Box>
 
                   <Box
@@ -391,7 +392,7 @@ function Book({ user, prevStep, stepper, selectedQuote }) {
                               lineHeight: 2,
                             }}
                           >
-                            KES 4,999
+                            KES {selectedQuote?.data.total}
                           </Typography>
                         </Box>
                         <Divider

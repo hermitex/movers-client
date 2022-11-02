@@ -16,6 +16,7 @@ import CompareFeed from "./CompareFeed";
 import quoteGenerator from "../hooks/quoteGenerator";
 import useFetch from "../hooks/useFetch";
 import ProgressIndicator from "../utils/ProgressIndicator";
+import { AspectRatioRounded } from "@mui/icons-material";
 
 function Compare({ user, onSelect, stepper, prevStep, nextStep, values }) {
   const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -23,12 +24,13 @@ function Compare({ user, onSelect, stepper, prevStep, nextStep, values }) {
   console.log(rates);
 
   const [quotes, setQuotes] = useState(null);
+  const [quotesToShow, setQuotesToShow] = useState(null);
 
   useEffect(() => {
     if (rates) {
       setQuotes(quoteGenerator(values, rates));
     }
-  }, [rates]);
+  }, [rates, quotesToShow]);
 
   const [value, setValue] = useState("");
   const styles = {
@@ -50,10 +52,42 @@ function Compare({ user, onSelect, stepper, prevStep, nextStep, values }) {
     },
   };
 
-  const handleChange = async (event) => {
-    setValue(event.target.value);
-  };
+  function asc(a, b) {
+    if (a.total < b.total) {
+      return -1;
+    }
+    if (a.total > b.total) {
+      return 1;
+    }
+    return 0;
+  }
 
+  function desc(a, b) {
+    if (a.total > b.total) {
+      return -1;
+    }
+    if (a.total < b.total) {
+      return 1;
+    }
+    return 0;
+  }
+
+  const handleChange = async (event, value) => {
+    setValue(event.target.value);
+    switch (value.sort_by) {
+      case "Price: High to Low":
+        // setQuotes(quoteGenerator(values, rates));
+        setQuotesToShow(quotes.sort(desc));
+        break;
+      case "Price: Low to High":
+        setQuotesToShow(quotes.sort(asc));
+        break;
+
+      default:
+        break;
+    }
+  };
+  console.log(quotes);
   const sortOptions = [
     { id: 1, sort_by: "Price: High to Low" },
     { id: 2, sort_by: "Price: Low to High" },
@@ -133,24 +167,23 @@ function Compare({ user, onSelect, stepper, prevStep, nextStep, values }) {
                       sx={{
                         fontWeight: "bolder",
                       }}
-                    >
-                      SORT by:
-                    </Typography>
+                    ></Typography>
                     <Autocomplete
                       {...sortTypes}
                       id="disable-close-on-select"
                       disableCloseOnSelect
+                      onChange={(event, value) => handleChange(event, value)}
                       renderInput={(params) => (
                         <TextField
                           {...params}
                           placeholder="Price: low to high"
                           variant="filled"
+                          label="SORT by:"
                           sx={{
                             bgcolor: "#fff",
                             borderRadius: "0.1rem",
-                            width: "11vw",
+                            width: "20vw",
                           }}
-                          onChange={handleChange}
                         />
                       )}
                     />
@@ -182,7 +215,7 @@ function Compare({ user, onSelect, stepper, prevStep, nextStep, values }) {
                           nextStep={nextStep}
                           prevStep={prevStep}
                           onSelect={onSelect}
-                          quotes={quotes}
+                          quotes={quotesToShow ? quotesToShow : quotes}
                         />
                       )}
                     </Stack>

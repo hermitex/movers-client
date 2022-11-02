@@ -84,7 +84,10 @@ function GetStarted({ user, nextStep, values, setGetStartedData, stepper }) {
   const [suggestions, setSuggestions] = useState([]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const [data, setData] = useState(values.getStartedData);
+  const [data, setData] = useState({
+    ...values.getStartedData,
+    moving_date: "",
+  });
 
   const handleChange = async (event, value, name) => {
     if (name === "moving_date") {

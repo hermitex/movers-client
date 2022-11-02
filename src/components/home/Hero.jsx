@@ -45,10 +45,14 @@ const pages = [
   {
     id: 3,
     description: "How it works?",
-    link: "how-it-works",
+    link: "home/how-it-works",
     divider: <Divider />,
   },
-  { id: 4, description: "Get in touch", link: "contact", divider: "" },
+  { id: 4, 
+    description: "Get in touch", 
+    link: "contact", 
+    divider: <Divider />, 
+  },
 ];
 
 const formInput = [
@@ -197,7 +201,7 @@ function Hero() {
               }}
             >
               <Link
-                to="/"
+                to="/about"
                 sx={{ flexGrow: 0 }}
               >
                 <Button
@@ -244,11 +248,7 @@ function Hero() {
           {pages.map((page, i) => (
             <NavLink
               key={page.id}
-              to={
-                page.id === 3
-                  ? `#how-it-works`
-                  : `/${page.link.toLocaleLowerCase()}`
-              }
+              to={`/${page.link.toLocaleLowerCase()}`}
             >
               <Typography
                 textAlign="left"
@@ -309,7 +309,7 @@ function Hero() {
               sx={{
                 display: "flex",
                 flexFlow: "row wrap",
-                justifyContent: "center",
+                justifyContent: "center",                
                 gap: 3,
               }}
             >
@@ -384,6 +384,7 @@ function Hero() {
                       bgcolor: "#fff",
                       borderRadius: "0.1rem",
                       width: "15vw",
+                      height: "100%"
                     }}
                   />
                 )

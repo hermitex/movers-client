@@ -12,6 +12,8 @@ Moove.com is an web app that simplifies the logistics of moving out. Users are a
 Frontend Design (Figma) Access the UI design (https://www.figma.com/file/YxEMM8gS7rx0a44ZXzOV64/Go-Movers?node-id=0%3A1)
 
 ![Moover.com-home](src/assets/documentation/mooover-home.png)
+
+## Installation process.
   - Clone the repo at [](movers)
   - Open the project folder in your favorite text editor (VSCode recommend)
   - Run `npm install` to install dependencies
@@ -32,3 +34,4 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 
 <!-- https://www.bigdatacloud.com/docs/api/free-reverse-geocode-to-city-api -->
+### Technology Used

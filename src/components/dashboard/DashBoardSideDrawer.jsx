@@ -190,6 +190,8 @@ function DashBoardSideDrawer({
             </Box>
             <Box>
               <AccountMenu
+                title="Go Home"
+                link="home"
                 onLogout={onLogout}
                 user={user}
               />

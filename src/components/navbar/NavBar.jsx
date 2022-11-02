@@ -8,10 +8,8 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import MenuItem from "@mui/material/MenuItem";
-import Login from "../login/Login";
 import logo from "../../logo.png";
 import { Link, NavLink } from "react-router-dom";
-import Singnup from "../signup/Signup";
 import { Button } from "@mui/material";
 import AccountMenu from "../avatar-menu/AccountMenu";
 
@@ -22,7 +20,6 @@ const activeStyle = {
 };
 
 const NavBar = ({ user, onLogout }) => {
-  const [currentUser, setCurrentUser] = React.useState(user);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -32,10 +29,6 @@ const NavBar = ({ user, onLogout }) => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  // React.useEffect(() => {
-
-  // }, [third])
 
   return (
     <AppBar
@@ -164,6 +157,8 @@ const NavBar = ({ user, onLogout }) => {
             </Box>
             {user ? (
               <AccountMenu
+                title="My Account"
+                link="dashboard"
                 onLogout={onLogout}
                 user={user}
               />

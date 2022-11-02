@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Signup from "../signup/Signup";
 import { Grid, Paper, Tabs, Tab, Typography, Container } from "@mui/material";
 import { Box } from "@mui/system";
-
+import heroBg from "../../assets/homepage/home-hero.png";
 import { useNavigate } from "react-router-dom";
 import Login from "./Login";
 import ProgressIndicator from "../utils/ProgressIndicator";
@@ -35,15 +35,15 @@ function LoginSignup({ onLogin }) {
   };
 
   return (
-    <Container
-      sx={{
+    <Box
+      sx={{       
         display: "flex",
         justifyContent: "center",
         gap: 0,
       }}
     >
       {isLoading ? <ProgressIndicator /> : null}
-      <Paper elevation={10} style={paperStyle} >
+      <Paper elevation={10} style={paperStyle}>
         <Carousel />
       </Paper>
       <Paper
@@ -68,7 +68,7 @@ function LoginSignup({ onLogin }) {
           <Signup setLoading={setIsLoading} onLogin={onLogin} />
         )}
       </Paper>
-    </Container>
+    </Box>
   );
 }
 

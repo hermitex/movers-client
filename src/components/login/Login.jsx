@@ -107,13 +107,7 @@ function Login({ onLogin, setLoading }) {
           style={textFieldStyle}
           fullWidth
           required
-        />
-
-        <FormControlLabel
-          control={<Checkbox defaultUnChecked />}
-          label="Are you a mover?"
-          onClick={() => setChecked(!checked)}
-        />
+        />        
         <FormControlLabel
           control={<Checkbox defaultUnChecked />}
           label="Remember me"

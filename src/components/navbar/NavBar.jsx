@@ -11,7 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Login from "../login/Login";
 import logo from "../../logo.png";
 import { Link, NavLink } from "react-router-dom";
-import Singnup from "../signup/Singnup";
+import Singnup from "../signup/Signup";
 import { Button } from "@mui/material";
 import AccountMenu from "../avatar-menu/AccountMenu";
 

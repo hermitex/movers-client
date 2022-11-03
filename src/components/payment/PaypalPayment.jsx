@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
-import ProgressIndicator from "../utils/ProgressIndicator";
+import SuccessModal from "../moving-process/Success";
 
-function PaypalPayment({ amount, values }) {
+function PaypalPayment({ amount, getPayData, values }) {
   const [paidFor, setPaidFor] = useState(false);
   const [error, setError] = useState(null);
   amount = (amount / 121.5).toFixed(2);
   const handleApprove = (order) => {
-    console.log(order);
+    getPayData(order);
     // send request to backend
     // if response is success
     setPaidFor(true);
@@ -17,7 +17,7 @@ function PaypalPayment({ amount, values }) {
 
   if (paidFor) {
     // Go to success page
-    alert("Thanks for booking your move with us");
+    // navigate("/success")
   }
 
   if (error) {
@@ -49,7 +49,7 @@ function PaypalPayment({ amount, values }) {
         onApprove={async (data, actions) => {
           const order = await actions.order.capture();
           console.log(order);
-          handleApprove(order.orderId);
+          handleApprove(order);
         }}
         onError={(error) => {
           setError(error);
@@ -59,6 +59,12 @@ function PaypalPayment({ amount, values }) {
           // Display cancel page
         }}
       />
+      {paidFor ? (
+        <SuccessModal
+          isOpen={true}
+          message="Thanks for booking your move with us"
+        />
+      ) : null}
     </div>
   );
 }

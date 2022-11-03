@@ -4,6 +4,7 @@ import Book from "./Book";
 import Compare from "./Compare";
 import GetStarted from "./GetStarted";
 import MyItems from "./MyItems";
+import SuccessModal from "./Success";
 
 function MovingProcessForm({ user, getStartedFromHome }) {
   const [step, setStep] = useState(1);
@@ -19,6 +20,7 @@ function MovingProcessForm({ user, getStartedFromHome }) {
 
   const [items, setItems] = useState([]);
   const [selectedQuote, setSelectedQuote] = useState({});
+  const [paymentData, setPaymentData] = useState(null);
   const [quotes, setQuotes] = useState({
     mover: [{}],
   });
@@ -36,8 +38,38 @@ function MovingProcessForm({ user, getStartedFromHome }) {
       ...selectedQuote,
       getStartedData,
       data,
-      customer_id: user?.id,
+      customer_id: user,
     });
+  };
+
+  const onBookAgain = () => {
+    setStep(1);
+  };
+
+  const submitBooking = (data) => {
+    const inventoryChecklistData = {
+      user_id: 1,
+      customer_id: 1,
+      item_name: "cabinet",
+      category: "living room",
+      count: 2,
+      image_url: "",
+    };
+    const moveBookingData = {
+      inventory_checklists_id: 1,
+      mover_id: 2,
+      customer_id: 1,
+      moving_from: "Juja",
+      moving_to: "Thika",
+      moving_date: "03-15-2022",
+      status: "pending",
+    };
+    console.log(data);
+  };
+
+  const getPayData = (payData) => {
+    setPaymentData(payData);
+    submitBooking(payData);
   };
 
   const handleChange = (input) => (e) => {
@@ -63,8 +95,7 @@ function MovingProcessForm({ user, getStartedFromHome }) {
   };
 
   useEffect(() => {
-    const values = { getStartedData, items, quotes };
-
+    const values = { getStartedData, paymentData, items, quotes };
     switch (step) {
       case 1:
         setComponent(
@@ -126,6 +157,7 @@ function MovingProcessForm({ user, getStartedFromHome }) {
             handleChange={handleChange}
             selectedQuote={selectedQuote}
             values={values}
+            getPayData={getPayData}
             stepper={
               <MovingProcessStepper
                 step={step}
@@ -135,8 +167,9 @@ function MovingProcessForm({ user, getStartedFromHome }) {
             user={user}
           />
         );
-        //   <Paypal amount={selectedQuote?.data.total} />
+
         break;
+
       default:
         break;
     }

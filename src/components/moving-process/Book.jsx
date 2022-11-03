@@ -10,7 +10,7 @@ import { ArrowRight } from "@mui/icons-material";
 import Link from "@mui/material/Link";
 import PaypalPayment from "../payment/PaypalPayment";
 
-function Book({ user, prevStep, stepper, selectedQuote }) {
+function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
   console.log(selectedQuote);
   const styles = {
     paperContainer: {
@@ -190,7 +190,10 @@ function Book({ user, prevStep, stepper, selectedQuote }) {
                         variant="outlined"
                       />
                     </Box>
-                    <PaypalPayment amount={selectedQuote?.data.total} />
+                    <PaypalPayment
+                      getPayData={getPayData}
+                      amount={selectedQuote?.data.total}
+                    />
                   </Box>
 
                   <Box

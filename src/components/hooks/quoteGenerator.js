@@ -17,6 +17,7 @@ function quoteGenerator(moveData, rates) {
           distance: rate.distance,
           subtotal: item.count * rate.price_per_unit,
           mover_id: rate.user.id,
+          user_id: rate.user.id,
           mover_details: rate.user,
         });
       }
@@ -34,6 +35,7 @@ function quoteGenerator(moveData, rates) {
       if (!(cur.mover_id in mover_ids)) {
         mover_ids[cur.mover_id] = {
           mover_id: cur.mover_id,
+          user_id: cur.mover_id,
           flat_price: cur.flat_price,
           discount: cur.discount,
           mover_quotes: [],
@@ -55,17 +57,24 @@ function quoteGenerator(moveData, rates) {
       (previousValue, currentValue) => previousValue + currentValue.subtotal,
       0
     );
-
-    // add flat price
-    sum = sum + +quote.flat_price;
-
+    let items = +sum;
+    // get vat
+    let vat = (+sum * 0.16).toFixed(2);
+    sum = sum + +vat;
     // get discount
-    const discount = sum * quote.discount;
+    const discount = (sum * +quote.discount).toFixed(2);
 
     // subtract discount
     sum -= discount;
-
-    return { ...quote, total: sum };
+    sum += +quote.flat_price;
+    return {
+      ...quote,
+      flat_price: quote.flat_price,
+      discount: discount,
+      vat,
+      items,
+      total: sum,
+    };
   });
 
   return quotesIncludingGrandTotal;

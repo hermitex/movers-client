@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import SuccessModal from "../moving-process/Success";
 
 function PaypalPayment({ amount, getPayData, values }) {
@@ -25,6 +25,12 @@ function PaypalPayment({ amount, getPayData, values }) {
   }
 
   return (
+    // <PayPalScriptProvider
+    //   options={{
+    //     "client-id":
+    //       "AVFQQPBVQ3lGiR05sGozQMEQDMAO0Egq3ckF4qe1jA8Y6EOits4nOpzXUMzNw_aWthfYFBVC5HmkUirq",
+    //   }}
+    // >
     <div>
       <PayPalButtons
         style={{
@@ -66,6 +72,7 @@ function PaypalPayment({ amount, getPayData, values }) {
         />
       ) : null}
     </div>
+    // </PayPalScriptProvider>
   );
 }
 

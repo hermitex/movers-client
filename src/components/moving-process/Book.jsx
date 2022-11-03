@@ -1,7 +1,7 @@
 import { Button, Divider, IconButton, Paper, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { Box, Container } from "@mui/system";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import truckIcon from "../../assets/icons/truck-timer.png";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
@@ -9,9 +9,13 @@ import MovingProcessNavBar from "./MovingProcessNavBar";
 import { ArrowRight } from "@mui/icons-material";
 import Link from "@mui/material/Link";
 import PaypalPayment from "../payment/PaypalPayment";
+import numberFormatter from "../utils/numberFormatter";
 
 function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
+  const [bookingId, setBookingId] = useState(null);
+  const [inventoryId, setInventoryId] = useState(null);
   console.log(selectedQuote);
+
   const styles = {
     paperContainer: {
       backgroundImage:
@@ -31,6 +35,94 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
     },
   };
 
+  const token = localStorage.getItem("jwt");
+  // console.log(selectedQuote.vat);
+  useEffect(() => {
+    const inventoryChecklistData = [
+      {
+        user_id: 1, //selectedQuote.customer_id.user.id,
+        customer_id: 1, //selectedQuote.customer_id.user.id,
+        ...selectedQuote.data.mover_quotes,
+        // item_name: "cabinet",
+        // category: "living room",
+        // count: 2,
+        // image_url: "",
+      },
+    ];
+    const moveBookingData = {
+      inventory_checklist_id: "",
+      mover_id: 2, //selectedQuote.data.mover_details.id
+      customer_id: selectedQuote.customer_id.user.id,
+      moving_from: selectedQuote.getStartedData.moving_from.place_name,
+      moving_to: selectedQuote.getStartedData.moving_to.place_name,
+      moving_date: "12-30-2022",
+      status: "pending",
+    };
+    const paymentData = {
+      payment_date: "2022-11-02T22:28:34Z",
+      amount: 20.0,
+      customer_id: 1,
+      mover_id: 2,
+      move_booking_id: bookingId,
+      status: "completed",
+    };
+    fetch("http://127.0.0.1:4000/inventory_checklists", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(inventoryChecklistData),
+    }).then((response) => {
+      const inventory = response.json();
+      if (response.ok) {
+        setInventoryId(inventory.id);
+      }
+    });
+
+    fetch("http://127.0.0.1:4000/move_bookings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        ...moveBookingData,
+        inventory_checklist_id: inventoryId,
+      }),
+    }).then((response) => {
+      const booking = response.json();
+      if (response.ok) {
+        setBookingId(booking.id);
+      }
+    });
+
+    fetch("http://127.0.0.1:4000/payments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ ...paymentData, move_booking_id: 1 }),
+    }).then((response) => {
+      const booking = response.json();
+      if (response.ok) {
+        console.log(booking);
+      }
+    });
+  }, [
+    bookingId,
+    inventoryId,
+    selectedQuote.customer_id.user.id,
+    selectedQuote.data.mover_details.id,
+    selectedQuote.data.mover_quotes,
+    selectedQuote.getStartedData.moving_from.place_name,
+    selectedQuote.getStartedData.moving_to.place_name,
+    token,
+  ]);
   return (
     <Box>
       <Paper style={styles.paperContainer}>
@@ -374,7 +466,7 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
                           See detailed pricing
                         </Link>
                       </Box>
-                      8
+                      {selectedQuote?.data.mover_quotes.length}
                       <Box>
                         <Box
                           sx={{
@@ -396,7 +488,10 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
                               lineHeight: 2,
                             }}
                           >
-                            KES {selectedQuote?.data.total}
+                            {numberFormatter(selectedQuote?.data.items, {
+                              style: "currency",
+                              currency: "KES",
+                            })}
                           </Typography>
                         </Box>
                         <Divider
@@ -419,7 +514,7 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
                               lineHeight: 2,
                             }}
                           >
-                            Distance
+                            Flat price
                           </Typography>
                           <Typography
                             variant="p"
@@ -427,7 +522,11 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
                               lineHeight: 2,
                             }}
                           >
-                            KES 1,299
+                            {/* KES 1,299 */}
+                            {numberFormatter(selectedQuote?.data.flat_price, {
+                              style: "currency",
+                              currency: "KES",
+                            })}
                           </Typography>
                         </Box>
                         <Divider
@@ -458,7 +557,54 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
                               lineHeight: 2,
                             }}
                           >
-                            KES 999
+                            {numberFormatter(selectedQuote?.data.vat, {
+                              style: "currency",
+                              currency: "KES",
+                            })}
+                            {/* KES 999 */}
+                          </Typography>
+                        </Box>
+                        <Divider
+                          sx={{
+                            borderBottomWidth: 2,
+                            borderStyle: "dotted",
+                            borderColor: "#c4c4c4",
+                            mb: 0.2,
+                          }}
+                        />
+
+                        <Box
+                          sx={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <Typography
+                            variant="p"
+                            sx={{
+                              lineHeight: 2,
+                            }}
+                          >
+                            Discount
+                          </Typography>
+                          <Typography
+                            variant="p"
+                            sx={{
+                              lineHeight: 2,
+                            }}
+                          >
+                            <span
+                              style={{
+                                color: "red",
+                                width: "2",
+                              }}
+                            >
+                              -{" "}
+                              {numberFormatter(selectedQuote?.data.discount, {
+                                style: "currency",
+                                currency: "KES",
+                              })}
+                            </span>
                           </Typography>
                         </Box>
                         <Divider
@@ -471,8 +617,6 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
                         />
                         <br />
                       </Box>
-                      <br />
-                      <br />
                     </Box>
                     <Box
                       sx={{
@@ -505,7 +649,11 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
                             fontWeight: "bold",
                           }}
                         >
-                          KES 6,999
+                          {/* KES 6,999 */}
+                          {numberFormatter(selectedQuote?.data.total, {
+                            style: "currency",
+                            currency: "KES",
+                          })}
                         </Typography>
                       </Box>
                     </Box>

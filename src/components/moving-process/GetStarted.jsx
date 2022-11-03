@@ -130,6 +130,7 @@ function GetStarted({ user, nextStep, values, setGetStartedData, stepper }) {
         latitude: data.moving_to.geometry.coordinates[0],
         longitude: data.moving_to.geometry.coordinates[1],
       },
+      moving_date: data.moving_date,
     };
 
     setGetStartedData(getStartedData);
@@ -173,10 +174,6 @@ function GetStarted({ user, nextStep, values, setGetStartedData, stepper }) {
                   justifyContent: "space-around",
                 }}
               >
-                {/* <MovingProcessNavBar
-                  size="large"
-                  color="error"
-                /> */}
                 {stepper}
                 <Container>
                   <Box

@@ -37,7 +37,7 @@ function LoginSignup({ onLogin }) {
       sx={{
         display: "flex",
         flexWrap: "wrap",
-        position: "relative",
+        // position: "relative",
         justifyContent: "center",
         alignItems: "center",
         justifyItems: "center",

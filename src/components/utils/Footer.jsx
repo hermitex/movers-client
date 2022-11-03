@@ -31,7 +31,7 @@ const quickLinks = [
       "Agreement",
       //   "Privacy Policy",
     ],
-    href: "about",
+    href: "/home",
   },
   {
     title: "partnerships",
@@ -41,7 +41,7 @@ const quickLinks = [
       "Corporate Relocation",
       "For Real Estate Agents",
     ],
-    href: "partners",
+    href: "/about",
   },
   {
     title: "moooving services",
@@ -169,7 +169,7 @@ function Footer() {
               </Typography>
               {link.links.map((l) => (
                 <Link
-                  to=""
+                  to={link.href}
                   key={l}
                 >
                   <Typography

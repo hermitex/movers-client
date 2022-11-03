@@ -87,6 +87,7 @@ function AccountMenu({ user, title, link, onLogout }) {
             <Avatar /> {title}
           </MenuItem>
         </NavLink>
+        <br /><br />
         <Divider />
 
         <MenuItem onClick={onLogout}>

@@ -45,6 +45,6 @@ Backend
 - Postgresql
 
 ### Backend repo.
- https://github.com/hermitex/movers-api
+ open [https://github.com/hermitex/movers-api]
 
 

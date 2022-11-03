@@ -9,7 +9,7 @@
   - Book Your Move - Get connected to and scheduled with a Mover in minutes.
   - Track and Communicate - contact your Mover in real-time.
 
-Frontend Design (Figma) Access the UI design (https://www.figma.com/file/YxEMM8gS7rx0a44ZXzOV64/Go-Movers?node-id=0%3A1)
+Frontend Design (Figma) [Access the UI design](https://www.figma.com/file/YxEMM8gS7rx0a44ZXzOV64/Go-Movers?node-id=0%3A1)
 
 ![Moover.com-home](src/assets/documentation/mooover-home.png)
 

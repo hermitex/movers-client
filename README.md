@@ -2,8 +2,7 @@
  Moove.com is A web application that allows people who wish to relocate their residence to connect with people who can assist them to relocate seamlessly and affordably.
 
 # Live link
-      open it here 
-[https://moovers.vercel.app/]
+open it here [https://moovers.vercel.app/]
 # Users should be able to
   - Enter Your Details - Indicate when, where, and what you need help with.
   - Get Your Price - Select one or two Movers and get an instant guaranteed price.

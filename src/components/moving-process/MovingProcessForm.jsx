@@ -47,6 +47,23 @@ function MovingProcessForm({ user, getStartedFromHome }) {
   };
 
   const submitBooking = (data) => {
+    const inventoryChecklistData = {
+      user_id: 1,
+      customer_id: 1,
+      item_name: "cabinet",
+      category: "living room",
+      count: 2,
+      image_url: "",
+    };
+    const moveBookingData = {
+      inventory_checklists_id: 1,
+      mover_id: 2,
+      customer_id: 1,
+      moving_from: "Juja",
+      moving_to: "Thika",
+      moving_date: "03-15-2022",
+      status: "pending",
+    };
     console.log(data);
   };
 

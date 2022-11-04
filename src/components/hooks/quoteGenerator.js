@@ -4,6 +4,7 @@ function quoteGenerator(moveData, rates) {
   moveData.items.map((item) =>
     // eslint-disable-next-line array-callback-return
     rates.map((rate) => {
+      console.log(rate);
       if (
         item["item"]?.toLocaleLowerCase() ===
         rate["item_name"]?.toLocaleLowerCase() //0(N)2
@@ -41,7 +42,8 @@ function quoteGenerator(moveData, rates) {
           mover_quotes: [],
           mover_details: cur.mover_details,
         };
-        newArr.push(mover_ids[cur.mover_id]);
+
+        newArr.push({ ...mover_ids[cur.mover_id], discount: cur.discount });
       }
 
       mover_ids[cur.mover_id].mover_quotes.push(cur);
@@ -64,15 +66,16 @@ function quoteGenerator(moveData, rates) {
     let vat = parseFloat((sum * 0.16).toFixed(2));
     sum = sum + vat;
     // get discount
-    const discount = parseFloat((sum * +quote.discount).toFixed(2));
-
+    let moverDisc = parseFloat(quote.discount);
+    const discount = +(sum * moverDisc).toFixed(2);
+    console.log(sum);
     // subtract discount
-    sum -= discount;
+    sum -= parseFloat(discount);
     sum += parseFloat(quote.flat_price);
     return {
       ...quote,
       flat_price: quote.flat_price,
-      discount: discount,
+      discount: parseFloat(discount),
       vat,
       items,
       total: sum,

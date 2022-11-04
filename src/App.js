@@ -71,7 +71,7 @@ function App() {
 
   const handleLogout = () => {
     const baseUrl = process.env.REACT_APP_BASE_URL;
-    fetch(`${baseUrl}/me`, {
+    fetch(`${baseUrl}/logout`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

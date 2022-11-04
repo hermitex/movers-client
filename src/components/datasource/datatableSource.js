@@ -3,6 +3,7 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable comma-dangle */
 /* eslint-disable implicit-arrow-linebreak */
+import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
@@ -250,33 +251,40 @@ const myOrdersColumns = [
     field: "mover",
     headerName: "Mover",
     sortable: true,
-    width: 80,
-    renderCell: (params) => <div> {params.row.full_name || ""}</div>,
+    width: 100,
+    renderCell: (params) => <div> {params.row.mover.full_name || ""}</div>,
   },
   {
     field: "customer",
     headerName: "Customer",
     sortable: true,
-    width: 80,
-    renderCell: (params) => <div> {params.row.full_name || ""}</div>,
+    width: 100,
+    renderCell: (params) => <div> {params.row.customer.full_name || ""}</div>,
   },
   {
     field: "moving_from",
     headerName: "Moving From",
     sortable: true,
-    width: 80,
+    width: 230,
   },
   {
     field: "moving_to",
     headerName: "Moving To",
     sortable: true,
-    width: 80,
+    width: 230,
   },
   {
     field: "status",
     headerName: "Status",
     sortable: true,
     width: 80,
+    renderCell: (params) => {
+      params.row.status === "pending" ? (
+        <Typography color="text.warning">{params.row.status}</Typography>
+      ) : (
+        <Typography color="text.success">{params.row.status}</Typography>
+      );
+    },
   },
 ];
 
@@ -307,7 +315,7 @@ const useDatatableSource = () => {
   console.log(myOrdersColumns);
   const token = localStorage.getItem("jwt");
   useEffect(() => {
-    fetch(" http://localhost:4000/me", {
+    fetch(`${baseUrl}/me`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -317,7 +325,7 @@ const useDatatableSource = () => {
         r.json().then((user) => setUser(user));
       }
     });
-  }, [token]);
+  }, [baseUrl, token, user]);
 
   const [dataRows, setDataRows] = useState(null);
   useEffect(() => {
@@ -364,12 +372,13 @@ const useDatatableSource = () => {
             status: "Active",
           }));
       } else if (resource === "bookings") {
+        console.log(data);
         rows =
           data &&
           data?.map((booking) => ({
             id: booking.id,
-            mover: booking?.mover.full_name,
-            customer: booking?.customer.full_name,
+            mover: booking?.mover,
+            customer: booking?.customer,
             moving_from: booking?.moving_from,
             moving_to: booking?.moving_to,
             status: booking?.status,

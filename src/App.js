@@ -36,7 +36,7 @@ import ItemTable from "./components/table/ItemTable";
 import Profile from "./components/dashboard/Profile";
 import ItemForm from "./components/item-form/ItemForm";
 import formInputs from "./components/form-inputs/userInputs";
-import widgetData from "./components/dashboard/dashWidgetData";
+
 import About from "./components/About/About";
 import Services from "./components/Services/Services";
 import Contact from "./components/Contacts/Contact";
@@ -47,6 +47,7 @@ import WhyMoover from "./components/home/WhyMoover";
 import PaypalPayment from "./components/payment/PaypalPayment";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import SuccessModal from "./components/moving-process/Success";
+import useDashWidgetData from "./components/dashboard/useDashWidgetData";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -68,7 +69,8 @@ function App() {
   }, []);
 
   const handleLogout = () => {
-    fetch("http://localhost:4000/logout", {
+    const baseUrl = process.env.REACT_APP_BASE_URL;
+    fetch(`${baseUrl}/me`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -118,7 +120,7 @@ function App() {
                   sidebarlinks={sideLinks}
                   component={
                     <DashboardHome
-                      widgetData={widgetData}
+                      widgetData={useDashWidgetData}
                       user={user}
                     />
                   }
@@ -159,6 +161,19 @@ function App() {
                 />
               }
             />
+
+            <Route
+              path="/dashboard/bookings"
+              element={
+                <ItemList
+                  user={user}
+                  setIShowFooter={setIShowFooter}
+                  sidebarlinks={sideLinks}
+                  component={<Datatable user={user} />}
+                />
+              }
+            />
+
             <Route
               path="/dashboard/profile"
               element={

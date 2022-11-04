@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function useFetch(url) {
-  console.log(url)
+  console.log(url);
   const [data, setData] = useState(null);
   const token = localStorage.getItem("jwt");
   useEffect(() => {
@@ -14,7 +14,7 @@ function useFetch(url) {
           },
         });
         const d = await response.json();
-        console.log(d)
+        console.log(d);
         setData(d);
       } catch (error) {
         console.log(error);

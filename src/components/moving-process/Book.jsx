@@ -116,11 +116,11 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
   }, [
     bookingId,
     inventoryId,
-    selectedQuote.customer_id.user.id,
-    selectedQuote.data.mover_details.id,
-    selectedQuote.data.mover_quotes,
-    selectedQuote.getStartedData.moving_from.place_name,
-    selectedQuote.getStartedData.moving_to.place_name,
+    selectedQuote?.customer_id.user.id,
+    selectedQuote?.data.mover_details.id,
+    selectedQuote?.data.mover_quotes,
+    selectedQuote?.getStartedData.moving_from.place_name,
+    selectedQuote?.getStartedData.moving_to.place_name,
     token,
   ]);
   return (

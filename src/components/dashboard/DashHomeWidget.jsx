@@ -9,9 +9,12 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  CircularProgress,
   Typography,
 } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import ProgressIndicator from "../utils/ProgressIndicator";
+import { CircularProgressbar } from "react-circular-progressbar";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -21,30 +24,32 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+function Spinner() {
+  return <CircularProgress color="danger" />;
+}
+
 function DashHomeWidget({ user, widgetData }) {
   const [data, setData] = React.useState(null);
   user = user?.user;
+  const { customer } = widgetData();
+  const { mover } = widgetData();
+  const { admin } = widgetData();
 
   React.useEffect(() => {
     switch (user?.account_type) {
       case "customer":
-        setData(widgetData?.customer);
+        setData(customer);
         break;
       case "mover":
-        setData(widgetData?.mover);
+        setData(mover);
         break;
       case "admin":
-        setData(widgetData?.admin);
+        setData(admin);
         break;
       default:
         break;
     }
-  }, [
-    user?.account_type,
-    widgetData?.customer,
-    widgetData?.mover,
-    widgetData?.admin,
-  ]);
+  }, [admin, customer, mover, user?.account_type]);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -53,10 +58,9 @@ function DashHomeWidget({ user, widgetData }) {
         rowSpacing={1}
         columnSpacing={{ xs: 1, sm: 2, md: 4 }}
       >
-        {
-          // !data ? (
-          //   <ProgressIndicator />
-          // ) :
+        {!data ? (
+          <ProgressIndicator />
+        ) : (
           data?.map((d) => (
             <Grid
               key={d.title}
@@ -65,7 +69,7 @@ function DashHomeWidget({ user, widgetData }) {
               sm={6}
               md={3}
             >
-              <Card sx={{ maxWidth: "100%" }}>
+              <Card sx={{ maxWidth: "100%", minHeight: "10rem" }}>
                 <CardContent>
                   <Typography
                     gutterBottom
@@ -77,16 +81,26 @@ function DashHomeWidget({ user, widgetData }) {
                   >
                     {d.title}
                   </Typography>
-                  <Typography variant="h5">{d.metric}</Typography>
+                  <Typography variant="h5">
+                    {!d.metric ? <ProgressIndicator /> : d.metric}
+                  </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small">see all</Button>
-                  <Button size="small">Learn More</Button>
+                  <NavLink to={`${d.title}`}>
+                    {" "}
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      size="small"
+                    >
+                      see all
+                    </Button>
+                  </NavLink>
                 </CardActions>
               </Card>
             </Grid>
           ))
-        }
+        )}
       </Grid>
     </Box>
   );

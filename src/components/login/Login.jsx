@@ -16,10 +16,11 @@ function Login({ onLogin, setLoading }) {
   const navigate = useNavigate();
 
   // USING JWT
+  const baseUrl = process.env.REACT_APP_BASE_URL;
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    fetch("http://localhost:4000/login", {
+    fetch(`${baseUrl}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,8 +50,8 @@ function Login({ onLogin, setLoading }) {
   useEffect(() => {
     const id = setTimeout(() => {
       if (
-        (user && user.account_type === "mover") ||
-        user.account_type === "admin"
+        (user && user?.account_type === "mover") ||
+        user?.account_type === "admin"
       ) {
         navigate("/dashboard");
       } else if (user && user.account_type === "customer") {

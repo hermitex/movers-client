@@ -93,7 +93,7 @@ const customerSideBarData = [
   },
   {
     title: "My Orders",
-    path: "/dashboard/orders",
+    path: "/dashboard/bookings",
     cName: "nav-text",
     type: "lists",
   },

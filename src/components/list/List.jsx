@@ -13,8 +13,4 @@ function List({ user = "customer", sidebarlinks, setIShowFooter, component }) {
   );
 }
 
-{
-  /* <Datatable /> */
-}
-
 export default List;

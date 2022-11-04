@@ -22,7 +22,8 @@ import logo from "../../logo-white.png";
 
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import AccountMenu from "../avatar-menu/AccountMenu";
-
+import { Dashboard, ListAlt, PinDrop } from "@mui/icons-material";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -99,7 +100,7 @@ function DashBoardSideDrawer({
   onLogout,
 }) {
   user = user?.user;
-  console.log(user);
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   setIShowFooter(false);
@@ -110,7 +111,15 @@ function DashBoardSideDrawer({
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  const icons = [
+    <Dashboard />,
+    <ListAlt />,
+    <ListAlt />,
+    <ListAlt />,
+    <ListAlt />,
+    <AccountBoxIcon />,
+    <PinDrop />,
+  ];
   const [sideLinks, setSideLiks] = React.useState(null);
 
   React.useEffect(() => {
@@ -237,9 +246,11 @@ function DashBoardSideDrawer({
                         minWidth: 0,
                         mr: open ? 3 : "auto",
                         justifyContent: "center",
+                        ":hover": "red",
                       }}
                     >
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                      {icons[index]}
+                      {/* {index % 2 === 0 ? <ListAlt /> : <Dashboard />} */}
                     </ListItemIcon>
                     <ListItemText
                       primary={title}
@@ -252,7 +263,7 @@ function DashBoardSideDrawer({
         </List>
         <Divider />
         <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
+          {["All mail"].map((text, index) => (
             <ListItem
               key={text}
               disablePadding
@@ -272,7 +283,8 @@ function DashBoardSideDrawer({
                     justifyContent: "center",
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {icons[index]}
+                  {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
                 </ListItemIcon>
                 <ListItemText
                   primary={text}

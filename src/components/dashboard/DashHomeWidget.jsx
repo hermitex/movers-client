@@ -49,7 +49,7 @@ function DashHomeWidget({ user, widgetData }) {
       default:
         break;
     }
-  }, [admin, customer, mover, user?.account_type]);
+  }, [user?.account_type]);
 
   return (
     <Box sx={{ width: "100%" }}>

@@ -40,6 +40,8 @@ function Datatable({ user }) {
   const [alertMessage, setAlert] = useState("Warning!");
   const [actionStatus, setActionStatus] = useState();
 
+  useEffect(() => {}, [actionStatus]);
+
   function handleClick(e, row) {
     const { id } = row;
 
@@ -52,13 +54,15 @@ function Datatable({ user }) {
     //   />
     // );
     if (window.confirm(message)) {
-      fetch(`${baseUrl}/${resource}/${id}`, {
+      fetch(`${baseUrl}/users/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((response) => {
         if (response.json().status === 204) {
+          alert(1);
+          Location.reload();
           setActionStatus("Success");
         }
       });

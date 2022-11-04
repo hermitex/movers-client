@@ -357,7 +357,7 @@ const useDatatableSource = () => {
             orders: 0,
             phone: mover.phone,
             email: mover.email,
-            location: mover.location,
+            location: mover?.location.name,
             status: "Active",
           }));
       } else if (resource === "rates") {

@@ -113,12 +113,12 @@ function ItemTable() {
                   }}
                 >
                   <div
-                    // className="bg-hero-pattern  bg-no-repeat bg-cover bg-center rounded-md mr-2 hover:opacity-100 opacity-80 cursor-pointer  hover:scale-110 transition duration-300 ease-in-out"
-                    // style={{
-                    //   height: "10vh",
-                    //   width: "10vw",
-                    //   backgroundImage: `url(${row.img})`,
-                    // }}
+                  // className="bg-hero-pattern  bg-no-repeat bg-cover bg-center rounded-md mr-2 hover:opacity-100 opacity-80 cursor-pointer  hover:scale-110 transition duration-300 ease-in-out"
+                  // style={{
+                  //   height: "10vh",
+                  //   width: "10vw",
+                  //   backgroundImage: `url(${row.img})`,
+                  // }}
                   />
                   {row.houseType}
                 </div>

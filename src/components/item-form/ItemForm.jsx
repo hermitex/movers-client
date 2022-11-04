@@ -32,7 +32,8 @@ function ItemForm({ formInputs, user = "customer" }) {
   const v = Object.assign({}, ...customerInitialValues);
   const [values, setValues] = React.useState({
     ...v,
-    showPassword: false,
+    confirm_password: "",
+    // showPassword: false,
   });
 
   const [userFormData, setUserFormData] = React.useState(null);
@@ -70,7 +71,7 @@ function ItemForm({ formInputs, user = "customer" }) {
     }
   }, []);
 
-  console.log(state.row);
+  console.log(formInputs);
 
   return (
     <ColGrid
@@ -87,10 +88,10 @@ function ItemForm({ formInputs, user = "customer" }) {
         <Card>
           <Box sx={{ display: "flex", flexWrap: "wrap" }}>
             <>
-              {!formInputs ? (
+              {!values ? (
                 <ProgressIndicator />
               ) : (
-                formInputs.moverInputs.map((data) =>
+                Object.keys(values).map((data) =>
                   data.name === "password" ? (
                     <div key={data.name}>
                       <FormControl
@@ -98,13 +99,13 @@ function ItemForm({ formInputs, user = "customer" }) {
                         variant="standard"
                       >
                         <InputLabel htmlFor="standard-adornment-password">
-                          {data.label}
+                          {data}
                         </InputLabel>
                         <Input
                           id="standard-adornment-password"
                           type={values.showPassword ? "text" : "password"}
-                          value={values.password}
-                          onChange={handleChange("password")}
+                          value={values.data}
+                          onChange={handleChange(`${data}`)}
                           endAdornment={
                             <InputAdornment position="end">
                               <IconButton
@@ -128,19 +129,20 @@ function ItemForm({ formInputs, user = "customer" }) {
                       sx={{ m: 1, width: "25ch" }}
                       variant="filled"
                     >
-                      {/* <InputLabel htmlFor="standard">{data.label}</InputLabel> */}
+                      <InputLabel htmlFor="standard">{data.label}</InputLabel>
                       <Input
-                        id="filled-adornment-weight"
-                        value={values[data.name]}
-                        onChange={handleChange("weight")}
-                        endAdornment={
-                          <InputAdornment position="end">kg</InputAdornment>
-                        }
+                        id=""
+                        value={values.data}
+                        label="Standard"
+                        onChange={handleChange(`${data}`)}
                         aria-describedby="filled-weight-helper-text"
                         inputProps={{
-                          "aria-label": "weight",
+                          "aria-label": { data },
                         }}
                       />
+                      <FormHelperText id="outlined-weight-helper-text">
+                        {data}
+                      </FormHelperText>
                     </FormControl>
                   )
                 )

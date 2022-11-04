@@ -244,7 +244,7 @@ const ratesColumns = [
   },
 ];
 
-const ordersColumns = [
+const myOrdersColumns = [
   { field: "id", headerName: "ID", width: 10 },
   {
     field: "mover",
@@ -253,17 +253,44 @@ const ordersColumns = [
     width: 80,
     renderCell: (params) => <div> {params.row.full_name || ""}</div>,
   },
+  {
+    field: "customer",
+    headerName: "Customer",
+    sortable: true,
+    width: 80,
+    renderCell: (params) => <div> {params.row.full_name || ""}</div>,
+  },
+  {
+    field: "moving_from",
+    headerName: "Moving From",
+    sortable: true,
+    width: 80,
+  },
+  {
+    field: "moving_to",
+    headerName: "Moving To",
+    sortable: true,
+    width: 80,
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    sortable: true,
+    width: 80,
+  },
 ];
 
 const useDatatableSource = () => {
   const location = useLocation();
   // const navigate = useNavigate();
+  const [user, setUser] = useState(null);
   const resource = location.pathname.split("/").pop();
   const [cols, setCol] = useState(null);
   const baseUrl = process.env.REACT_APP_BASE_URL;
   // const [data, setData] = useState(null);
   const data = useFetch(`${baseUrl}/${resource}`);
-  console.log(data);
+
+  console.log(resource);
   useEffect(() => {
     if (resource === "movers") {
       setCol(moverColumns);
@@ -272,11 +299,30 @@ const useDatatableSource = () => {
     } else if (resource === "rates") {
       setCol(ratesColumns);
     }
-  }, [data, resource]);
+    if (resource === "bookings") {
+      setCol(myOrdersColumns);
+    }
+    console.log(cols);
+  }, [cols, data, resource]);
+  console.log(myOrdersColumns);
+  const token = localStorage.getItem("jwt");
+  useEffect(() => {
+    fetch(" http://localhost:4000/me", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, [token]);
 
   const [dataRows, setDataRows] = useState(null);
   useEffect(() => {
     function getData() {
+      console.log(resource);
       let rows;
       if (resource === "customers") {
         rows =
@@ -317,7 +363,19 @@ const useDatatableSource = () => {
             count: rate.count,
             status: "Active",
           }));
+      } else if (resource === "bookings") {
+        rows =
+          data &&
+          data?.map((booking) => ({
+            id: booking.id,
+            mover: booking?.mover.full_name,
+            customer: booking?.customer.full_name,
+            moving_from: booking?.moving_from,
+            moving_to: booking?.moving_to,
+            status: booking?.status,
+          }));
       }
+
       setDataRows(rows);
     }
 

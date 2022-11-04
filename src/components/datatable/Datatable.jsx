@@ -11,6 +11,7 @@ import useDatatableSource from "../datasource/datatableSource";
 
 import ProgressIndicator from "../utils/ProgressIndicator";
 import { Box, Button, Typography } from "@mui/material";
+import ConfirmationModal from "../utils/ConfirmationModal";
 
 function Datatable({ user }) {
   const [userType, setUserType] = useState(null);
@@ -24,14 +25,47 @@ function Datatable({ user }) {
     const path = pathname.split("/").pop();
     setResource(path);
     if (user?.user.account_type === "customer") {
-      alert(1);
       setUserType(user?.user.account_type);
     } else if (user?.user.account_type === "mover") {
       setUserType(user?.user.account_type);
     }
   }, [pathname, user?.user.account_type]);
-  console.log(userType);
-  function handleClick() {}
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+
+  const token = localStorage.getItem("jwt");
+  const [action, setAction] = useState(false);
+  const [message, setMessage] = useState(
+    "You are about to delete this record?"
+  );
+  const [alertMessage, setAlert] = useState("Warning!");
+  const [actionStatus, setActionStatus] = useState();
+
+  function handleClick(e, row) {
+    const { id } = row;
+
+    // return (
+    //   <ConfirmationModal
+    //     setAction={setAction}
+    //     message={message}
+    //     alert={alertMessage}
+    //     isOpen={true}
+    //   />
+    // );
+    if (window.confirm(message)) {
+      fetch(`${baseUrl}/${resource}/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((response) => {
+        if (response.json().status === 204) {
+          setActionStatus("Success");
+        }
+      });
+    }
+
+    // console.log(row);
+  }
   const actionColumn = [
     {
       field: "Action",
@@ -46,15 +80,29 @@ function Datatable({ user }) {
             gap: 0.2,
           }}
         >
-          <NavLink to={{ pathname: "/dashboard/profile" }} state={{ row }}>
-            <Button type="button" variant="outlined" color="success">
+          <NavLink
+            to={{ pathname: "/dashboard/profile" }}
+            state={{ row }}
+          >
+            <Button
+              type="button"
+              variant="outlined"
+              color="success"
+            >
               <ion-icon name="eye" />
               view
             </Button>
           </NavLink>
           {userType === "customer" ? (
-            <NavLink to={{ pathname: "/get-started" }} state={{ row }}>
-              <Button type="button" variant="outlined" color="success">
+            <NavLink
+              to={{ pathname: "/get-started" }}
+              state={{ row }}
+            >
+              <Button
+                type="button"
+                variant="outlined"
+                color="success"
+              >
                 <ion-icon name="eye" />
                 book
               </Button>
@@ -62,7 +110,10 @@ function Datatable({ user }) {
           ) : null}
           {userType === "customer" || userType === "mover" ? null : (
             <>
-              <NavLink to={{ pathname: "/dashboard/edit" }} state={{ row }}>
+              <NavLink
+                to={{ pathname: "/dashboard/edit" }}
+                state={{ row }}
+              >
                 <Button
                   type="button"
                   onClick={(e) => handleClick(e, row)}
@@ -80,7 +131,6 @@ function Datatable({ user }) {
                 variant="outlined"
                 color="error"
               >
-                <ion-icon name="trash" action="delete" />
                 delete
               </Button>
             </>
@@ -114,16 +164,22 @@ function Datatable({ user }) {
           >
             {resource}
           </Typography>
-          {userType === "customer" || userType === "mover" ? null: <NavLink to={`/dashboard/new`}>
-            <Button type="button" variant="contained" color="success">
-              <AddCircleIcon />
-              Add new{" "}
-              {resource
-                .split("")
-                .slice(0, resource.length - 1)
-                .join("")}
-            </Button>
-          </NavLink>}
+          {userType === "customer" || userType === "mover" ? null : (
+            <NavLink to={`/dashboard/new`}>
+              <Button
+                type="button"
+                variant="contained"
+                color="success"
+              >
+                <AddCircleIcon />
+                Add new{" "}
+                {resource
+                  .split("")
+                  .slice(0, resource.length - 1)
+                  .join("")}
+              </Button>
+            </NavLink>
+          )}
         </Box>
         {console.log(cols, dataRows)}
         {dataRows === null || cols === null ? (
@@ -143,58 +199,3 @@ function Datatable({ user }) {
 }
 
 export default Datatable;
-
-// const bookAction = ()=> {
-//   <NavLink to={{ pathname: "/dashboard/profile" }} state={{ row }}>
-//     <Button type="button" variant="outlined" color="success">
-//       <ion-icon name="eye" />
-//       book
-//     </Button>
-//   </NavLink>
-// };
-
-// const editAction =()=> { 
-//   <NavLink to={{ pathname: "/dashboard/edit" }} state={{ row }}>
-//     <Button
-//       type="button"
-//       onClick={(e) => handleClick(e, row)}
-//       variant="outlined"
-//       color="warning"
-//     >
-//       <ion-icon name="create" />
-//       edit
-//     </Button>
-//   </NavLink>
-// };
-
-// const viewAction = ()=>{
-//   <NavLink to={{ pathname: "/dashboard/profile" }} state={{ row }}>
-//     <Button type="button" variant="outlined" color="success">
-//       <ion-icon name="eye" />
-//       view
-//     </Button>
-//   </NavLink>
-// };
-
-// const deleteAction = () => {
-//   <Button
-//     type="button"
-//     onClick={(e) => handleClick(e, row)}
-//     variant="outlined"
-//     color="error"
-//   >
-//     <ion-icon name="trash" action="delete" />
-//     delete
-//   </Button>
-// };
-
-// if(userType === "customer"){
-//   {bookAction()}
-// } else if (userType === "mover"){
-//   {viewAction()}
-//   {editAction()}
-// } else{
-//   {viewAction()}
-//   {editAction()}
-//   {deleteAction()}
-// };

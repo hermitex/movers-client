@@ -20,8 +20,8 @@ function Signup({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
     setErrors([]);
-
-    fetch("http://localhost:4000/signup", {
+    const baseUrl = process.env.REACT_APP_BASE_URL;
+    fetch(`${baseUrl}/signup`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -41,7 +41,6 @@ function Signup({ onLogin }) {
       }),
     }).then((res) => {
       if (res.ok) {
-        alert("registered!");
         setSuccess("Signup successful!");
         setErrors([]);
         res.json().then((data) => {
@@ -203,7 +202,8 @@ function Signup({ onLogin }) {
           {errors?.password_confirmation}
         </Typography>
       )}
-      <br /><br />
+      <br />
+      <br />
       <Button
         variant="contained"
         color="error"

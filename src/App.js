@@ -55,8 +55,9 @@ function App() {
 
   // USING JWT
   const token = localStorage.getItem("jwt");
+  const baseUrl = process.env.REACT_APP_BASE_URL;
   useEffect(() => {
-    fetch(" http://localhost:4000/me", {
+    fetch(`${baseUrl}/me`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

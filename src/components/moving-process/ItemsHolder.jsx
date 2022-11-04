@@ -142,7 +142,7 @@ function ItemsHolder({ onAddItem, values }) {
             color="#fff"
             sx={{ width: "100%", flexShrink: 0 }}
           >
-            my diging room items
+            my dining room items
           </Typography>
         </AccordionSummary>
         <AccordionDetails>

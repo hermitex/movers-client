@@ -329,7 +329,7 @@ function GetStarted({ user, nextStep, values, setGetStartedData, stepper }) {
                         )
                       )}
                       <Button
-                        disabled={isButtonDisabled}
+                        // disabled={isButtonDisabled}
                         variant="contained"
                         color="error"
                         type="submit"

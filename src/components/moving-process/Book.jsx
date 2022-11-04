@@ -34,7 +34,7 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
       margin: "100px auto",
     },
   };
-
+  const baseUrl = process.env.REACT_APP_BASE_URL;
   const token = localStorage.getItem("jwt");
   // console.log(selectedQuote.vat);
   useEffect(() => {
@@ -66,7 +66,7 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
       move_booking_id: bookingId,
       status: "completed",
     };
-    fetch("http://127.0.0.1:4000/inventory_checklists", {
+    fetch(`${baseUrl}/inventory_checklists`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,7 +81,7 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
       }
     });
 
-    fetch("http://127.0.0.1:4000/move_bookings", {
+    fetch(`${baseUrl}/move_bookings`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -99,7 +99,7 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
       }
     });
 
-    fetch("http://127.0.0.1:4000/payments", {
+    fetch(`${baseUrl}/payments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

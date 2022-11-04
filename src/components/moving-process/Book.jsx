@@ -650,7 +650,7 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
                           }}
                         >
                           {/* KES 6,999 */}
-                          {numberFormatter(selectedQuote?.data.total, {
+                          {numberFormatter(+selectedQuote?.data.total, {
                             style: "currency",
                             currency: "KES",
                           })}

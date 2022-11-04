@@ -17,7 +17,7 @@ const adminSideBarData = [
   },
   {
     title: "Orders",
-    path: "/dashboard/orders",
+    path: "/dashboard/bookings",
     cName: "nav-text",
   },
   {

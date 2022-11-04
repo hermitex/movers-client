@@ -279,7 +279,7 @@ const myOrdersColumns = [
     sortable: true,
     width: 80,
     renderCell: (params) => {
-      params.row.status === "pending" ? (
+      params?.row.status.toLowerCase() === "pending" ? (
         <Typography color="text.warning">{params.row.status}</Typography>
       ) : (
         <Typography color="text.success">{params.row.status}</Typography>

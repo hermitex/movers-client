@@ -53,20 +53,22 @@ function quoteGenerator(moveData, rates) {
 
   const quotesIncludingGrandTotal = compiledQuotes.map((quote) => {
     quote = { ...quote, total: 0 };
-    let sum = quote.mover_quotes.reduce(
-      (previousValue, currentValue) => previousValue + currentValue.subtotal,
-      0
+    let sum = parseFloat(
+      quote.mover_quotes.reduce(
+        (previousValue, currentValue) => previousValue + currentValue.subtotal,
+        0
+      )
     );
-    let items = +sum;
+    let items = sum;
     // get vat
-    let vat = (+sum * 0.16).toFixed(2);
-    sum = sum + +vat;
+    let vat = parseFloat((sum * 0.16).toFixed(2));
+    sum = sum + vat;
     // get discount
-    const discount = (sum * +quote.discount).toFixed(2);
+    const discount = parseFloat((sum * +quote.discount).toFixed(2));
 
     // subtract discount
     sum -= discount;
-    sum += +quote.flat_price;
+    sum += parseFloat(quote.flat_price);
     return {
       ...quote,
       flat_price: quote.flat_price,

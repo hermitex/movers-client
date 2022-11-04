@@ -96,7 +96,7 @@ function CompareFeedCard({ prevStep, nextStep, onSelect, quotes }) {
                 <Divider />
                 <Button color="error">
                   {/* KES{" "} */}
-                  {numberFormatter(quote?.total, {
+                  {numberFormatter(+quote?.total, {
                     style: "currency",
                     currency: "KES",
                   })}{" "}

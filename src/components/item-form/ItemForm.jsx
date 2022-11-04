@@ -18,6 +18,7 @@ import { ColGrid, Col, Card, Text, Metric } from "@tremor/react";
 import Map from "../map/Map";
 import LocationMap from "../map/LocationMap";
 import { useLocation } from "react-router-dom";
+import ConfirmationModal from "../utils/ConfirmationModal";
 
 function ItemForm({ formInputs, user = "customer" }) {
   const location = useLocation();
@@ -37,10 +38,15 @@ function ItemForm({ formInputs, user = "customer" }) {
   });
 
   const [userFormData, setUserFormData] = React.useState(null);
-
+  const [dataToSubmit, setDataToSubmit] = React.useState({});
   console.log(values);
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
+    setDataToSubmit({
+      ...values,
+      phone: values.phone_number,
+      type: values.account_type,
+    });
   };
 
   const handleClickShowPassword = () => {
@@ -70,8 +76,32 @@ function ItemForm({ formInputs, user = "customer" }) {
         break;
     }
   }, []);
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+  const token = localStorage.getItem("jwt");
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  console.log(formInputs);
+    alert(JSON.stringify(dataToSubmit));
+    fetch(`${baseUrl}/users`, {
+      method: "POST",
+      header: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ ...dataToSubmit, location_id: 1 }),
+    }).then((response) => {
+      if (response.json().ok) {
+        return (
+          <ConfirmationModal
+            message="User added successfuly!"
+            isOpen={true}
+            alert="Success!"
+          />
+        );
+      }
+    });
+  };
+
+  console.log(values);
 
   return (
     <ColGrid
@@ -86,7 +116,11 @@ function ItemForm({ formInputs, user = "customer" }) {
         numColSpanLg={2}
       >
         <Card>
-          <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+          <Box
+            onSubmit={handleSubmit}
+            sx={{ display: "flex", flexWrap: "wrap" }}
+            component="form"
+          >
             <>
               {!values ? (
                 <ProgressIndicator />
@@ -105,7 +139,7 @@ function ItemForm({ formInputs, user = "customer" }) {
                           id="standard-adornment-password"
                           type={values.showPassword ? "text" : "password"}
                           value={values.data}
-                          onChange={handleChange(`${data}`)}
+                          onChange={alert(`${data}`)}
                           endAdornment={
                             <InputAdornment position="end">
                               <IconButton
@@ -129,20 +163,27 @@ function ItemForm({ formInputs, user = "customer" }) {
                       sx={{ m: 1, width: "25ch" }}
                       variant="filled"
                     >
-                      <InputLabel htmlFor="standard">{data.label}</InputLabel>
+                      <InputLabel
+                        htmlFor="standard"
+                        style={{ textTransform: "capitalize" }}
+                      >
+                        {data.split("_").join(" ")}
+                      </InputLabel>
                       <Input
                         id=""
                         value={values.data}
+                        style={{ padding: "0.5rem" }}
                         label="Standard"
+                        // onChange={alert(`${data}`)}
                         onChange={handleChange(`${data}`)}
-                        aria-describedby="filled-weight-helper-text"
-                        inputProps={{
-                          "aria-label": { data },
-                        }}
+                        // aria-describedby="filled-weight-helper-text"
+                        // inputProps={{
+                        //   "aria-label": { data },
+                        // }}
                       />
-                      <FormHelperText id="outlined-weight-helper-text">
+                      {/* <FormHelperText id="outlined-weight-helper-text">
                         {data}
-                      </FormHelperText>
+                      </FormHelperText> */}
                     </FormControl>
                   )
                 )
@@ -152,8 +193,9 @@ function ItemForm({ formInputs, user = "customer" }) {
               sx={{ width: "100%" }}
               variant="outlined"
               color="success"
+              type="submit"
             >
-              Update
+              Submit
             </Button>
           </Box>
         </Card>

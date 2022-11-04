@@ -46,7 +46,7 @@ const customerColumns = [
     field: "phone",
     headerName: "Phone",
     sortable: true,
-    width: 100,
+    width: 120,
   },
   {
     field: "location",
@@ -343,6 +343,7 @@ const useDatatableSource = () => {
             orders: 0,
             phone: customer.phone,
             email: customer.email,
+            location: customer.location.name,
             status: "Active",
           }));
       } else if (resource === "movers") {
@@ -356,6 +357,7 @@ const useDatatableSource = () => {
             orders: 0,
             phone: mover.phone,
             email: mover.email,
+            location: mover.location,
             status: "Active",
           }));
       } else if (resource === "rates") {

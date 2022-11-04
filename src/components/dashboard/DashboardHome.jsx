@@ -13,9 +13,9 @@ function DashboardHome({ widgetData, user }) {
           user={user}
         />
       </Box>
-      <Box sx={{ width: "100%", mb: 2 }}>
+      {/* <Box sx={{ width: "100%", mb: 2 }}>
         <Featured />
-      </Box>
+      </Box> */}
       <Box sx={{ mb: 2 }}>
         <Box
           sx={{

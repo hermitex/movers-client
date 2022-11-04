@@ -2,7 +2,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  useNavigate,
 } from "react-router-dom";
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
@@ -50,6 +49,7 @@ import SuccessModal from "./components/moving-process/Success";
 import useDashWidgetData from "./components/dashboard/useDashWidgetData";
 
 function App() {
+  
   const [user, setUser] = useState(null);
   const [isShowFooter, setIShowFooter] = useState(true);
 
@@ -77,9 +77,9 @@ function App() {
       },
     }).then((response) => {
       if (response.ok) {
-        setUser(null);
-        // navigate("/home");
+        setUser(null);        
         localStorage.removeItem("jwt");
+        <Home />
       }
     });
   };

@@ -281,7 +281,8 @@ function Book({ user, getPayData, prevStep, stepper, selectedQuote }) {
                         label="Card Number"
                         variant="outlined"
                       />
-                    </Box>
+                    </Box> 
+                    <br />
                     <PaypalPayment
                       getPayData={getPayData}
                       amount={selectedQuote?.data.total}
